@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:keep="@menu/menu_main">
+
+    <item
+        android:id="@+id/homeFragment"
+        android:icon="@mipmap/ic_launcher"
+        android:title="@string/home" />
+    <item
+        android:id="@+id/analizeFragment"
+        android:icon="@mipmap/ic_launcher"
+        android:title="Analize" />
+    <item
+        android:id="@+id/profileFragment"
+        android:icon="@mipmap/ic_launcher"
+        android:title="@string/profile" />
+</menu>
