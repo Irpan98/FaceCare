@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "490297833390",
+    "firebase_url": "https://capstone-project-052021-default-rtdb.asia-southeast1.firebasedatabase.app",
+    "project_id": "capstone-project-052021",
+    "storage_bucket": "capstone-project-052021.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:490297833390:android:d92368c8af95565040ba3f",
+        "android_client_info": {
+          "package_name": "id.itborneo.facecare"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "490297833390-376n03rco72hed7d0mdmdfebteenhndp.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCBnS_Lv8omZN4cRfI_dvEfF4sJP3Ot0Oo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "490297833390-376n03rco72hed7d0mdmdfebteenhndp.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

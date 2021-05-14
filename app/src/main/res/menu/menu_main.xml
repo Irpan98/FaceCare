@@ -10,7 +10,7 @@
     <item
         android:id="@+id/analizeFragment"
         android:icon="@mipmap/ic_launcher"
-        android:title="Analize" />
+        android:title="@string/analize" />
     <item
         android:id="@+id/profileFragment"
         android:icon="@mipmap/ic_launcher"
