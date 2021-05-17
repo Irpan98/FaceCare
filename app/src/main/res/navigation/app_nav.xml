@@ -22,4 +22,14 @@
         android:name="id.itborneo.facecare.analize.AnalizeFragment"
         android:label="fragment_analize"
         tools:layout="@layout/fragment_analize" />
+    <fragment
+        android:id="@+id/articleFragment"
+        android:name="id.itborneo.facecare.article.ArticleFragment"
+        android:label="fragment_article"
+        tools:layout="@layout/fragment_article" />
+    <fragment
+        android:id="@+id/communityFragment"
+        android:name="id.itborneo.facecare.community.CommunityFragment"
+        android:label="fragment_community"
+        tools:layout="@layout/fragment_community" />
 </navigation>

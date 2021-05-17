@@ -1,19 +1,19 @@
-package id.itborneo.facecare.result.adapters
+package id.itborneo.facecare.article
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import id.itborneo.facecare.databinding.ItemResultFaceProblemBinding
-import id.itborneo.facecare.model.NaturalIngredientModel
+import id.itborneo.facecare.model.ArticleModel
 
 
-class NaturalIngredientResultAdapter(private val listener: (NaturalIngredientModel) -> Unit) :
-    RecyclerView.Adapter<NaturalIngredientResultAdapter.ViewHolder>() {
+class ArticleAdapter(private val listener: (ArticleModel) -> Unit) :
+    RecyclerView.Adapter<ArticleAdapter.ViewHolder>() {
 
-    private var movies = listOf<NaturalIngredientModel>()
+    private var list = listOf<ArticleModel>()
 
-    fun set(data: List<NaturalIngredientModel>) {
-        this.movies = data
+    fun set(list: List<ArticleModel>) {
+        this.list = list
         notifyDataSetChanged()
     }
 
@@ -24,16 +24,16 @@ class NaturalIngredientResultAdapter(private val listener: (NaturalIngredientMod
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.bind(movies[position])
+        holder.bind(list[position])
     }
 
-    override fun getItemCount() = movies.size
+    override fun getItemCount() = list.size
 
     inner class ViewHolder(private val itemBinding: ItemResultFaceProblemBinding) :
         RecyclerView.ViewHolder(itemBinding.root) {
-        fun bind(faceProblem: NaturalIngredientModel) {
+        fun bind(article: ArticleModel) {
             itemBinding.apply {
-                tvName.text = faceProblem.nama
+                tvName.text = article.judul
 //                tvName.text = movie.title
 //                Glide.with(root.context)
 //                    .load("${ImageConstant.BASE_IMAGE}${movie.posterPath}")

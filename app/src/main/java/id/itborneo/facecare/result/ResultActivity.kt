@@ -47,31 +47,32 @@ class ResultActivity : AppCompatActivity() {
         initRecyclerProduct()
         dataDummy()
         observerData()
+
     }
 
     private fun dataDummy() {
 
-        val data = listOf(
-            FaceProblemModel("jerawat", "abc"),
-            FaceProblemModel("acne a", "asdasdsad"),
-            FaceProblemModel("acne b", "asdasdaw")
-        )
+//        val data = listOf(
+//            FaceProblemModel("jerawat", "abc"),
+//            FaceProblemModel("acne a", "asdasdsad"),
+//            FaceProblemModel("acne b", "asdasdaw")
+//        )
 
-        faceProblemAdapter.set(data)
+//        faceProblemAdapter.set(data)
+//
+//        val data2 = listOf(
+//            NaturalIngredientModel("Jambu", "abc", "", "", "", "", 0),
+//            NaturalIngredientModel("Jambu", "abc", "", "", "", "", 0),
+//            NaturalIngredientModel("Jambu", "abc", "", "", "", "", 0),
+//        )
 
-        val data2 = listOf(
-            NaturalIngredientModel("Jambu", "abc", "", "", "", "", 0),
-            NaturalIngredientModel("Jambu", "abc", "", "", "", "", 0),
-            NaturalIngredientModel("Jambu", "abc", "", "", "", "", 0),
-        )
-
-        naturalIngredientAdapter.set(data2)
+//        naturalIngredientAdapter.set(data2)
 
 
         val data3 = listOf(
-            ProductModel("Ponds", "abc", "", "",  0),
-            ProductModel("Ponds 2", "abc", "", "",  0),
-            ProductModel("Ponds 3", "abc", "", "",  0),
+            ProductModel("Ponds", "abc", "", "", 0),
+            ProductModel("Ponds 2", "abc", "", "", 0),
+            ProductModel("Ponds 3", "abc", "", "", 0),
         )
 
         productAdapter.set(data3)
@@ -87,19 +88,34 @@ class ResultActivity : AppCompatActivity() {
     private fun observerData() {
 
         val database = FirebaseDatabase.getInstance()
-        val myRef = database.getReference("Identifikasi_Wajah")
+        val myRef = database.getReference("identifikasi")
 
 
         myRef.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
-                // This method is called once with the initial value and again
-                // whenever data at this location is updated.
-
-                //TODO CHange later
                 val map = dataSnapshot.value as Map<String, Any>?
 
-//                val value = dataSnapshot.getValue(String::class.java)
+                val faceProblems = mutableListOf<FaceProblemModel>()
                 Log.d(TAG, "Value is: $map")
+
+                dataSnapshot.children.forEachIndexed { index, snapshot ->
+                    val faceProblem =
+                        snapshot.getValue(FaceProblemModel::class.java)
+                    if (faceProblem != null) {
+                        faceProblems.add(faceProblem)
+                    }
+
+                }
+
+
+                faceProblemAdapter.set(faceProblems)
+
+                //dummy
+                val natural = faceProblems[0].solusi_herbal_1.distinct()
+                observerNaturalIngredient(natural)
+
+
+                Log.d(TAG, "Value object is: $faceProblems")
             }
 
             override fun onCancelled(error: DatabaseError) {
@@ -107,6 +123,12 @@ class ResultActivity : AppCompatActivity() {
                 Log.w(TAG, "Failed to read value.", error.toException())
             }
         })
+    }
+
+    private fun observerNaturalIngredient(naturalIngredientModel: List<NaturalIngredientModel>) {
+
+        naturalIngredientAdapter.set(naturalIngredientModel)
+
     }
 
     private fun initRecyclerFaceProblem() {

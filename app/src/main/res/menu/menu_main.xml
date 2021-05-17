@@ -8,9 +8,18 @@
         android:icon="@mipmap/ic_launcher"
         android:title="@string/home" />
     <item
+        android:id="@+id/articleFragment"
+        android:icon="@mipmap/ic_launcher"
+        android:title="@string/article" />
+
+    <item
         android:id="@+id/analizeFragment"
         android:icon="@mipmap/ic_launcher"
         android:title="@string/analize" />
+    <item
+        android:id="@+id/communityFragment"
+        android:icon="@mipmap/ic_launcher"
+        android:title="@string/community" />
     <item
         android:id="@+id/profileFragment"
         android:icon="@mipmap/ic_launcher"

@@ -27,7 +27,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Natural Ingredient" />
+        android:text="Bahan Herbal" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_result_natural_ingredient"
@@ -40,7 +40,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Prduct" />
+        android:text="Saran Produk" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_result_product"
@@ -55,7 +55,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:enabled="false"
-        android:text="Consult with Docter "
+        android:text="Consult with Doctor "
         android:textAllCaps="false" />
 
     <TextView

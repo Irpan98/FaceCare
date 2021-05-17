@@ -33,7 +33,7 @@ class FaceProblemResultAdapter(private val listener: (FaceProblemModel) -> Unit)
         RecyclerView.ViewHolder(itemBinding.root) {
         fun bind(faceProblem: FaceProblemModel) {
             itemBinding.apply {
-                tvName.text = faceProblem.name
+                tvName.text = faceProblem.nama
 //                tvName.text = movie.title
 //                Glide.with(root.context)
 //                    .load("${ImageConstant.BASE_IMAGE}${movie.posterPath}")
