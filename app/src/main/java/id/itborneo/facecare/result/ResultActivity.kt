@@ -21,12 +21,6 @@ import id.itborneo.facecare.result.adapters.ProductResultAdapter
 
 class ResultActivity : AppCompatActivity() {
 
-    private lateinit var binding: ActivityResultBinding
-
-    private lateinit var faceProblemAdapter: FaceProblemResultAdapter
-    private lateinit var naturalIngredientAdapter: NaturalIngredientResultAdapter
-    private lateinit var productAdapter: ProductResultAdapter
-
     companion object {
         private const val TAG = "ResultActivity"
 
@@ -36,6 +30,12 @@ class ResultActivity : AppCompatActivity() {
             context.startActivity(intent)
         }
     }
+
+    private lateinit var binding: ActivityResultBinding
+
+    private lateinit var faceProblemAdapter: FaceProblemResultAdapter
+    private lateinit var naturalIngredientAdapter: NaturalIngredientResultAdapter
+    private lateinit var productAdapter: ProductResultAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

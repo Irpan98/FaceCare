@@ -4,16 +4,26 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".home.HomeFragment">
+    tools:context=".auth.register.RegisterActivity">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <EditText
+        android:id="@+id/et_register_email"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Welcome" />
+        android:layout_height="wrap_content" />
+
+    <EditText
+        android:id="@+id/et_register_password"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
 
     <Button
-        android:id="@+id/btn_home_login"
+        android:id="@+id/btn_register_register"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Register" />
+
+    <Button
+        android:id="@+id/btn_register_login"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Login" />
