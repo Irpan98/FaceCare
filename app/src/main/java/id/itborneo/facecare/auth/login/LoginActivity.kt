@@ -8,6 +8,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.FirebaseAuth
 import id.itborneo.facecare.auth.register.RegisterActivity
 import id.itborneo.facecare.databinding.ActivityLoginBinding
+import id.itborneo.facecare.utils.KsPrefUser
 
 class LoginActivity : AppCompatActivity() {
 
@@ -38,7 +39,6 @@ class LoginActivity : AppCompatActivity() {
             val email = binding.etLoginEmail.text.toString()
             val password = binding.etLoginPassword.text.toString()
             Log.d(TAG, "login click $email dan $password")
-
             submitLogin(email, password)
         }
 
@@ -49,23 +49,27 @@ class LoginActivity : AppCompatActivity() {
 
     private fun submitLogin(email: String, password: String) {
 
-
         auth.signInWithEmailAndPassword(email, password)
             .addOnCompleteListener {
                 Log.d(TAG, "login berhasil $it")
-                getUid()
+                loginSuccess()
             }
             .addOnFailureListener {
                 Log.e(TAG, "error create user ${it.message}")
 
             }
-
-
     }
 
-    private fun getUid() {
+    private fun loginSuccess() {
         val userUid = auth.currentUser?.uid
-        Log.d(TAG, "getUid $userUid")
+        Log.d(TAG, "loginSuccess $userUid")
+
+        if (userUid != null) {
+            KsPrefUser.setUser(userUid)
+
+            finish()
+        }
+
 
     }
 
@@ -75,4 +79,6 @@ class LoginActivity : AppCompatActivity() {
         val view = binding.root
         setContentView(view)
     }
+
+
 }

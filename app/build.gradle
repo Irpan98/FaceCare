@@ -62,4 +62,19 @@ dependencies {
     implementation 'com.google.firebase:firebase-database:20.0.0'
     implementation 'com.google.firebase:firebase-auth'
 
+
+    //Kotlin Shared Preferences
+    implementation "com.github.cioccarellia:ksprefs:$ksprefs_version"
+
+    //LiveData
+    implementation "androidx.lifecycle:lifecycle-livedata-ktx:$livedataVersion"
+
+    //lifecycle
+//    implementation "android.arch.lifecycle:extensions:$lifecycleVersion"
+    implementation "androidx.lifecycle:lifecycle-runtime-ktx:$lifecycleVersion"
+    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycleVersion"
+
+    //binding
+    implementation "com.github.kirich1409:viewbindingpropertydelegate:$viewBindingPropertyDelegateVersion"
+
 }
