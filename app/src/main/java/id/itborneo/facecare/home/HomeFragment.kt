@@ -42,7 +42,6 @@ class HomeFragment : Fragment() {
 
         buttonListener(view)
         homeStateObserver()
-
         loginChecker()
     }
 

@@ -4,11 +4,16 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.view.View
+import android.widget.LinearLayout
+import android.widget.RadioButton
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.AppCompatRadioButton
 import com.google.firebase.database.FirebaseDatabase
 import id.itborneo.facecare.databinding.ActivityIdentifyBinding
 import id.itborneo.facecare.model.IdentifyModel
 import id.itborneo.facecare.utils.KsPrefUser
+
 
 class IdentifyActivity : AppCompatActivity() {
 
@@ -29,6 +34,32 @@ class IdentifyActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         initBinding()
         buttonListener()
+        initFaceProblem()
+    }
+
+    private fun initFaceProblem() {
+        //Defining 5 buttons.
+        //Defining 5 buttons.
+        val buttons = 5
+        val rb = arrayOfNulls<AppCompatRadioButton>(buttons)
+
+        val rgp = binding.rgFaceProblem
+        rgp.orientation = LinearLayout.VERTICAL
+
+        for (i in 1..buttons) {
+            val rbn = RadioButton(this)
+            rbn.id = View.generateViewId()
+            rbn.text = "RadioButton$i"
+            val params =
+                LinearLayout.LayoutParams(
+                    LinearLayout.LayoutParams.MATCH_PARENT,
+                    LinearLayout.LayoutParams.WRAP_CONTENT,
+                    1f
+                )
+            rbn.layoutParams = params
+            rgp.addView(rbn)
+        }
+
     }
 
     private fun buttonListener() {
@@ -70,4 +101,6 @@ class IdentifyActivity : AppCompatActivity() {
         val view = binding.root
         setContentView(view)
     }
+
+
 }
