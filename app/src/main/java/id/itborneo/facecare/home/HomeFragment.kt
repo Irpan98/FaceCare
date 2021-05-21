@@ -19,6 +19,7 @@ import id.itborneo.facecare.auth.login.LoginActivity
 import id.itborneo.facecare.auth.register.RegisterActivity
 import id.itborneo.facecare.databinding.FragmentHomeBinding
 import id.itborneo.facecare.identify.IdentifyActivity
+import id.itborneo.facecare.model.UserIdentifiedModel
 import id.itborneo.facecare.model.UserInfoModel
 import id.itborneo.facecare.utils.KsPrefUser
 import id.itborneo.facecare.utils.enums.HomeEnum
@@ -78,7 +79,11 @@ class HomeFragment : Fragment() {
             btnHomeReidentify.setOnClickListener {
                 actionToIdentify()
             }
+
+            tvHomeSkinType.text = viewModel.userIdentifiedModel.value?.skinType
         }
+
+
     }
 
 
@@ -104,6 +109,7 @@ class HomeFragment : Fragment() {
 
 
                     val data = dataSnapshot.getValue(UserInfoModel::class.java)
+                    viewModel.user.value = data
 
 
                     val welcomeUser = "Welcome \n ${data?.name}"
@@ -164,7 +170,9 @@ class HomeFragment : Fragment() {
         myRef.addListenerForSingleValueEvent(object : ValueEventListener {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
                 val map = dataSnapshot.value as Map<String, Any>?
+                val data = dataSnapshot.getValue(UserIdentifiedModel::class.java)
 
+                viewModel.userIdentifiedModel.value = data
                 Log.d(TAG, "Value is: $map")
                 if (map != null) {
                     viewModel.homeState.value = HomeEnum.IDENTIFIED

@@ -6,10 +6,6 @@
     android:orientation="vertical"
     tools:context=".identify.IdentifyActivity">
 
-    <!--    <EditText-->
-    <!--        android:id="@+id/et_identify_gender"-->
-    <!--        android:layout_width="match_parent"-->
-    <!--        android:layout_height="wrap_content" />-->
 
     <RadioGroup
         android:id="@+id/rgGender"
