@@ -28,9 +28,9 @@ class AnalizeFragment : Fragment() {
     }
 
     private fun initButton(view: View) {
-        view.findViewById<Button>(R.id.btn_analize).setOnClickListener {
-            ResultActivity.getInstance(requireContext())
-        }
+//        view.findViewById<Button>(R.id.btn_analize).setOnClickListener {
+//            ResultActivity.getInstance(requireContext())
+//        }
     }
 
 

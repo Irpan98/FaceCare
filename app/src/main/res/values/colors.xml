@@ -13,4 +13,16 @@
     <color name="background_main">#1B1818</color>
     <color name="background_second">#303030</color>
     <color name="background_main_darker">#1B1818</color>
+
+    <color name="text_white">#FFFFFF</color>
+
+    <color name="main_red">#FE3333</color>
+    <color name="secondary_red">#D11313</color>
+    <color name="text_main_red">#D11313</color>
+
+    <color name="main_yellow">#F7B731</color>
+    <color name="secondary_yellow">#D1971F</color>
+
+    <color name="grey">#D5D4D4</color>
+    <color name="grey_loading">#D5D4D4</color>
 </resources>

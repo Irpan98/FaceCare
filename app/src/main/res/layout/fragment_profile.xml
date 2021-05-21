@@ -5,10 +5,16 @@
     android:layout_height="match_parent"
     tools:context=".profile.ProfileFragment">
 
-    <!-- TODO: Update blank fragment layout -->
     <TextView
+        style="@style/ItborneoText.Title"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
-
+        android:layout_gravity="center_horizontal"
+        android:background="@color/background_main"
+        android:elevation="10dp"
+        android:gravity="center"
+        android:maxLines="2"
+        android:padding="@dimen/padding_layout"
+        android:text="@string/on_dev"
+        tools:ignore="Overdraw" />
 </FrameLayout>

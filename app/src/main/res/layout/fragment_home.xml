@@ -1,33 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     tools:context=".home.HomeFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:id="@+id/tv_user_status"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Welcome" />
 
-    <Button
-        android:id="@+id/btn_home_login"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Login" />
+    <include
+        android:id="@+id/inc_home_registered"
+        layout="@layout/inc_home_registered"
+        android:visibility="visible" />
 
-    <Button
-        android:id="@+id/btn_home_register"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Register" />
+    <include
+        android:id="@+id/inc_home_not_register"
+        layout="@layout/inc_home_not_register"
+        android:elevation="10dp"
+        android:visibility="visible" />
 
-    <Button
-        android:id="@+id/btn_home_identify"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Identify" />
-</LinearLayout>
+    <include
+        android:id="@+id/inc_home_identified"
+        layout="@layout/inc_home_identified"
+        android:visibility="gone" />
+
+
+</FrameLayout>

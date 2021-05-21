@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#4A000000"
+    android:orientation="vertical"
+    android:padding="@dimen/padding_layout_4"
+    tools:context=".home.HomeFragment">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:orientation="vertical"
+        android:padding="@dimen/padding_layout"
+        tools:context=".home.HomeFragment">
+
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="180dp"
+
+            android:layout_marginTop="@dimen/padding_layout_4"
+            android:src="@drawable/ic_illusrtation_not_register" />
+
+        <TextView
+            android:id="@+id/tv_user_status"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="@dimen/padding_layout"
+            android:gravity="center_vertical"
+            android:text="Welcome to FaceCare !"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+
+        <Button
+            android:id="@+id/btn_home_login"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            android:layout_gravity="center_horizontal"
+            android:layout_marginHorizontal="@dimen/padding_layout"
+            android:layout_marginTop="@dimen/padding_layout_3"
+            android:text="Login" />
+
+        <Button
+            android:id="@+id/btn_home_register"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginHorizontal="@dimen/padding_layout"
+            android:layout_marginTop="@dimen/padding_layout_3"
+            android:text="Register" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginHorizontal="@dimen/padding_layout"
+            android:layout_marginTop="@dimen/padding_layout_3"
+            android:gravity="center_horizontal"
+            android:text="login if you already have an account,  or register to create your account" />
+
+
+    </LinearLayout>
+</FrameLayout>

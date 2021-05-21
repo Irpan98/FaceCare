@@ -6,7 +6,9 @@ import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.FirebaseDatabase
 import id.itborneo.facecare.databinding.ActivityRegisterBinding
+import id.itborneo.facecare.model.UserInfoModel
 
 class RegisterActivity : AppCompatActivity() {
 
@@ -43,21 +45,51 @@ class RegisterActivity : AppCompatActivity() {
             val password = binding.etRegisterPassword.text.toString()
             Log.d(TAG, "register click $email dan $password")
 
-            submitLogin(email, password)
+            submitRegister(email, password)
+
         }
 
-        binding.btnRegisterLogin.setOnClickListener {
-            finish()
-        }
+
     }
 
-    private fun submitLogin(email: String, password: String) {
+    private fun submitUserdata() {
+
+        val userId = getUid() ?: return
+
+
+        val database = FirebaseDatabase.getInstance()
+        val myRef = database.getReference("users")
+
+        val getInputName = binding.etRegisterName.text.toString()
+
+        val identify = UserInfoModel(
+            name = getInputName
+        )
+
+        myRef.child(userId).setValue(identify)
+            .addOnSuccessListener {
+                finish()
+
+                Log.d(TAG, "success add data : $it")
+
+            }
+            .addOnFailureListener {
+                Log.e(TAG, "error add data ${it.message}")
+
+            }
+
+
+    }
+
+
+    private fun submitRegister(email: String, password: String) {
 
 
         auth.createUserWithEmailAndPassword(email, password)
             .addOnCompleteListener {
                 Log.d(TAG, "register berhasil $it")
                 getUid()
+                submitUserdata()
             }
             .addOnFailureListener {
                 Log.e(TAG, "register failed ${it.message}")
@@ -67,9 +99,9 @@ class RegisterActivity : AppCompatActivity() {
 
     }
 
-    private fun getUid() {
+    private fun getUid(): String? {
         val userUid = auth.currentUser?.uid
         Log.d(TAG, "getUid $userUid")
-
+        return userUid
     }
 }

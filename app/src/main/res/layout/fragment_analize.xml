@@ -5,10 +5,25 @@
     android:layout_height="match_parent"
     tools:context=".analize.AnalizeFragment">
 
-    <Button
-        android:id="@+id/btn_analize"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Analyze" />
+
+    <TextView
+        style="@style/ItborneoText.Title"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center_horizontal"
+        android:background="@color/background_main"
+        android:elevation="10dp"
+        android:gravity="center"
+        android:maxLines="2"
+        android:padding="@dimen/padding_layout"
+        android:text="@string/on_dev"
+        tools:ignore="Overdraw" />
+
+    <!--    <Button-->
+    <!--        -->
+    <!--        android:id="@+id/btn_analize"-->
+    <!--        android:layout_width="wrap_content"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:text="Analyze" />-->
 
 </FrameLayout>

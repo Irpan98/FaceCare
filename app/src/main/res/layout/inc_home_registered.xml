@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".home.HomeFragment">
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="130dp"
+        android:layout_height="wrap_content"
+        android:elevation="3dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/ic_nurse"
+        app:layout_constraintEnd_toEndOf="@id/cardView"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/background_top"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:scaleType="centerCrop"
+        android:src="@drawable/ic_home_background_top"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tv_name"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/padding_layout"
+        android:gravity="center_vertical"
+        android:paddingBottom="@dimen/padding_layout"
+        app:layout_constraintBottom_toTopOf="@id/cardView"
+        app:layout_constraintEnd_toStartOf="@+id/imageView"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:text="Welcome \n Nabila Herman !" />
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardView"
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:layout_marginHorizontal="@dimen/padding_layout"
+        app:cardElevation="10dp"
+        app:layout_constraintBottom_toBottomOf="@+id/background_top"
+        app:layout_constraintTop_toBottomOf="@+id/background_top"
+        tools:layout_editor_absoluteX="10dp" />
+
+    <!-- TODO: Update blank fragment layout -->
+
+
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingHorizontal="@dimen/padding_layout_half"
+        android:paddingTop="@dimen/padding_layout"
+        android:weightSum="3"
+        app:layout_constraintTop_toBottomOf="@+id/cardView">
+
+        <Button
+            android:id="@+id/btn_home_identify"
+            android:layout_width="100dp"
+            android:layout_height="120dp"
+            android:layout_marginHorizontal="@dimen/padding_layout_half"
+            android:layout_weight="1"
+            android:text="Identify"
+            android:textAllCaps="false"
+            app:layout_constraintBottom_toBottomOf="parent" />
+
+        <Button
+            android:layout_width="100dp"
+            android:layout_height="120dp"
+            android:layout_marginHorizontal="@dimen/padding_layout_half"
+            android:layout_weight="1"
+            android:enabled="false"
+            android:text="Community"
+            android:textAllCaps="false"
+            app:layout_constraintBottom_toBottomOf="parent" />
+
+        <Button
+            android:layout_width="100dp"
+            android:layout_height="120dp"
+            android:layout_marginHorizontal="@dimen/padding_layout_half"
+            android:layout_weight="1"
+            android:enabled="false"
+            android:text="Scan"
+            android:textAllCaps="false"
+            app:layout_constraintBottom_toBottomOf="parent" />
+    </LinearLayout>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/padding_layout_half"
+        android:layout_marginTop="@dimen/padding_layout"
+        android:layout_weight="1"
+        android:enabled="false"
+        android:text="Your Day-to-Day-Progress"
+        android:textAllCaps="false"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout"
+        tools:layout_editor_absoluteX="5dp" />
+
+    <TextView
+        android:layout_width="0dp"
+        android:layout_height="100dp"
+        android:layout_marginHorizontal="@dimen/padding_layout"
+        android:elevation="10dp"
+        android:gravity="center_vertical"
+        android:text="Click Identify below to get The information"
+        app:layout_constraintBottom_toBottomOf="@+id/cardView"
+        app:layout_constraintEnd_toEndOf="@id/cardView"
+        app:layout_constraintStart_toStartOf="@+id/cardView"
+        app:layout_constraintTop_toTopOf="@+id/cardView" />
+
+    <TextView
+        android:id="@+id/tv_user_status"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:layout_marginHorizontal="@dimen/padding_layout"
+        android:gravity="center_vertical"
+        android:text="Registered"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="parent" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

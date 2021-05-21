@@ -11,6 +11,27 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
+    <RadioGroup
+        android:id="@+id/rgGender"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:checkedButton="@+id/radio_button_1">
+
+        <RadioButton
+            android:id="@+id/rgGenderGirls"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="Girls" />
+
+        <RadioButton
+            android:id="@+id/rgGenderBoys"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="Boys" />
+
+    </RadioGroup>
+
+
     <EditText
         android:id="@+id/et_identify_face_problem"
         android:layout_width="match_parent"
@@ -21,13 +42,21 @@
         android:id="@+id/rg_face_problem"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingStart="25dp">
-    </RadioGroup>
+        android:paddingStart="25dp"></RadioGroup>
 
     <EditText
         android:id="@+id/et_identify_skin_type"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
+
+    <RadioGroup
+        android:id="@+id/rgSkinType"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:checkedButton="@+id/radio_button_1">
+
+
+    </RadioGroup>
 
     <Button
         android:id="@+id/btn_submit"

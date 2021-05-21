@@ -5,7 +5,6 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import by.kirich1409.viewbindingdelegate.viewBinding
@@ -18,6 +17,7 @@ import id.itborneo.facecare.auth.login.LoginActivity
 import id.itborneo.facecare.auth.register.RegisterActivity
 import id.itborneo.facecare.databinding.FragmentHomeBinding
 import id.itborneo.facecare.identify.IdentifyActivity
+import id.itborneo.facecare.model.UserInfoModel
 import id.itborneo.facecare.utils.KsPrefUser
 import id.itborneo.facecare.utils.enums.HomeEnum
 
@@ -42,39 +42,92 @@ class HomeFragment : Fragment() {
 
         buttonListener(view)
         homeStateObserver()
+
         loginChecker()
     }
 
     private fun buttonListener(view: View) {
-        view.findViewById<Button>(R.id.btn_home_login).setOnClickListener {
-            LoginActivity.getInstance(requireContext())
-        }
-        view.findViewById<Button>(R.id.btn_home_identify).setOnClickListener {
-            IdentifyActivity.getInstance(requireContext())
-        }
 
-        view.findViewById<Button>(R.id.btn_home_register).setOnClickListener {
-            RegisterActivity.getInstance(requireContext())
-        }
     }
 
     private fun homeStateObserver() {
         viewModel.homeState.observe(viewLifecycleOwner) {
+            viewStateVisibility(it)
             when (it) {
                 HomeEnum.NOT_REGISTERED -> {
-                    binding.tvUserStatus.text = "NOT_REGISTERED"
+                    notRegisteredView()
                 }
                 HomeEnum.REGISTERED -> {
-                    binding.tvUserStatus.text = "REGISTERED"
+                    registeredView()
                     observeUserData()
                 }
                 HomeEnum.IDENTIFIED -> {
-                    binding.tvUserStatus.text = "IDENTIFIED"
+                    identifiedView()
                     observeUserData()
                 }
             }
         }
 
+    }
+
+    private fun identifiedView() {
+//        binding.tvUserStatus.text = "IDENTIFIED, Hi"
+        binding.incHomeIdentified.apply {
+            btnHomeReidentify.setOnClickListener {
+                actionToIdentify()
+            }
+        }
+    }
+
+
+    private fun actionToIdentify() {
+        IdentifyActivity.getInstance(requireContext())
+
+    }
+
+    private fun registeredView() {
+        binding.incHomeRegistered.apply {
+            btnHomeIdentify.setOnClickListener {
+                actionToIdentify()
+            }
+
+            val database = FirebaseDatabase.getInstance()
+            val myRef = database.getReference("users").child(viewModel.idUser)
+
+
+            myRef.addValueEventListener(object : ValueEventListener {
+                override fun onDataChange(dataSnapshot: DataSnapshot) {
+                    val map = dataSnapshot.value as Map<String, Any>?
+                    Log.d(TAG, "registeredView Value is: $map")
+
+
+                    val data = dataSnapshot.getValue(UserInfoModel::class.java)
+
+
+                    val welcomeUser = "Welcome \n ${data?.name}"
+                    tvName.text = welcomeUser
+
+                }
+
+                override fun onCancelled(error: DatabaseError) {
+                    // Failed to read value
+                    Log.w(TAG, "Failed to read value.", error.toException())
+                }
+            })
+
+        }
+    }
+
+    private fun notRegisteredView() {
+
+        binding.incHomeNotRegister.apply {
+            btnHomeLogin.setOnClickListener {
+                LoginActivity.getInstance(requireContext())
+            }
+            btnHomeRegister.setOnClickListener {
+                RegisterActivity.getInstance(requireContext())
+            }
+        }
     }
 
     private fun loginChecker() {
@@ -85,13 +138,14 @@ class HomeFragment : Fragment() {
         } else {
             viewModel.idUser = user
             viewModel.homeState.value = HomeEnum.REGISTERED
+
         }
 
     }
 
     override fun onResume() {
         super.onResume()
-        loginChecker()
+//        loginChecker()
 
     }
 
@@ -100,7 +154,7 @@ class HomeFragment : Fragment() {
         if (userDataObserved) return
         userDataObserved = true
         val database = FirebaseDatabase.getInstance()
-        val myRef = database.getReference("users").child(viewModel.idUser)
+        val myRef = database.getReference("usersIdentified").child(viewModel.idUser)
 
 
         myRef.addValueEventListener(object : ValueEventListener {
@@ -119,6 +173,27 @@ class HomeFragment : Fragment() {
                 Log.w(TAG, "Failed to read value.", error.toException())
             }
         })
+    }
+
+
+    private fun viewStateVisibility(state: HomeEnum) {
+
+//        val viewState =
+//            listOf(binding.incHomeNotRegister, binding.incHomeRegistered, binding.incHomeIdentified)
+
+        val viewState =
+            listOf(binding.incHomeNotRegister, binding.incHomeIdentified)
+
+        viewState.forEach {
+            it.root.visibility = View.GONE
+        }
+
+        when (state) {
+            HomeEnum.NOT_REGISTERED -> binding.incHomeNotRegister.root.visibility = View.VISIBLE
+            HomeEnum.REGISTERED -> binding.incHomeRegistered.root.visibility = View.VISIBLE
+            HomeEnum.IDENTIFIED -> binding.incHomeIdentified.root.visibility = View.VISIBLE
+        }
+
     }
 
 

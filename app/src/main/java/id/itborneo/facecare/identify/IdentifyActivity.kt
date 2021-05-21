@@ -9,9 +9,15 @@ import android.widget.LinearLayout
 import android.widget.RadioButton
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.AppCompatRadioButton
+import androidx.lifecycle.MutableLiveData
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.ValueEventListener
+import id.itborneo.facecare.R
 import id.itborneo.facecare.databinding.ActivityIdentifyBinding
-import id.itborneo.facecare.model.IdentifyModel
+import id.itborneo.facecare.model.FaceProblemModel
+import id.itborneo.facecare.model.UserIdentifiedModel
 import id.itborneo.facecare.utils.KsPrefUser
 
 
@@ -35,6 +41,46 @@ class IdentifyActivity : AppCompatActivity() {
         initBinding()
         buttonListener()
         initFaceProblem()
+        initGenderView()
+        initSkinType()
+        observerData()
+    }
+
+    private fun initSkinType() {
+
+        val skinTypes = listOf("Oily", "Dry", "Combination", "Normal")
+
+        val rgp = binding.rgSkinType
+        rgp.orientation = LinearLayout.HORIZONTAL
+
+        skinTypes.forEach { i ->
+            val rbn = RadioButton(this)
+            rbn.id = View.generateViewId()
+            rbn.text = "${i}"
+            val params =
+                LinearLayout.LayoutParams(
+                    LinearLayout.LayoutParams.MATCH_PARENT,
+                    LinearLayout.LayoutParams.WRAP_CONTENT,
+                    1f
+                )
+            rbn.layoutParams = params
+            rgp.addView(rbn)
+        }
+    }
+
+    private fun initGenderView() {
+        // To listen for a radio button's checked/unchecked state changes
+        binding.rgGender.setOnCheckedChangeListener { group, checkedId ->
+
+            when (checkedId) {
+                R.id.rgGenderGirls -> {
+                    Log.d(TAG, "initGenderView its girls")
+                }
+                else -> {
+                    Log.d(TAG, "initGenderView its boys")
+                }
+            }
+        }
     }
 
     private fun initFaceProblem() {
@@ -46,28 +92,72 @@ class IdentifyActivity : AppCompatActivity() {
         val rgp = binding.rgFaceProblem
         rgp.orientation = LinearLayout.VERTICAL
 
-        for (i in 1..buttons) {
-            val rbn = RadioButton(this)
-            rbn.id = View.generateViewId()
-            rbn.text = "RadioButton$i"
-            val params =
-                LinearLayout.LayoutParams(
-                    LinearLayout.LayoutParams.MATCH_PARENT,
-                    LinearLayout.LayoutParams.WRAP_CONTENT,
-                    1f
-                )
-            rbn.layoutParams = params
-            rgp.addView(rbn)
+        faceProblems.observe(this) {
+
+            it.forEach { i ->
+                val rbn = RadioButton(this)
+                rbn.id = View.generateViewId()
+                rbn.text = "${i.nama}"
+                val params =
+                    LinearLayout.LayoutParams(
+                        LinearLayout.LayoutParams.MATCH_PARENT,
+                        LinearLayout.LayoutParams.WRAP_CONTENT,
+                        1f
+                    )
+                rbn.layoutParams = params
+                rgp.addView(rbn)
+            }
         }
 
+
     }
+
+
+    val faceProblems = MutableLiveData<List<FaceProblemModel>>()
+
+    private fun observerData() {
+
+        val database = FirebaseDatabase.getInstance()
+        val myRef = database.getReference("identifikasi")
+
+
+        myRef.addValueEventListener(object : ValueEventListener {
+            override fun onDataChange(dataSnapshot: DataSnapshot) {
+                val map = dataSnapshot.value as Map<String, Any>?
+
+                val getFaceProblems = mutableListOf<FaceProblemModel>()
+                Log.d(TAG, "Value is: $map")
+
+                dataSnapshot.children.forEachIndexed { index, snapshot ->
+                    val faceProblem =
+                        snapshot.getValue(FaceProblemModel::class.java)
+                    if (faceProblem != null) {
+                        getFaceProblems.add(faceProblem)
+                    }
+
+                }
+
+
+                faceProblems.value = getFaceProblems
+
+
+
+                Log.d(TAG, "Value object is: $faceProblems")
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+                // Failed to read value
+                Log.w(TAG, "Failed to read value.", error.toException())
+            }
+        })
+    }
+
 
     private fun buttonListener() {
 
 
         val database = FirebaseDatabase.getInstance()
-        val myRef = database.getReference("users")
-
+        val myRef = database.getReference("usersIdentified")
 
 
         binding.btnSubmit.setOnClickListener {
@@ -76,7 +166,7 @@ class IdentifyActivity : AppCompatActivity() {
             val skinType = binding.etIdentifySkinType.text.toString()
 
 
-            val identify = IdentifyModel(
+            val identify = UserIdentifiedModel(
                 gender,
                 faceProbem,
                 skinType
