@@ -6,10 +6,10 @@
     android:orientation="vertical"
     tools:context=".identify.IdentifyActivity">
 
-    <EditText
-        android:id="@+id/et_identify_gender"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+    <!--    <EditText-->
+    <!--        android:id="@+id/et_identify_gender"-->
+    <!--        android:layout_width="match_parent"-->
+    <!--        android:layout_height="wrap_content" />-->
 
     <RadioGroup
         android:id="@+id/rgGender"
@@ -21,33 +21,23 @@
             android:id="@+id/rgGenderGirls"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:text="Girls" />
+            android:text="Female" />
 
         <RadioButton
             android:id="@+id/rgGenderBoys"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:text="Boys" />
+            android:text="Male" />
 
     </RadioGroup>
-
-
-    <EditText
-        android:id="@+id/et_identify_face_problem"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
 
 
     <RadioGroup
         android:id="@+id/rg_face_problem"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingStart="25dp"></RadioGroup>
+        android:paddingStart="25dp" />
 
-    <EditText
-        android:id="@+id/et_identify_skin_type"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
 
     <RadioGroup
         android:id="@+id/rgSkinType"

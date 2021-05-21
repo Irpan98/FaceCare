@@ -1,8 +1,8 @@
 package id.itborneo.facecare.model
 
 data class UserIdentifiedModel(
-    val gener: String = "",
-    val faceProblem: String = "",
-    val skinType: String = "",
-    val gambar: String = "",
+    var gender: String = "",
+    var faceProblem: String = "",
+    var skinType: String = "",
+    var gambar: String = "",
 )

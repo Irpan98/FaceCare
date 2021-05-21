@@ -7,8 +7,8 @@ import android.util.Log
 import android.view.View
 import android.widget.LinearLayout
 import android.widget.RadioButton
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import androidx.appcompat.widget.AppCompatRadioButton
 import androidx.lifecycle.MutableLiveData
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
@@ -17,11 +17,13 @@ import com.google.firebase.database.ValueEventListener
 import id.itborneo.facecare.R
 import id.itborneo.facecare.databinding.ActivityIdentifyBinding
 import id.itborneo.facecare.model.FaceProblemModel
-import id.itborneo.facecare.model.UserIdentifiedModel
 import id.itborneo.facecare.utils.KsPrefUser
 
 
 class IdentifyActivity : AppCompatActivity() {
+
+
+    private val viewModel: IndentifyViewModel by viewModels()
 
     companion object {
         private const val TAG = "IdentifyActivity"
@@ -49,6 +51,7 @@ class IdentifyActivity : AppCompatActivity() {
     private fun initSkinType() {
 
         val skinTypes = listOf("Oily", "Dry", "Combination", "Normal")
+        val listId = mutableListOf<Int>()
 
         val rgp = binding.rgSkinType
         rgp.orientation = LinearLayout.HORIZONTAL
@@ -65,6 +68,17 @@ class IdentifyActivity : AppCompatActivity() {
                 )
             rbn.layoutParams = params
             rgp.addView(rbn)
+            listId.add(rbn.id)
+        }
+
+        binding.rgSkinType.setOnCheckedChangeListener { group, checkedId ->
+
+            listId.forEachIndexed { index, value ->
+                if (checkedId == value) {
+                    viewModel.userIndentified.value?.skinType = skinTypes[index]
+                    return@forEachIndexed
+                }
+            }
         }
     }
 
@@ -75,22 +89,23 @@ class IdentifyActivity : AppCompatActivity() {
             when (checkedId) {
                 R.id.rgGenderGirls -> {
                     Log.d(TAG, "initGenderView its girls")
+                    viewModel.userIndentified.value?.gender = "Female"
                 }
                 else -> {
                     Log.d(TAG, "initGenderView its boys")
+                    viewModel.userIndentified.value?.gender = "Male"
+
                 }
             }
         }
     }
 
     private fun initFaceProblem() {
-        //Defining 5 buttons.
-        //Defining 5 buttons.
-        val buttons = 5
-        val rb = arrayOfNulls<AppCompatRadioButton>(buttons)
 
-        val rgp = binding.rgFaceProblem
-        rgp.orientation = LinearLayout.VERTICAL
+        val listId = mutableListOf<Int>()
+
+        val radioFaceProblem = binding.rgFaceProblem
+        radioFaceProblem.orientation = LinearLayout.VERTICAL
 
         faceProblems.observe(this) {
 
@@ -105,7 +120,21 @@ class IdentifyActivity : AppCompatActivity() {
                         1f
                     )
                 rbn.layoutParams = params
-                rgp.addView(rbn)
+                radioFaceProblem.addView(rbn)
+                listId.add(rbn.id)
+            }
+        }
+
+        binding.rgFaceProblem.setOnCheckedChangeListener { group, checkedId ->
+
+            listId.forEachIndexed { index, value ->
+                if (checkedId == value) {
+                    val selectedFaceProblem = faceProblems.value?.get(index)
+                    Log.d(TAG, "rgFaceProblem $selectedFaceProblem")
+
+                    viewModel.userIndentified.value?.faceProblem = selectedFaceProblem?.nama ?: ""
+                    return@forEachIndexed
+                }
             }
         }
 
@@ -161,16 +190,9 @@ class IdentifyActivity : AppCompatActivity() {
 
 
         binding.btnSubmit.setOnClickListener {
-            val gender = binding.etIdentifyGender.text.toString()
-            val faceProbem = binding.etIdentifyFaceProblem.text.toString()
-            val skinType = binding.etIdentifySkinType.text.toString()
 
 
-            val identify = UserIdentifiedModel(
-                gender,
-                faceProbem,
-                skinType
-            )
+            val identify = viewModel.userIndentified.value
 
             val userId = KsPrefUser.getUser()
             myRef.child(userId).setValue(identify)
