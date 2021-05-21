@@ -1,10 +1,12 @@
 package id.itborneo.facecare.home
 
+import android.app.Activity
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import by.kirich1409.viewbindingdelegate.viewBinding
@@ -122,7 +124,7 @@ class HomeFragment : Fragment() {
 
         binding.incHomeNotRegister.apply {
             btnHomeLogin.setOnClickListener {
-                LoginActivity.getInstance(requireContext())
+                LoginActivity.getInstance(requireContext(), getContent)
             }
             btnHomeRegister.setOnClickListener {
                 RegisterActivity.getInstance(requireContext())
@@ -132,6 +134,8 @@ class HomeFragment : Fragment() {
 
     private fun loginChecker() {
         val user = KsPrefUser.getUser()
+
+        Log.d(TAG, "loginChecker() $user")
         if (user == KsPrefUser.NOT_REGISTERED) {
             viewModel.homeState.value = HomeEnum.NOT_REGISTERED
 
@@ -151,13 +155,13 @@ class HomeFragment : Fragment() {
 
     private var userDataObserved = false
     private fun observeUserData() {
-        if (userDataObserved) return
-        userDataObserved = true
+//        if (userDataObserved) return
+//        userDataObserved = true
         val database = FirebaseDatabase.getInstance()
         val myRef = database.getReference("usersIdentified").child(viewModel.idUser)
 
 
-        myRef.addValueEventListener(object : ValueEventListener {
+        myRef.addListenerForSingleValueEvent(object : ValueEventListener {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
                 val map = dataSnapshot.value as Map<String, Any>?
 
@@ -195,6 +199,14 @@ class HomeFragment : Fragment() {
         }
 
     }
+
+
+    val getContent =
+        registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
+            if (result.resultCode == Activity.RESULT_OK) {
+                loginChecker()
+            }
+        }
 
 
 }

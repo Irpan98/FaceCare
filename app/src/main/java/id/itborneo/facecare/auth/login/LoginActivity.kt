@@ -4,6 +4,8 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.widget.Toast
+import androidx.activity.result.ActivityResultLauncher
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.FirebaseAuth
 import id.itborneo.facecare.auth.register.RegisterActivity
@@ -19,6 +21,13 @@ class LoginActivity : AppCompatActivity() {
             val intent = Intent(context, LoginActivity::class.java)
             intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION)
             context.startActivity(intent)
+        }
+
+        fun getInstance(context: Context, launcher: ActivityResultLauncher<Intent>) {
+            val intent = Intent(context, LoginActivity::class.java)
+            intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION)
+
+            launcher.launch(intent)
         }
     }
 
@@ -43,6 +52,7 @@ class LoginActivity : AppCompatActivity() {
         }
 
         binding.btnLoginRegister.setOnClickListener {
+            finish()
             RegisterActivity.getInstance(this)
         }
     }
@@ -66,7 +76,8 @@ class LoginActivity : AppCompatActivity() {
 
         if (userUid != null) {
             KsPrefUser.setUser(userUid)
-
+            Toast.makeText(this, "Login Success", Toast.LENGTH_LONG)
+            setResult(RESULT_OK)
             finish()
         }
 

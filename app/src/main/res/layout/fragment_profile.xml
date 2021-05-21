@@ -16,5 +16,6 @@
         android:maxLines="2"
         android:padding="@dimen/padding_layout"
         android:text="@string/on_dev"
+        android:textColor="@color/main_yellow"
         tools:ignore="Overdraw" />
 </FrameLayout>

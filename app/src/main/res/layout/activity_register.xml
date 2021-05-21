@@ -77,10 +77,10 @@
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="@dimen/padding_layout"
         android:text="or" />
-
+    l
 
     <Button
-        
+
         android:id="@+id/btn_register_login"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

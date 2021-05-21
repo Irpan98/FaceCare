@@ -12,6 +12,7 @@
         android:layout_height="match_parent"
         android:layout_gravity="center_horizontal"
         android:background="@color/background_main"
+        android:textColor="@color/main_yellow"
         android:elevation="10dp"
         android:gravity="center"
         android:maxLines="2"
