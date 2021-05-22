@@ -4,7 +4,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import id.itborneo.facecare.databinding.ItemResultFaceProblemBinding
-import id.itborneo.facecare.model.NaturalIngredientModel
+import id.itborneo.facecare.core.model.NaturalIngredientModel
 
 
 class NaturalIngredientResultAdapter(private val listener: (NaturalIngredientModel) -> Unit) :

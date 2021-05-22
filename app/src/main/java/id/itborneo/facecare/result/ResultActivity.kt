@@ -11,9 +11,9 @@ import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 import id.itborneo.facecare.databinding.ActivityResultBinding
-import id.itborneo.facecare.model.FaceProblemModel
-import id.itborneo.facecare.model.NaturalIngredientModel
-import id.itborneo.facecare.model.ProductModel
+import id.itborneo.facecare.core.model.FaceProblemModel
+import id.itborneo.facecare.core.model.NaturalIngredientModel
+import id.itborneo.facecare.core.model.ProductModel
 import id.itborneo.facecare.result.adapters.FaceProblemResultAdapter
 import id.itborneo.facecare.result.adapters.NaturalIngredientResultAdapter
 import id.itborneo.facecare.result.adapters.ProductResultAdapter

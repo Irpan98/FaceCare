@@ -15,12 +15,12 @@ object KsPrefUser {
 
 
     private const val USER_KEY = "user_key"
-    fun setUser(idUser: String) {
+    fun setUserId(idUser: String) {
 
         prefs.push(USER_KEY, idUser)
         prefs.save()
 
     }
 
-    fun getUser() = prefs.pull(USER_KEY, NOT_REGISTERED)
+    fun getUserId() = prefs.pull(USER_KEY, NOT_REGISTERED)
 }

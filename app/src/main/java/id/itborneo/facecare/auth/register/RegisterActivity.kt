@@ -10,7 +10,7 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
 import id.itborneo.facecare.auth.login.LoginActivity
 import id.itborneo.facecare.databinding.ActivityRegisterBinding
-import id.itborneo.facecare.model.UserInfoModel
+import id.itborneo.facecare.core.model.UserInfoModel
 
 class RegisterActivity : AppCompatActivity() {
 

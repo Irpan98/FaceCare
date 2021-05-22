@@ -4,7 +4,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import id.itborneo.facecare.databinding.ItemResultFaceProblemBinding
-import id.itborneo.facecare.model.ArticleModel
+import id.itborneo.facecare.core.model.ArticleModel
 
 
 class ArticleAdapter(private val listener: (ArticleModel) -> Unit) :

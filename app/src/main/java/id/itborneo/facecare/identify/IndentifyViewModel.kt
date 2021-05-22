@@ -2,7 +2,7 @@ package id.itborneo.facecare.identify
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import id.itborneo.facecare.model.UserIdentifiedModel
+import id.itborneo.facecare.core.model.UserIdentifiedModel
 
 class IndentifyViewModel() : ViewModel() {
 

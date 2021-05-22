@@ -12,22 +12,26 @@ import androidx.fragment.app.viewModels
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
-import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 import id.itborneo.facecare.R
 import id.itborneo.facecare.auth.login.LoginActivity
 import id.itborneo.facecare.auth.register.RegisterActivity
+import id.itborneo.facecare.core.model.UserInfoModel
+import id.itborneo.facecare.core.networks.FaceCaseFirebase
 import id.itborneo.facecare.databinding.FragmentHomeBinding
 import id.itborneo.facecare.identify.IdentifyActivity
-import id.itborneo.facecare.model.UserIdentifiedModel
-import id.itborneo.facecare.model.UserInfoModel
 import id.itborneo.facecare.utils.KsPrefUser
 import id.itborneo.facecare.utils.enums.HomeEnum
+import id.itborneo.ugithub.core.factory.ViewModelFactory
 
 
 class HomeFragment : Fragment() {
 
-    private val viewModel: HomeViewModel by viewModels()
+    private val viewModel: HomeViewModel by viewModels {
+        val userId = KsPrefUser.getUserId()
+        ViewModelFactory(userId)
+    }
+
     private val binding: FragmentHomeBinding by viewBinding(FragmentHomeBinding::bind)
 
     private val TAG = "HomeFragment"
@@ -47,6 +51,8 @@ class HomeFragment : Fragment() {
         homeStateObserver()
 
         loginChecker()
+        observeIdentifyUserData()
+
     }
 
     private fun buttonListener(view: View) {
@@ -58,22 +64,23 @@ class HomeFragment : Fragment() {
             viewStateVisibility(it)
             when (it) {
                 HomeEnum.NOT_REGISTERED -> {
-                    notRegisteredView()
+                    viewNotRegistered()
                 }
                 HomeEnum.REGISTERED -> {
-                    registeredView()
-                    observeUserData()
+                    viewRegistered()
+                    viewModel.setSingleIdentifyUser()
                 }
                 HomeEnum.IDENTIFIED -> {
-                    identifiedView()
-                    observeUserData()
+                    viewModel.setSingleIdentifyUser()
+
+                    viewIdentified()
                 }
             }
         }
 
     }
 
-    private fun identifiedView() {
+    private fun viewIdentified() {
 //        binding.tvUserStatus.text = "IDENTIFIED, Hi"
         binding.incHomeIdentified.apply {
             btnHomeReidentify.setOnClickListener {
@@ -92,17 +99,17 @@ class HomeFragment : Fragment() {
 
     }
 
-    private fun registeredView() {
+    private val firebase = FaceCaseFirebase
+
+    private fun viewRegistered() {
         binding.incHomeRegistered.apply {
             btnHomeIdentify.setOnClickListener {
                 actionToIdentify()
             }
 
-            val database = FirebaseDatabase.getInstance()
-            val myRef = database.getReference("users").child(viewModel.idUser)
+            val user = firebase.getUser(KsPrefUser.getUserId())
 
-
-            myRef.addValueEventListener(object : ValueEventListener {
+            user.addValueEventListener(object : ValueEventListener {
                 override fun onDataChange(dataSnapshot: DataSnapshot) {
                     val map = dataSnapshot.value as Map<String, Any>?
                     Log.d(TAG, "registeredView Value is: $map")
@@ -126,7 +133,7 @@ class HomeFragment : Fragment() {
         }
     }
 
-    private fun notRegisteredView() {
+    private fun viewNotRegistered() {
 
         binding.incHomeNotRegister.apply {
             btnHomeLogin.setOnClickListener {
@@ -139,59 +146,35 @@ class HomeFragment : Fragment() {
     }
 
     private fun loginChecker() {
-        val user = KsPrefUser.getUser()
+        val user = KsPrefUser.getUserId()
 
         Log.d(TAG, "loginChecker() $user")
         if (user == KsPrefUser.NOT_REGISTERED) {
             viewModel.homeState.value = HomeEnum.NOT_REGISTERED
 
         } else {
-            viewModel.idUser = user
+//            viewModel.idUser = user
             viewModel.homeState.value = HomeEnum.REGISTERED
 
         }
 
     }
 
-    override fun onResume() {
-        super.onResume()
-//        loginChecker()
+    private fun observeIdentifyUserData() {
 
-    }
+        viewModel.getIdentifyUser().observe(viewLifecycleOwner) {
+            viewModel.userIdentifiedModel.value = it.data
+            Log.d(TAG, "observeIdentifyUserData ${it.data}")
 
-    private var userDataObserved = false
-    private fun observeUserData() {
-//        if (userDataObserved) return
-//        userDataObserved = true
-        val database = FirebaseDatabase.getInstance()
-        val myRef = database.getReference("usersIdentified").child(viewModel.idUser)
-
-
-        myRef.addListenerForSingleValueEvent(object : ValueEventListener {
-            override fun onDataChange(dataSnapshot: DataSnapshot) {
-                val map = dataSnapshot.value as Map<String, Any>?
-                val data = dataSnapshot.getValue(UserIdentifiedModel::class.java)
-
-                viewModel.userIdentifiedModel.value = data
-                Log.d(TAG, "Value is: $map")
-                if (map != null) {
-                    viewModel.homeState.value = HomeEnum.IDENTIFIED
-                }
-
+            if (it.data != null) {
+                Log.d(TAG, "observeIdentifyUserData ${it.data}")
+                viewModel.homeState.value = HomeEnum.IDENTIFIED
             }
-
-            override fun onCancelled(error: DatabaseError) {
-                // Failed to read value
-                Log.w(TAG, "Failed to read value.", error.toException())
-            }
-        })
+        }
     }
 
 
     private fun viewStateVisibility(state: HomeEnum) {
-
-//        val viewState =
-//            listOf(binding.incHomeNotRegister, binding.incHomeRegistered, binding.incHomeIdentified)
 
         val viewState =
             listOf(binding.incHomeNotRegister, binding.incHomeIdentified)
@@ -207,7 +190,6 @@ class HomeFragment : Fragment() {
         }
 
     }
-
 
     val getContent =
         registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->

@@ -75,7 +75,7 @@ class LoginActivity : AppCompatActivity() {
         Log.d(TAG, "loginSuccess $userUid")
 
         if (userUid != null) {
-            KsPrefUser.setUser(userUid)
+            KsPrefUser.setUserId(userUid)
             Toast.makeText(this, "Login Success", Toast.LENGTH_LONG)
             setResult(RESULT_OK)
             finish()

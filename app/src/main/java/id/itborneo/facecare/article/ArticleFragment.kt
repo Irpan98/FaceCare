@@ -13,7 +13,7 @@ import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 import id.itborneo.facecare.databinding.FragmentArticleBinding
-import id.itborneo.facecare.model.ArticleModel
+import id.itborneo.facecare.core.model.ArticleModel
 
 
 class ArticleFragment : Fragment() {

@@ -16,7 +16,7 @@ import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 import id.itborneo.facecare.R
 import id.itborneo.facecare.databinding.ActivityIdentifyBinding
-import id.itborneo.facecare.model.FaceProblemModel
+import id.itborneo.facecare.core.model.FaceProblemModel
 import id.itborneo.facecare.utils.KsPrefUser
 
 
@@ -194,7 +194,7 @@ class IdentifyActivity : AppCompatActivity() {
 
             val identify = viewModel.userIndentified.value
 
-            val userId = KsPrefUser.getUser()
+            val userId = KsPrefUser.getUserId()
             myRef.child(userId).setValue(identify)
                 .addOnSuccessListener {
                     Log.d(TAG, "success add data : $it")
