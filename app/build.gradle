@@ -79,4 +79,10 @@ dependencies {
     //binding
     implementation "com.github.kirich1409:viewbindingpropertydelegate:$viewBindingPropertyDelegateVersion"
 
+
+    //onBoarding
+    implementation 'com.github.AppIntro:AppIntro:6.0.0'
+
+    implementation 'com.github.bumptech.glide:glide:4.12.0'
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.11.0'
 }
