@@ -25,13 +25,6 @@ class ArticleActivity : AppCompatActivity() {
         }
     }
 
-//    override fun onCreateView(
-//        inflater: LayoutInflater, container: ViewGroup?,
-//        savedInstanceState: Bundle?
-//    ): View {
-//        binding = FragmentArticleBinding.inflate(inflater, container, false)
-//        return binding.root
-//    }
 
 
     private fun initBinding() {
@@ -59,9 +52,7 @@ class ArticleActivity : AppCompatActivity() {
 
     private fun observerData() {
 
-
         ThisRepository().getArticle().observe(this) {
-
             when (it.status) {
                 Status.SUCCESS -> {
                     val data = it.data
@@ -70,34 +61,7 @@ class ArticleActivity : AppCompatActivity() {
                     }
                 }
             }
-
         }
-
-//        val database = FirebaseDatabase.getInstance()
-//        val myRef = database.getReference("artikel")
-//
-//
-//        myRef.addValueEventListener(object : ValueEventListener {
-//            override fun onDataChange(dataSnapshot: DataSnapshot) {
-//
-//                val articles = mutableListOf<ArticleModel>()
-//                dataSnapshot.children.forEachIndexed { index, snapshot ->
-//                    val data = snapshot.getValue(ArticleModel::class.java)
-//                    if (data != null) {
-//                        articles.add(data)
-//                    }
-//                }
-//
-//
-//                adapter.set(articles)
-//
-//            }
-//
-//            override fun onCancelled(error: DatabaseError) {
-//                // Failed to read value
-//                Log.w(TAG, "Failed to read value.", error.toException())
-//            }
-//        })
     }
 
 }

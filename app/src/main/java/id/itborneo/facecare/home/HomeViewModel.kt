@@ -33,4 +33,6 @@ class HomeViewModel(idUser: String) : ViewModel() {
 
     fun getIdentifyUser() = identifyUser
 
+    fun getArticle() = repo.getArticle()
+
 }

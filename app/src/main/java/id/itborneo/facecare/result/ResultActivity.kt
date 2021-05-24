@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
@@ -142,7 +143,9 @@ class ResultActivity : AppCompatActivity() {
     }
 
     private fun initRecyclerNaturalIngredient() {
-        binding.rvResultNaturalIngredient.layoutManager = LinearLayoutManager(this)
+        binding.rvResultNaturalIngredient.layoutManager =
+            LinearLayoutManager(this, RecyclerView.HORIZONTAL, false)
+
         naturalIngredientAdapter = NaturalIngredientResultAdapter {
 //            actionToDetail(it)
         }
@@ -150,7 +153,9 @@ class ResultActivity : AppCompatActivity() {
     }
 
     private fun initRecyclerProduct() {
-        binding.rvResultProduct.layoutManager = LinearLayoutManager(this)
+        binding.rvResultProduct.layoutManager =
+            LinearLayoutManager(this, RecyclerView.HORIZONTAL, false)
+
         productAdapter = ProductResultAdapter {
 //            actionToDetail(it)
         }
