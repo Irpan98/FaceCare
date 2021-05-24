@@ -7,11 +7,11 @@ object FaceCaseFirebase {
 
     private val userRef = database.getReference("users")
     private val userIdentifyRef = database.getReference("usersIdentified")
+    private val articleRef = database.getReference("artikel")
 
     fun getUser(key: String) = userRef.child(key)
-//    fun getUser() = userRef
 
     fun getIdentifyUser(key: String) = userIdentifyRef.child(key)
-//    fun setIdentifiUser =
 
+    fun getArticle() = articleRef
 }

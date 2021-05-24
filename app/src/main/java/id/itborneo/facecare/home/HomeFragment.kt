@@ -9,11 +9,14 @@ import android.view.ViewGroup
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.ValueEventListener
 import id.itborneo.facecare.R
+import id.itborneo.facecare.article.ArticleActivity
 import id.itborneo.facecare.auth.login.LoginActivity
 import id.itborneo.facecare.auth.register.RegisterActivity
 import id.itborneo.facecare.core.model.UserInfoModel
@@ -39,7 +42,6 @@ class HomeFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_home, container, false)
     }
 
@@ -52,6 +54,8 @@ class HomeFragment : Fragment() {
 
         loginChecker()
         observeIdentifyUserData()
+
+        initArticleNews()
 
     }
 
@@ -88,9 +92,25 @@ class HomeFragment : Fragment() {
             }
 
             tvHomeSkinType.text = viewModel.userIdentifiedModel.value?.skinType
+
+
         }
 
 
+    }
+
+    private fun initArticleNews() {
+
+        binding.incHomeIdentified.btnViewAllNews.setOnClickListener {
+            ArticleActivity.getInstance(requireContext())
+        }
+
+        binding.incHomeIdentified.rvArticle.layoutManager =
+            LinearLayoutManager(requireContext(), RecyclerView.HORIZONTAL, false)
+//        playingNowMovieAdapter = HomeAdapter {
+//            actionToDetailMovie(it.id)
+//        }
+//        binding.rvNowPlayingMovies.adapter = playingNowMovieAdapter
     }
 
 

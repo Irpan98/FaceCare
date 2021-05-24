@@ -10,10 +10,10 @@ import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
-import id.itborneo.facecare.databinding.ActivityResultBinding
 import id.itborneo.facecare.core.model.FaceProblemModel
 import id.itborneo.facecare.core.model.NaturalIngredientModel
 import id.itborneo.facecare.core.model.ProductModel
+import id.itborneo.facecare.databinding.ActivityResultBinding
 import id.itborneo.facecare.result.adapters.FaceProblemResultAdapter
 import id.itborneo.facecare.result.adapters.NaturalIngredientResultAdapter
 import id.itborneo.facecare.result.adapters.ProductResultAdapter
@@ -26,7 +26,7 @@ class ResultActivity : AppCompatActivity() {
 
         fun getInstance(context: Context) {
             val intent = Intent(context, ResultActivity::class.java)
-            intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION)
+//            intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION)
             context.startActivity(intent)
         }
     }
@@ -97,22 +97,23 @@ class ResultActivity : AppCompatActivity() {
 
                 val faceProblems = mutableListOf<FaceProblemModel>()
                 Log.d(TAG, "Value is: $map")
-
+                val solusiHerbal = mutableListOf<NaturalIngredientModel>()
                 dataSnapshot.children.forEachIndexed { index, snapshot ->
                     val faceProblem =
                         snapshot.getValue(FaceProblemModel::class.java)
                     if (faceProblem != null) {
                         faceProblems.add(faceProblem)
                     }
-
+                    faceProblem?.solusi_herbal?.let { solusiHerbal.addAll(it) }
                 }
 
 
                 faceProblemAdapter.set(faceProblems)
 
+
                 //dummy
-                val natural = faceProblems[0].solusi_herbal_1.distinct()
-                observerNaturalIngredient(natural)
+
+                observerNaturalIngredient(solusiHerbal.distinct())
 
 
                 Log.d(TAG, "Value object is: $faceProblems")
@@ -126,6 +127,7 @@ class ResultActivity : AppCompatActivity() {
     }
 
     private fun observerNaturalIngredient(naturalIngredientModel: List<NaturalIngredientModel>) {
+        Log.d(TAG, "observerNaturalIngredient $naturalIngredientModel")
 
         naturalIngredientAdapter.set(naturalIngredientModel)
 

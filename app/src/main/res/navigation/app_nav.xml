@@ -24,9 +24,9 @@
         tools:layout="@layout/fragment_analize" />
     <fragment
         android:id="@+id/articleFragment"
-        android:name="id.itborneo.facecare.article.ArticleFragment"
+        android:name="id.itborneo.facecare.article.ArticleActivity"
         android:label="fragment_article"
-        tools:layout="@layout/fragment_article" />
+        tools:layout="@layout/activity_article" />
     <fragment
         android:id="@+id/communityFragment"
         android:name="id.itborneo.facecare.community.CommunityFragment"

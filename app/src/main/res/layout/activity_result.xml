@@ -1,66 +1,72 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    tools:context=".result.ResultActivity">
+    android:layout_height="match_parent">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Face Problem" />
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rv_result_face_problem"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        tools:itemCount="2"
-        tools:listitem="@layout/item_result_face_problem" />
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        tools:context=".result.ResultActivity">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Suggestion" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Face Problem" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Bahan Herbal" />
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_result_face_problem"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            tools:itemCount="2"
+            tools:listitem="@layout/item_result_face_problem" />
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rv_result_natural_ingredient"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        tools:itemCount="2"
-        tools:listitem="@layout/item_result_face_problem" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Suggestion" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Saran Produk" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Bahan Herbal" />
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rv_result_product"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        tools:itemCount="2"
-        tools:listitem="@layout/item_result_face_problem" />
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_result_natural_ingredient"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            tools:itemCount="2"
+            tools:listitem="@layout/item_result_face_problem" />
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:enabled="false"
-        android:text="Consult with Doctor "
-        android:textAllCaps="false" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Saran Produk" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:text="incoming features" />
-</LinearLayout>
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_result_product"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            tools:itemCount="2"
+            tools:listitem="@layout/item_result_face_problem" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:enabled="false"
+            android:text="Consult with Doctor "
+            android:textAllCaps="false" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:text="incoming features" />
+    </LinearLayout>
+
+</androidx.core.widget.NestedScrollView>

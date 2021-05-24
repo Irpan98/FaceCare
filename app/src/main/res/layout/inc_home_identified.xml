@@ -116,6 +116,7 @@
     </LinearLayout>
 
     <Button
+        android:id="@+id/btn_day_progress"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="@dimen/padding_layout_half"
@@ -124,19 +125,31 @@
         android:enabled="false"
         android:text="Your Day-to-Day-Progress"
         android:textAllCaps="false"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout"
-        tools:layout_editor_absoluteX="5dp" />
-
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
 
     <TextView
-        android:id="@+id/tv_user_status"
+        android:id="@+id/tv_label_read_latest"
         android:layout_width="match_parent"
-        android:layout_height="100dp"
-        android:layout_marginHorizontal="@dimen/padding_layout"
-        android:gravity="center_vertical"
-        android:text="Registered"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="parent" />
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/padding_layout"
+        android:paddingHorizontal="@dimen/padding_layout"
+        android:text="Read the latest articles about healthy skin"
+        app:layout_constraintTop_toBottomOf="@+id/btn_day_progress" />
 
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_article"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        app:layout_constraintTop_toBottomOf="@id/tv_label_read_latest"
+        tools:listitem="@layout/item_article" />
+
+    <Button
+        android:id="@+id/btn_view_all_news"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="View All News"
+        app:layout_constraintTop_toBottomOf="@id/rv_article" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -3,8 +3,9 @@ package id.itborneo.facecare.article
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import id.itborneo.facecare.databinding.ItemResultFaceProblemBinding
 import id.itborneo.facecare.core.model.ArticleModel
+import id.itborneo.facecare.databinding.ItemArticleBinding
+import id.itborneo.facecare.databinding.ItemResultFaceProblemBinding
 
 
 class ArticleAdapter(private val listener: (ArticleModel) -> Unit) :
@@ -19,7 +20,7 @@ class ArticleAdapter(private val listener: (ArticleModel) -> Unit) :
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val itemBinding =
-            ItemResultFaceProblemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+            ItemArticleBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return ViewHolder(itemBinding)
     }
 
@@ -29,7 +30,7 @@ class ArticleAdapter(private val listener: (ArticleModel) -> Unit) :
 
     override fun getItemCount() = list.size
 
-    inner class ViewHolder(private val itemBinding: ItemResultFaceProblemBinding) :
+    inner class ViewHolder(private val itemBinding: ItemArticleBinding) :
         RecyclerView.ViewHolder(itemBinding.root) {
         fun bind(article: ArticleModel) {
             itemBinding.apply {

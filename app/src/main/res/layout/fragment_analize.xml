@@ -9,6 +9,7 @@
     <TextView
         style="@style/ItborneoText.Title"
         android:layout_width="match_parent"
+        android:visibility="gone"
         android:layout_height="match_parent"
         android:layout_gravity="center_horizontal"
         android:background="@color/background_main"

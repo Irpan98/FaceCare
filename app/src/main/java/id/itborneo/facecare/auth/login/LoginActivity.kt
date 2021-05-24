@@ -19,13 +19,13 @@ class LoginActivity : AppCompatActivity() {
 
         fun getInstance(context: Context) {
             val intent = Intent(context, LoginActivity::class.java)
-            intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION)
+//            intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION)
             context.startActivity(intent)
         }
 
         fun getInstance(context: Context, launcher: ActivityResultLauncher<Intent>) {
             val intent = Intent(context, LoginActivity::class.java)
-            intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION)
+//            intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION)
 
             launcher.launch(intent)
         }

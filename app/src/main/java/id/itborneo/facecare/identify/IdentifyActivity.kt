@@ -30,7 +30,7 @@ class IdentifyActivity : AppCompatActivity() {
 
         fun getInstance(context: Context) {
             val intent = Intent(context, IdentifyActivity::class.java)
-            intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION)
+//            intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION)
             context.startActivity(intent)
         }
     }

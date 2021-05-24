@@ -6,6 +6,7 @@ import androidx.lifecycle.MutableLiveData
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.ValueEventListener
+import id.itborneo.facecare.core.model.ArticleModel
 import id.itborneo.facecare.core.model.UserIdentifiedModel
 import id.itborneo.facecare.core.model.UserInfoModel
 import id.itborneo.facecare.core.networks.FaceCaseFirebase
@@ -66,6 +67,48 @@ class ThisRepository {
                     result.postValue(Resource.error(null, "null data"))
                 }
 
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+                // Failed to read value
+                Log.w(TAG, "Failed to read value.", error.toException())
+                result.postValue(Resource.error(null, "error ${error.message}"))
+
+            }
+        })
+        return result
+    }
+
+
+    fun getArticle(): LiveData<Resource<List<ArticleModel>>> {
+        Log.d(TAG, "articleRef ")
+
+        val result = MutableLiveData<Resource<List<ArticleModel>>>()
+        result.postValue(Resource.loading(null))
+
+        val articleRef = firebase.getArticle()
+
+
+        articleRef.addListenerForSingleValueEvent(object : ValueEventListener {
+
+            override fun onDataChange(dataSnapshot: DataSnapshot) {
+
+
+                val articles = mutableListOf<ArticleModel>()
+                Log.d(TAG, "articleRef $articles")
+
+                dataSnapshot.children.forEachIndexed { index, snapshot ->
+                    val getData = snapshot.getValue(ArticleModel::class.java)
+                    if (getData != null) {
+                        articles.add(getData)
+                    }
+                }
+                result.postValue(Resource.success(articles))
+//            } else
+//            {
+//                result.postValue(Resource.error(null, "null data"))
+//            }
+//
             }
 
             override fun onCancelled(error: DatabaseError) {
