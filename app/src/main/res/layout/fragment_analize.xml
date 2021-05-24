@@ -12,19 +12,20 @@
         android:layout_height="match_parent"
         android:layout_gravity="center_horizontal"
         android:background="@color/background_main"
-        android:textColor="@color/main_yellow"
         android:elevation="10dp"
         android:gravity="center"
         android:maxLines="2"
         android:padding="@dimen/padding_layout"
         android:text="@string/on_dev"
+        android:textColor="@color/main_yellow"
         tools:ignore="Overdraw" />
 
-    <!--    <Button-->
-    <!--        -->
-    <!--        android:id="@+id/btn_analize"-->
-    <!--        android:layout_width="wrap_content"-->
-    <!--        android:layout_height="wrap_content"-->
-    <!--        android:text="Analyze" />-->
+    <Button
+        android:elevation="10dp"
+        android:id="@+id/btn_analize"
+        android:background="@color/white"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Analyze" />
 
 </FrameLayout>
