@@ -85,12 +85,12 @@
         app:layout_constraintTop_toBottomOf="@+id/cardView">
 
         <Button
-            android:id="@+id/btn_home_reidentify"
+            android:id="@+id/btn_home_identify"
             android:layout_width="100dp"
             android:layout_height="120dp"
             android:layout_marginHorizontal="@dimen/padding_layout_half"
             android:layout_weight="1"
-            android:text="Re-Identify"
+            android:text="Identify"
             android:textAllCaps="false"
             app:layout_constraintBottom_toBottomOf="parent" />
 

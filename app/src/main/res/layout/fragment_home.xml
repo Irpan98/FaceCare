@@ -8,9 +8,14 @@
     tools:context=".home.HomeFragment">
 
 
+    <!--    <include-->
+    <!--        android:id="@+id/inc_home_registered"-->
+    <!--        layout="@layout/inc_home_registered"-->
+    <!--        android:visibility="visible" />-->
+
     <include
-        android:id="@+id/inc_home_registered"
-        layout="@layout/inc_home_registered"
+        android:id="@+id/inc_home_identified"
+        layout="@layout/inc_home_identified"
         android:visibility="visible" />
 
     <include
@@ -18,11 +23,6 @@
         layout="@layout/inc_home_not_register"
         android:elevation="10dp"
         android:visibility="visible" />
-
-    <include
-        android:id="@+id/inc_home_identified"
-        layout="@layout/inc_home_identified"
-        android:visibility="gone" />
 
 
 </FrameLayout>
