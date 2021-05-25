@@ -68,7 +68,8 @@ class LoginActivity : AppCompatActivity() {
                 loginSuccess()
             }
             .addOnFailureListener {
-                Log.e(TAG, "error create user ${it.message}")
+                Toast.makeText(this, "Email / Password is Wrong's ", Toast.LENGTH_SHORT).show()
+                Log.e(TAG, "error create user ${it.message} $")
 
             }
     }
@@ -79,7 +80,7 @@ class LoginActivity : AppCompatActivity() {
 
         if (userUid != null) {
             KsPrefUser.setUserId(userUid)
-            Toast.makeText(this, "Login Success", Toast.LENGTH_LONG)
+            Toast.makeText(this, "Welcome", Toast.LENGTH_LONG).show()
             setResult(RESULT_OK)
             finish()
         }
