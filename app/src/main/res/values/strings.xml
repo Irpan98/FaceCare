@@ -11,4 +11,5 @@
     <string name="input_your_name_here">Full Name</string>
     <string name="register">Register</string>
     <string name="login">Login</string>
+    <string name="email">Email</string>
 </resources>

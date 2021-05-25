@@ -11,6 +11,7 @@ import com.google.firebase.auth.FirebaseAuth
 import id.itborneo.facecare.auth.register.RegisterActivity
 import id.itborneo.facecare.databinding.ActivityLoginBinding
 import id.itborneo.facecare.utils.KsPrefUser
+import id.itborneo.facecare.utils.validation.NullChecker
 
 class LoginActivity : AppCompatActivity() {
 
@@ -45,6 +46,8 @@ class LoginActivity : AppCompatActivity() {
     private fun buttonListener() {
 
         binding.btnLoginLogin.setOnClickListener {
+            if (!isInputValid()) return@setOnClickListener
+
             val email = binding.etLoginEmail.text.toString()
             val password = binding.etLoginPassword.text.toString()
             Log.d(TAG, "login click $email dan $password")
@@ -91,5 +94,20 @@ class LoginActivity : AppCompatActivity() {
         setContentView(view)
     }
 
+    private fun isInputValid(): Boolean {
+
+        val isEmailValid =
+            NullChecker(this).isInputValid(binding.etLoginEmail, "Email tidak boleh kosong")
+
+        if (!isEmailValid) return false
+
+
+        val ispasswordValid =
+            NullChecker(this).isInputValid(binding.etLoginPassword, "Password tidak boleh kosong")
+        if (!ispasswordValid) return false
+
+
+        return !(!isEmailValid || !ispasswordValid)
+    }
 
 }

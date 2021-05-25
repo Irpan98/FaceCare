@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -19,13 +20,16 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/padding_layout"
         android:focusable="true"
-        android:focusableInTouchMode="true">
+        android:focusableInTouchMode="true"
+        app:startIconDrawable="@drawable/ic_email"
+        app:startIconTint="@color/main_yellow">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/et_login_email"
             android:layout_width="match_parent"
+
             android:layout_height="wrap_content"
-            android:hint="Email"
+            android:hint="@string/email"
             android:textColorHint="@color/grey" />
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -36,13 +40,18 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/padding_layout"
         android:focusable="true"
-        android:focusableInTouchMode="true">
+        android:focusableInTouchMode="true"
+        app:endIconMode="password_toggle"
+        app:startIconDrawable="@drawable/ic_password"
+        app:startIconTint="@color/main_yellow">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/et_login_password"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+
             android:hint="password"
+            android:inputType="textPassword"
             android:textColorHint="@color/grey" />
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -51,7 +60,7 @@
         android:id="@+id/btn_login_login"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingTop="@dimen/padding_layout"
+        android:layout_marginTop="@dimen/padding_layout"
         android:text="@string/login"
         android:textAllCaps="false" />
 
