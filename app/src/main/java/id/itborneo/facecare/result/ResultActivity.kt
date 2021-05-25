@@ -4,23 +4,22 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.google.firebase.database.DataSnapshot
-import com.google.firebase.database.DatabaseError
-import com.google.firebase.database.FirebaseDatabase
-import com.google.firebase.database.ValueEventListener
-import id.itborneo.facecare.core.model.FaceProblemModel
-import id.itborneo.facecare.core.model.NaturalIngredientModel
+import id.itborneo.facecare.core.factory.ViewModelFactory
+import id.itborneo.facecare.core.model.HerbalModel
 import id.itborneo.facecare.core.model.ProductModel
 import id.itborneo.facecare.databinding.ActivityResultBinding
 import id.itborneo.facecare.result.adapters.FaceProblemResultAdapter
 import id.itborneo.facecare.result.adapters.NaturalIngredientResultAdapter
 import id.itborneo.facecare.result.adapters.ProductResultAdapter
+import id.itborneo.facecare.utils.enums.Status
 
 
 class ResultActivity : AppCompatActivity() {
+
 
     companion object {
         private const val TAG = "ResultActivity"
@@ -34,49 +33,22 @@ class ResultActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityResultBinding
 
+    private val viewModel: ResultViewModel by viewModels {
+        val faceproblem = "testing"
+        ViewModelFactory(faceproblem)
+    }
+
     private lateinit var faceProblemAdapter: FaceProblemResultAdapter
     private lateinit var naturalIngredientAdapter: NaturalIngredientResultAdapter
     private lateinit var productAdapter: ProductResultAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
-
         initBinding()
         initRecyclerFaceProblem()
         initRecyclerNaturalIngredient()
         initRecyclerProduct()
-        dataDummy()
         observerData()
-
-    }
-
-    private fun dataDummy() {
-
-//        val data = listOf(
-//            FaceProblemModel("jerawat", "abc"),
-//            FaceProblemModel("acne a", "asdasdsad"),
-//            FaceProblemModel("acne b", "asdasdaw")
-//        )
-
-//        faceProblemAdapter.set(data)
-//
-//        val data2 = listOf(
-//            NaturalIngredientModel("Jambu", "abc", "", "", "", "", 0),
-//            NaturalIngredientModel("Jambu", "abc", "", "", "", "", 0),
-//            NaturalIngredientModel("Jambu", "abc", "", "", "", "", 0),
-//        )
-
-//        naturalIngredientAdapter.set(data2)
-
-
-        val data3 = listOf(
-            ProductModel("Ponds", "abc", "", "", 0),
-            ProductModel("Ponds 2", "abc", "", "", 0),
-            ProductModel("Ponds 3", "abc", "", "", 0),
-        )
-
-        productAdapter.set(data3)
 
     }
 
@@ -87,50 +59,38 @@ class ResultActivity : AppCompatActivity() {
     }
 
     private fun observerData() {
+        viewModel.getListFaceProblems().observe(this) {
 
-        val database = FirebaseDatabase.getInstance()
-        val myRef = database.getReference("identifikasi")
+            val solusiHerbal = mutableListOf<HerbalModel>()
+            val products = mutableListOf<ProductModel>()
+            when (it.status) {
+                Status.SUCCESS -> {
+                    val faceProblems = it.data ?: return@observe
 
+                    faceProblemAdapter.set(faceProblems)
 
-        myRef.addValueEventListener(object : ValueEventListener {
-            override fun onDataChange(dataSnapshot: DataSnapshot) {
-                val map = dataSnapshot.value as Map<String, Any>?
-
-                val faceProblems = mutableListOf<FaceProblemModel>()
-                Log.d(TAG, "Value is: $map")
-                val solusiHerbal = mutableListOf<NaturalIngredientModel>()
-                dataSnapshot.children.forEachIndexed { index, snapshot ->
-                    val faceProblem =
-                        snapshot.getValue(FaceProblemModel::class.java)
-                    if (faceProblem != null) {
-                        faceProblems.add(faceProblem)
+                    faceProblems.forEach { faceProblem ->
+                        faceProblem.solusi_herbal.let { solusiHerbal.addAll(it) }
+                        faceProblem.solusi_produk.let { products.addAll(it) }
                     }
-                    faceProblem?.solusi_herbal?.let { solusiHerbal.addAll(it) }
+                    updateHerbalView(solusiHerbal.distinct())
+                    updateProductView(products.distinct())
                 }
-
-
-                faceProblemAdapter.set(faceProblems)
-
-
-                //dummy
-
-                observerNaturalIngredient(solusiHerbal.distinct())
-
-
-                Log.d(TAG, "Value object is: $faceProblems")
             }
-
-            override fun onCancelled(error: DatabaseError) {
-                // Failed to read value
-                Log.w(TAG, "Failed to read value.", error.toException())
-            }
-        })
+        }
     }
 
-    private fun observerNaturalIngredient(naturalIngredientModel: List<NaturalIngredientModel>) {
-        Log.d(TAG, "observerNaturalIngredient $naturalIngredientModel")
+    private fun updateHerbalView(herbalModel: List<HerbalModel>) {
+        Log.d(TAG, "observerNaturalIngredient $herbalModel")
 
-        naturalIngredientAdapter.set(naturalIngredientModel)
+        naturalIngredientAdapter.set(herbalModel)
+
+    }
+
+    private fun updateProductView(products: List<ProductModel>) {
+        Log.d(TAG, "observerProduct $products")
+
+        productAdapter.set(products)
 
     }
 

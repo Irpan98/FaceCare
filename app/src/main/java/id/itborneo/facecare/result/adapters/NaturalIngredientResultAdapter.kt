@@ -4,15 +4,15 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import id.itborneo.facecare.databinding.ItemResultFaceProblemBinding
-import id.itborneo.facecare.core.model.NaturalIngredientModel
+import id.itborneo.facecare.core.model.HerbalModel
 
 
-class NaturalIngredientResultAdapter(private val listener: (NaturalIngredientModel) -> Unit) :
+class NaturalIngredientResultAdapter(private val listener: (HerbalModel) -> Unit) :
     RecyclerView.Adapter<NaturalIngredientResultAdapter.ViewHolder>() {
 
-    private var movies = listOf<NaturalIngredientModel>()
+    private var movies = listOf<HerbalModel>()
 
-    fun set(data: List<NaturalIngredientModel>) {
+    fun set(data: List<HerbalModel>) {
         this.movies = data
         notifyDataSetChanged()
     }
@@ -31,7 +31,7 @@ class NaturalIngredientResultAdapter(private val listener: (NaturalIngredientMod
 
     inner class ViewHolder(private val itemBinding: ItemResultFaceProblemBinding) :
         RecyclerView.ViewHolder(itemBinding.root) {
-        fun bind(faceProblem: NaturalIngredientModel) {
+        fun bind(faceProblem: HerbalModel) {
             itemBinding.apply {
                 tvName.text = faceProblem.nama
 //                tvName.text = movie.title

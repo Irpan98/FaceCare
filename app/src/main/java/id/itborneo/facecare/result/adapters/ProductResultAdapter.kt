@@ -33,7 +33,7 @@ class ProductResultAdapter(private val listener: (ProductModel) -> Unit) :
         RecyclerView.ViewHolder(itemBinding.root) {
         fun bind(faceProblem: ProductModel) {
             itemBinding.apply {
-                tvName.text = faceProblem.name
+                tvName.text = faceProblem.nama
 //                tvName.text = movie.title
 //                Glide.with(root.context)
 //                    .load("${ImageConstant.BASE_IMAGE}${movie.posterPath}")
