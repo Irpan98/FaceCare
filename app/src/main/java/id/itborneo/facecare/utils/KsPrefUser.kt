@@ -23,4 +23,7 @@ object KsPrefUser {
     }
 
     fun getUserId() = prefs.pull(USER_KEY, NOT_REGISTERED)
+
+    fun removeUserId() = prefs.remove(USER_KEY)
+
 }

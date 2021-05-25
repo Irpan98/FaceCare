@@ -56,12 +56,13 @@ class SplashActivity : AppCompatActivity() {
     private fun moveToIntroApp() {
         val intent = Intent(this, AppIntroActivity::class.java)
         startActivity(intent)
+        finish()
     }
 
     private fun moveToLogin() {
         val intent = Intent(this, MainActivity::class.java)
         startActivity(intent)
-//        val intent = Intent(this, MainActivity::class.java)
-//        startActivity(intent)
+        finish()
+
     }
 }

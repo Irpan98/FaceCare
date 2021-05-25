@@ -11,15 +11,14 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import by.kirich1409.viewbindingdelegate.viewBinding
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.ValueEventListener
-import id.itborneo.facecare.R
 import id.itborneo.facecare.article.ArticleActivity
 import id.itborneo.facecare.article.ArticleAdapter
 import id.itborneo.facecare.auth.login.LoginActivity
 import id.itborneo.facecare.auth.register.RegisterActivity
+import id.itborneo.facecare.core.factory.ViewModelFactory
 import id.itborneo.facecare.core.model.UserInfoModel
 import id.itborneo.facecare.core.networks.FaceCaseFirebase
 import id.itborneo.facecare.databinding.FragmentHomeBinding
@@ -27,7 +26,6 @@ import id.itborneo.facecare.identify.IdentifyActivity
 import id.itborneo.facecare.utils.KsPrefUser
 import id.itborneo.facecare.utils.enums.HomeEnum
 import id.itborneo.facecare.utils.enums.Status
-import id.itborneo.facecare.core.factory.ViewModelFactory
 
 
 class HomeFragment : Fragment() {
@@ -37,14 +35,15 @@ class HomeFragment : Fragment() {
         ViewModelFactory(userId)
     }
 
-    private val binding: FragmentHomeBinding by viewBinding(FragmentHomeBinding::bind)
+    private lateinit var binding: FragmentHomeBinding
 
     private val TAG = "HomeFragment"
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_home, container, false)
+        binding = FragmentHomeBinding.inflate(inflater, container, false)
+        return binding.root
     }
 
 

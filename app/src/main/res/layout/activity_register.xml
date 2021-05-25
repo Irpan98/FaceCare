@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -20,7 +21,9 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/padding_layout"
         android:focusable="true"
-        android:focusableInTouchMode="true">
+        android:focusableInTouchMode="true"
+        app:startIconDrawable="@drawable/ic_name"
+        app:startIconTint="@color/main_yellow">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/et_register_name"
@@ -36,14 +39,17 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/padding_layout"
         android:focusable="true"
-        android:focusableInTouchMode="true">
+        android:focusableInTouchMode="true"
+        app:startIconDrawable="@drawable/ic_email"
+        app:startIconTint="@color/main_yellow">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/et_register_email"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Email"
-            android:textColorHint="@color/grey" />
+            android:textColorHint="@color/grey"
+            app:endIconMode="password_toggle" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
@@ -52,13 +58,17 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/padding_layout"
         android:focusable="true"
-        android:focusableInTouchMode="true">
+        android:focusableInTouchMode="true"
+        app:endIconMode="password_toggle"
+        app:startIconDrawable="@drawable/ic_password"
+        app:startIconTint="@color/main_yellow">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/et_register_password"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Password"
+            android:inputType="textPassword"
             android:textColorHint="@color/grey" />
     </com.google.android.material.textfield.TextInputLayout>
 
