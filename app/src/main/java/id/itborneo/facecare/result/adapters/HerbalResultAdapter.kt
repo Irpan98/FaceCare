@@ -3,12 +3,12 @@ package id.itborneo.facecare.result.adapters
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import id.itborneo.facecare.databinding.ItemResultFaceProblemBinding
 import id.itborneo.facecare.core.model.HerbalModel
+import id.itborneo.facecare.databinding.ItemResultFaceProblemBinding
 
 
-class NaturalIngredientResultAdapter(private val listener: (HerbalModel) -> Unit) :
-    RecyclerView.Adapter<NaturalIngredientResultAdapter.ViewHolder>() {
+class HerbalResultAdapter(private val listener: (HerbalModel) -> Unit) :
+    RecyclerView.Adapter<HerbalResultAdapter.ViewHolder>() {
 
     private var movies = listOf<HerbalModel>()
 
@@ -40,9 +40,9 @@ class NaturalIngredientResultAdapter(private val listener: (HerbalModel) -> Unit
 //                    .placeholder(R.drawable.ic_placeholder_image)
 //                    .transform(CenterCrop(), RoundedCorners(ImageConstant.IMAGE_RADIUS))
 //                    .into(ivPoster)
-//                root.setOnClickListener {
-//                    listener(movie)
-//                }
+                root.setOnClickListener {
+                    listener(faceProblem)
+                }
             }
         }
     }
