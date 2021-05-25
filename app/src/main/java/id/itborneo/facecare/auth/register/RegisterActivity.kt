@@ -132,10 +132,7 @@ class RegisterActivity : AppCompatActivity() {
                         ).show()
                     }
                 }
-
             }
-
-
     }
 
     private fun getUid(): String? {
