@@ -11,6 +11,7 @@ import com.google.firebase.auth.FirebaseAuth
 import id.itborneo.facecare.auth.register.RegisterActivity
 import id.itborneo.facecare.databinding.ActivityLoginBinding
 import id.itborneo.facecare.utils.KsPrefUser
+import id.itborneo.facecare.utils.extension.hideKeyboard
 import id.itborneo.facecare.utils.validation.NullChecker
 
 class LoginActivity : AppCompatActivity() {
@@ -64,10 +65,12 @@ class LoginActivity : AppCompatActivity() {
 
         auth.signInWithEmailAndPassword(email, password)
             .addOnCompleteListener {
+                this.hideKeyboard()
                 Log.d(TAG, "login berhasil $it")
                 loginSuccess()
             }
             .addOnFailureListener {
+                this.hideKeyboard()
                 Toast.makeText(this, "Email / Password is Wrong's ", Toast.LENGTH_SHORT).show()
                 Log.e(TAG, "error create user ${it.message} $")
 
@@ -84,8 +87,6 @@ class LoginActivity : AppCompatActivity() {
             setResult(RESULT_OK)
             finish()
         }
-
-
     }
 
 

@@ -12,4 +12,7 @@
     <string name="register">Register</string>
     <string name="login">Login</string>
     <string name="email">Email</string>
+    <string name="no_empty_fullname">Fullname tidak boleh kosong</string>
+    <string name="no_empty_email">Email tidak boleh kosong</string>
+    <string name="no_empty_password">Password tidak boleh kosong</string>
 </resources>
