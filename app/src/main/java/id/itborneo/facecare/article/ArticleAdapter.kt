@@ -5,7 +5,6 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import id.itborneo.facecare.core.model.ArticleModel
 import id.itborneo.facecare.databinding.ItemArticleBinding
-import id.itborneo.facecare.databinding.ItemResultFaceProblemBinding
 
 
 class ArticleAdapter(private val listener: (ArticleModel) -> Unit) :
@@ -41,9 +40,9 @@ class ArticleAdapter(private val listener: (ArticleModel) -> Unit) :
 //                    .placeholder(R.drawable.ic_placeholder_image)
 //                    .transform(CenterCrop(), RoundedCorners(ImageConstant.IMAGE_RADIUS))
 //                    .into(ivPoster)
-//                root.setOnClickListener {
-//                    listener(movie)
-//                }
+                root.setOnClickListener {
+                    listener(article)
+                }
             }
         }
     }

@@ -1,11 +1,13 @@
-package id.itborneo.facecare.article
+package id.itborneo.facecare.article.views
 
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
+import id.itborneo.facecare.article.ArticleAdapter
 import id.itborneo.facecare.core.ThisRepository
+import id.itborneo.facecare.core.model.ArticleModel
 import id.itborneo.facecare.databinding.ActivityArticleBinding
 import id.itborneo.facecare.utils.enums.Status
 
@@ -26,7 +28,6 @@ class ArticleActivity : AppCompatActivity() {
     }
 
 
-
     private fun initBinding() {
         binding = ActivityArticleBinding.inflate(layoutInflater)
         val view = binding.root
@@ -45,7 +46,7 @@ class ArticleActivity : AppCompatActivity() {
     private fun initRecycler() {
         binding.rvArticle.layoutManager = LinearLayoutManager(this)
         adapter = ArticleAdapter {
-//            actionToDetail(it)
+            actionToArticle(it)
         }
         binding.rvArticle.adapter = adapter
     }
@@ -64,4 +65,7 @@ class ArticleActivity : AppCompatActivity() {
         }
     }
 
+    private fun actionToArticle(article: ArticleModel) {
+        DetailArticleActivity.getInstance(this, article)
+    }
 }

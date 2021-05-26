@@ -6,11 +6,18 @@
     android:orientation="vertical"
     tools:context=".identify.IdentifyActivity">
 
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/padding_layout"
+        android:text="Gender" />
 
     <RadioGroup
         android:id="@+id/rgGender"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/padding_layout"
+        android:layout_marginTop="@dimen/padding_layout_3"
         android:checkedButton="@+id/radio_button_1">
 
         <RadioButton
@@ -27,22 +34,33 @@
 
     </RadioGroup>
 
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/padding_layout"
+        android:layout_marginTop="@dimen/padding_layout_3"
+        android:text="Face Problem" />
 
     <RadioGroup
         android:id="@+id/rg_face_problem"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingStart="25dp" />
+        android:layout_marginHorizontal="@dimen/padding_layout" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/padding_layout"
+        android:layout_marginTop="@dimen/padding_layout_3"
+        android:text="What is Your Goals" />
 
 
     <RadioGroup
         android:id="@+id/rgSkinType"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:checkedButton="@+id/radio_button_1">
-
-
-    </RadioGroup>
+        android:layout_marginHorizontal="@dimen/padding_layout"
+        android:checkedButton="@+id/radio_button_1"></RadioGroup>
 
     <Button
         android:id="@+id/btn_submit"

@@ -10,7 +10,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import id.itborneo.facecare.article.ArticleActivity
+import id.itborneo.facecare.article.views.ArticleActivity
 import id.itborneo.facecare.article.ArticleAdapter
 import id.itborneo.facecare.auth.login.LoginActivity
 import id.itborneo.facecare.auth.register.RegisterActivity
