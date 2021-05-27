@@ -30,6 +30,8 @@ class SplashActivity : AppCompatActivity() {
         window.decorView.systemUiVisibility = UI_OPTIONS
     }
 
+    //test edit
+
     @Suppress("DEPRECATION")
     private fun initTimer() {
         val handler = Handler()
