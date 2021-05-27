@@ -10,11 +10,13 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import id.itborneo.facecare.article.views.ArticleActivity
 import id.itborneo.facecare.article.ArticleAdapter
+import id.itborneo.facecare.article.views.ArticleActivity
+import id.itborneo.facecare.article.views.DetailArticleActivity
 import id.itborneo.facecare.auth.login.LoginActivity
 import id.itborneo.facecare.auth.register.RegisterActivity
 import id.itborneo.facecare.core.factory.ViewModelFactory
+import id.itborneo.facecare.core.model.ArticleModel
 import id.itborneo.facecare.databinding.FragmentHomeBinding
 import id.itborneo.facecare.identify.IdentifyActivity
 import id.itborneo.facecare.utils.KsPrefUser
@@ -92,6 +94,7 @@ class HomeFragment : Fragment() {
             LinearLayoutManager(requireContext(), RecyclerView.HORIZONTAL, false)
 
         val articleAdapter = ArticleAdapter() {
+            actionToArticle(it)
 
         }
         binding.incHomeIdentified.rvArticle.adapter = articleAdapter
@@ -106,6 +109,10 @@ class HomeFragment : Fragment() {
                 }
             }
         }
+    }
+
+    private fun actionToArticle(article: ArticleModel) {
+        DetailArticleActivity.getInstance(requireContext(), article)
     }
 
 
