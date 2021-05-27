@@ -1,32 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".analize.AnalizeFragment">
 
-
-    <TextView
-        style="@style/ItborneoText.Title"
+    <androidx.camera.view.PreviewView
+        android:id="@+id/viewFinder"
         android:layout_width="match_parent"
-        android:visibility="gone"
-        android:layout_height="match_parent"
-        android:layout_gravity="center_horizontal"
-        android:background="@color/background_main"
-        android:elevation="10dp"
-        android:gravity="center"
-        android:maxLines="2"
-        android:padding="@dimen/padding_layout"
-        android:text="@string/on_dev"
-        android:textColor="@color/main_yellow"
-        tools:ignore="Overdraw" />
+        android:layout_height="match_parent" />
 
     <Button
-        android:elevation="10dp"
         android:id="@+id/btn_analize"
-        android:background="@color/white"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Analyze" />
+        android:background="@color/white"
+        android:elevation="10dp"
+        android:text="Analyze"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent" />
 
-</FrameLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
