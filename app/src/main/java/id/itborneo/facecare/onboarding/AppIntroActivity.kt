@@ -39,25 +39,25 @@ class AppIntroActivity : AppIntro() {
     private fun initOnBoarding() {
         addSlide(
             OnBoardingContentFragment.newInstance(
-                R.drawable.ic_illustration_login,
-                "Dengar",
-                "Dengarkan intisari dari \n berbagai buku pengembangan diri"
+                R.drawable.ic_intro_1,
+                "Day-to-day Progress",
+                "Assess your progress with daily entries."
             )
 
         )
         addSlide(
 
             OnBoardingContentFragment.newInstance(
-                R.drawable.ic_illustration_register,
-                "Belajar",
-                "Belajar dari mana saja  \n dan kapan saja"
+                R.drawable.ic_intro_2,
+                "Photograph your milestone",
+                "You can see your timestamp albums and see your progress over time from beginning to end"
             )
         )
         addSlide(
             OnBoardingContentFragment.newInstance(
-                R.drawable.ic_illusrtation_not_register,
-                "Pintar",
-                "Tingkatkan keterampilan, \n On The Go"
+                R.drawable.ic_intro_3,
+                "Share your story here",
+                "Face care is 80+ million women willing to support each other and  and share their story"
             )
         )
 
