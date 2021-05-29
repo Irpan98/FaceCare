@@ -15,4 +15,8 @@
     <string name="no_empty_fullname">Fullname tidak boleh kosong</string>
     <string name="no_empty_email">Email tidak boleh kosong</string>
     <string name="no_empty_password">Password tidak boleh kosong</string>
+    <string name="skin_report">Skin Report</string>
+    <string name="your_skin_issues">Your Skin Issues</string>
+    <string name="your_facial_skin_issues">Your Facial Skin Issues</string>
+    <string name="our_suggestion_for_you">Our Suggestion For You</string>
 </resources>
