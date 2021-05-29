@@ -119,7 +119,7 @@
         android:id="@+id/btn_day_progress"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginHorizontal="@dimen/padding_layout_half"
+        android:layout_marginHorizontal="@dimen/padding_layout"
         android:layout_marginTop="@dimen/padding_layout"
         android:layout_weight="1"
         android:enabled="false"
@@ -140,6 +140,7 @@
         android:id="@+id/rv_article"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/padding_layout_half"
         android:orientation="horizontal"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         app:layout_constraintTop_toBottomOf="@id/tv_label_read_latest"
@@ -147,9 +148,13 @@
 
     <Button
         android:id="@+id/btn_view_all_news"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/padding_layout"
+        android:layout_marginEnd="@dimen/padding_layout"
         android:text="View All News"
+        android:textAllCaps="false"
+        app:layout_constraintEnd_toEndOf="@+id/rv_article"
         app:layout_constraintTop_toBottomOf="@id/rv_article" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

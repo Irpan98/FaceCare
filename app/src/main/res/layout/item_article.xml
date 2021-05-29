@@ -4,7 +4,9 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_marginTop="@dimen/padding_layout"
+    android:layout_height="wrap_content"
+    android:paddingHorizontal="@dimen/padding_layout_half">
 
     <ImageView
         android:id="@+id/imageView2"

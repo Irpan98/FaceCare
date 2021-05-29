@@ -30,6 +30,19 @@ class AppIntroActivity : AppIntro() {
         setImmersiveMode()
         isSystemBackButtonLocked = true
 
+        setNextArrowColor(
+            resources.getColor(R.color.main_yellow)
+        )
+
+        setColorSkipButton(
+            resources.getColor(R.color.main_yellow)
+        )
+        setColorDoneText(
+            resources.getColor(R.color.main_yellow)
+        )
+        val mainColor = resources.getColor(R.color.main_yellow)
+
+        setIndicatorColor(mainColor, resources.getColor(R.color.grey))
 
 //        setTransformer(AppIntroPageTransformerType.SlideOver)
 
