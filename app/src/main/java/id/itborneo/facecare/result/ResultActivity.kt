@@ -153,31 +153,31 @@ class ResultActivity : AppCompatActivity() {
     }
 
     private fun initRecyclerFaceProblem() {
-        binding.rvResultFaceProblem.layoutManager = LinearLayoutManager(this)
+//        binding.rvResultFaceProblem.layoutManager = LinearLayoutManager(this)
         faceProblemAdapter = FaceProblemResultAdapter {
             actionToFaceProblemDetail(it)
         }
-        binding.rvResultFaceProblem.adapter = faceProblemAdapter
+//        binding.rvResultFaceProblem.adapter = faceProblemAdapter
     }
 
     private fun initRecyclerNaturalIngredient() {
-        binding.rvResultNaturalIngredient.layoutManager =
+//        binding.rvResultNaturalIngredient.layoutManager =
             LinearLayoutManager(this, RecyclerView.HORIZONTAL, false)
 
         herbalAdapter = HerbalResultAdapter {
             actionToHerbalDetail(it)
         }
-        binding.rvResultNaturalIngredient.adapter = herbalAdapter
+//        binding.rvResultNaturalIngredient.adapter = herbalAdapter
     }
 
     private fun initRecyclerProduct() {
-        binding.rvResultProduct.layoutManager =
+//        binding.rvResultProduct.layoutManager =
             LinearLayoutManager(this, RecyclerView.HORIZONTAL, false)
 
         productAdapter = ProductResultAdapter {
             actionToProductDetail(it)
         }
-        binding.rvResultProduct.adapter = productAdapter
+//        binding.rvResultProduct.adapter = productAdapter
     }
 
     private fun actionToProductDetail(product: ProductModel) {
