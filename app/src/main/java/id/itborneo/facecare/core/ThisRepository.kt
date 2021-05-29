@@ -6,10 +6,7 @@ import androidx.lifecycle.MutableLiveData
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.ValueEventListener
-import id.itborneo.facecare.core.model.ArticleModel
-import id.itborneo.facecare.core.model.FaceProblemModel
-import id.itborneo.facecare.core.model.UserIdentifiedModel
-import id.itborneo.facecare.core.model.UserInfoModel
+import id.itborneo.facecare.core.model.*
 import id.itborneo.facecare.core.networks.FaceCaseFirebase
 import id.itborneo.facecare.utils.Resource
 
@@ -17,7 +14,6 @@ class ThisRepository {
 
     private val TAG = "ThisRepository"
     private val firebase = FaceCaseFirebase
-
 
 
     fun getSingleIdentifyUser(userId: String): LiveData<Resource<UserIdentifiedModel>> {
@@ -154,4 +150,39 @@ class ThisRepository {
         return result
     }
 
+    fun getListChat(): LiveData<Resource<List<Message>>> {
+        Log.d(TAG, "getListFaceProblem ")
+
+        val result = MutableLiveData<Resource<List<Message>>>()
+        result.postValue(Resource.loading(null))
+
+        val ref = firebase.getChat()
+
+        ref.addListenerForSingleValueEvent(object : ValueEventListener {
+
+            override fun onDataChange(dataSnapshot: DataSnapshot) {
+                val data = mutableListOf<Message>()
+
+                dataSnapshot.children.forEachIndexed { index, snapshot ->
+                    val getData = snapshot.getValue(Message::class.java)
+                    if (getData != null) {
+                        data.add(getData)
+                    }
+                }
+                Log.d(TAG, "getListFaceProblem $data")
+
+                result.postValue(Resource.success(data))
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+                // Failed to read value
+                Log.w(TAG, "Failed to read value.", error.toException())
+                result.postValue(Resource.error(null, "error ${error.message}"))
+
+            }
+        })
+        return result
+    }
 }
+
+

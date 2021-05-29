@@ -95,11 +95,11 @@
             app:layout_constraintBottom_toBottomOf="parent" />
 
         <Button
+            android:id="@+id/btnCommunity"
             android:layout_width="100dp"
             android:layout_height="120dp"
             android:layout_marginHorizontal="@dimen/padding_layout_half"
             android:layout_weight="1"
-            android:enabled="false"
             android:text="Community"
             android:textAllCaps="false"
             app:layout_constraintBottom_toBottomOf="parent" />

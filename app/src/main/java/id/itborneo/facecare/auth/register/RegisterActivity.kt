@@ -19,7 +19,7 @@ import id.itborneo.facecare.utils.validation.NullChecker
 class RegisterActivity : AppCompatActivity() {
 
     companion object {
-        private const val TAG = "ResultActivity"
+        private const val TAG = "RegisterActivity"
 
         fun getInstance(context: Context) {
             val intent = Intent(context, RegisterActivity::class.java)

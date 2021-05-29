@@ -15,6 +15,7 @@ import id.itborneo.facecare.article.views.ArticleActivity
 import id.itborneo.facecare.article.views.DetailArticleActivity
 import id.itborneo.facecare.auth.login.LoginActivity
 import id.itborneo.facecare.auth.register.RegisterActivity
+import id.itborneo.facecare.community.CommunityActivity
 import id.itborneo.facecare.core.factory.ViewModelFactory
 import id.itborneo.facecare.core.model.ArticleModel
 import id.itborneo.facecare.databinding.FragmentHomeBinding
@@ -58,6 +59,9 @@ class HomeFragment : Fragment() {
     private fun initButtonListener() {
         binding.incHomeIdentified.btnHomeIdentify.setOnClickListener {
             actionToIdentify()
+        }
+        binding.incHomeIdentified.btnCommunity.setOnClickListener {
+            CommunityActivity.getInstance(requireContext())
         }
     }
 
@@ -117,7 +121,7 @@ class HomeFragment : Fragment() {
 
 
     private fun actionToIdentify() {
-        IdentifyActivity.getInstance(requireContext())
+        IdentifyActivity.getInstance(requireContext(), getContent)
     }
 
 
@@ -156,6 +160,7 @@ class HomeFragment : Fragment() {
             if (it.data != null) {
                 viewModel.homeState.value = HomeEnum.IDENTIFIED
             }
+
         }
     }
 

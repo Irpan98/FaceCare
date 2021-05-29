@@ -30,8 +30,13 @@ class ProfileFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        updateUI()
         logoutListener()
         logoutVisibility()
+    }
+
+    private fun updateUI() {
+
     }
 
     private fun logoutVisibility() {

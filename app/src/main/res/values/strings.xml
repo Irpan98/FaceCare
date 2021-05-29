@@ -15,4 +15,5 @@
     <string name="no_empty_fullname">Fullname tidak boleh kosong</string>
     <string name="no_empty_email">Email tidak boleh kosong</string>
     <string name="no_empty_password">Password tidak boleh kosong</string>
+    <string name="privacy_content">We<b> not </b>collecting any of your photo. feel free to use FaceCase without concert about it \n \n <b>your photo\'s will keep in your phone.</b></string>
 </resources>

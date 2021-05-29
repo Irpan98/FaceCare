@@ -7,6 +7,7 @@ import android.util.Log
 import android.view.View
 import android.widget.LinearLayout
 import android.widget.RadioButton
+import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.MutableLiveData
@@ -15,8 +16,8 @@ import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 import id.itborneo.facecare.R
-import id.itborneo.facecare.databinding.ActivityIdentifyBinding
 import id.itborneo.facecare.core.model.FaceProblemModel
+import id.itborneo.facecare.databinding.ActivityIdentifyBinding
 import id.itborneo.facecare.utils.KsPrefUser
 
 
@@ -28,10 +29,10 @@ class IdentifyActivity : AppCompatActivity() {
     companion object {
         private const val TAG = "IdentifyActivity"
 
-        fun getInstance(context: Context) {
+        fun getInstance(context: Context, launcher: ActivityResultLauncher<Intent>) {
             val intent = Intent(context, IdentifyActivity::class.java)
 //            intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION)
-            context.startActivity(intent)
+            launcher.launch(intent)
         }
     }
 
@@ -45,7 +46,29 @@ class IdentifyActivity : AppCompatActivity() {
         initFaceProblem()
         initGenderView()
         initSkinType()
+        initGoals()
         observerData()
+    }
+
+    private fun initGoals() {
+        binding.rgGoals.setOnCheckedChangeListener { group, checkedId ->
+            Log.d(TAG, "initGenderView setOnCheckedChangeListener")
+
+            when (checkedId) {
+                R.id.rgGoals_1 -> {
+                    viewModel.userIndentified.value?.goals = binding.rgGoals1.text.toString()
+                }
+                R.id.rgGoals_2 -> {
+                    viewModel.userIndentified.value?.goals = binding.rgGoals2.text.toString()
+                }
+                R.id.rgGoals_3 -> {
+                    viewModel.userIndentified.value?.goals = binding.rgGoals3.text.toString()
+                }
+                else -> {
+
+                }
+            }
+        }
     }
 
     private fun initSkinType() {
@@ -85,6 +108,7 @@ class IdentifyActivity : AppCompatActivity() {
     private fun initGenderView() {
         // To listen for a radio button's checked/unchecked state changes
         binding.rgGender.setOnCheckedChangeListener { group, checkedId ->
+            Log.d(TAG, "initGenderView setOnCheckedChangeListener")
 
             when (checkedId) {
                 R.id.rgGenderGirls -> {
@@ -198,6 +222,8 @@ class IdentifyActivity : AppCompatActivity() {
             myRef.child(userId).setValue(identify)
                 .addOnSuccessListener {
                     Log.d(TAG, "success add data : $it")
+                    setResult(RESULT_OK)
+                    finish()
 
                 }
                 .addOnFailureListener {

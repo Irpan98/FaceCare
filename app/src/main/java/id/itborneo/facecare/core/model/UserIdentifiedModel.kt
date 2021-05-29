@@ -5,4 +5,5 @@ data class UserIdentifiedModel(
     var faceProblem: String = "",
     var skinType: String = "",
     var gambar: String = "",
+    var goals: String = ""
 )

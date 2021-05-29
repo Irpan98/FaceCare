@@ -1,10 +1,13 @@
 package id.itborneo.facecare.analize
 
 import android.Manifest
+import android.content.Context
+import android.content.Intent
 import android.content.pm.PackageManager
 import android.net.Uri
 import android.os.Bundle
 import android.util.Log
+import android.view.KeyEvent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -16,6 +19,8 @@ import androidx.camera.core.Preview
 import androidx.camera.lifecycle.ProcessCameraProvider
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
+import com.google.android.material.bottomsheet.BottomSheetBehavior
+import com.google.android.material.bottomsheet.BottomSheetDialog
 import id.itborneo.facecare.R
 import id.itborneo.facecare.analyzing.AnalyzingActivity
 import id.itborneo.facecare.databinding.FragmentAnalizeBinding
@@ -48,8 +53,26 @@ class AnalizeFragment : Fragment() {
 
 //        requestPermission.launch(Manifest.permission.ACCESS_COARSE_LOCATION)
 
+        initButtonInfo()
+        initSelectButton()
         initAllNeedCamera()
+        privacyInfo(requireContext(), binding.root)
 
+    }
+
+    private fun initButtonInfo() {
+        binding.btnInfo.setOnClickListener {
+
+        }
+    }
+
+    private fun initSelectButton() {
+
+        binding.btnSelectImage.setOnClickListener {
+            val intent = Intent(Intent.ACTION_GET_CONTENT)
+            intent.type = "image/*"
+            startActivityForResult(intent, 100)
+        }
     }
 
 
@@ -133,7 +156,6 @@ class AnalizeFragment : Fragment() {
 
 
         val cameraProviderFuture = ProcessCameraProvider.getInstance(requireContext())
-
         cameraProviderFuture.addListener(Runnable {
             // Used to bind the lifecycle of cameras to the lifecycle owner
             val cameraProvider: ProcessCameraProvider = cameraProviderFuture.get()
@@ -149,7 +171,7 @@ class AnalizeFragment : Fragment() {
                 .build()
 
             // Select back camera as a default
-            val cameraSelector = CameraSelector.DEFAULT_BACK_CAMERA
+            val cameraSelector = CameraSelector.DEFAULT_FRONT_CAMERA
 
             try {
                 // Unbind use cases before rebinding
@@ -213,4 +235,63 @@ class AnalizeFragment : Fragment() {
     }
 
 
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+
+        val uri = data?.data
+
+        if (uri != null) {
+            actionToAnayzing(uri)
+        }
+
+    }
+
+    private fun privacyInfo(context: Context, rootView: ViewGroup) {
+        val dialog = BottomSheetDialog(context, R.style.SheetDialog)
+//        dialog.behavior.isHideable = false
+        dialog.behavior.state = BottomSheetBehavior.STATE_COLLAPSED
+
+        val view =
+            LayoutInflater.from(context).inflate(R.layout.bottom_sheet_detail, rootView, false)
+        dialog.setContentView(view)
+
+        view?.isFocusableInTouchMode = true
+        view?.requestFocus()
+        view?.setOnKeyListener { _, keyCode, _ ->
+            if (keyCode == KeyEvent.KEYCODE_BACK) {
+                // Do what you want to do on back press
+                dialog.dismiss()
+                back()
+                true
+            } else
+                false
+        }
+
+
+//        val ivFavorite = view?.findViewById<ImageView>(R.id.ivFavorite)
+//
+//        updateFavorite(city.isfavorite, ivFavorite, true)
+//
+//        ivFavorite?.setOnClickListener {
+//
+//            city.isfavorite = !city.isfavorite
+//            Log.d(TAG, "ivFavorite ${city.isfavorite}")
+//
+//            KsPref.prefs.push(city.id, city.isfavorite)
+//            KsPref.prefs.save()
+//            updateFavorite(city.isfavorite, ivFavorite)
+//
+//        }
+
+
+        binding.btnInfo.setOnClickListener {
+            dialog.show()
+
+        }
+        dialog.show()
+    }
+
+    private fun back() {
+        requireActivity().onBackPressed()
+    }
 }

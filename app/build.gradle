@@ -12,7 +12,7 @@ android {
 
     defaultConfig {
         applicationId "id.itborneo.facecare"
-        minSdkVersion 21
+        minSdkVersion 24
         targetSdkVersion 30
         versionCode 1
         versionName "1.0"
@@ -33,9 +33,20 @@ android {
     kotlinOptions {
         jvmTarget = '1.8'
     }
+
+    aaptOptions{
+        noCompress  "tflite"
+    }
+    buildFeatures {
+        mlModelBinding true
+    }
     buildFeatures {
         viewBinding true
-        dataBinding true
+//        dataBinding true
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
     }
 
 }
@@ -88,10 +99,16 @@ dependencies {
 
 
     def camerax_version = "1.0.0"
-// CameraX core library using camera2 implementation
+    // CameraX core library using camera2 implementation
     implementation "androidx.camera:camera-camera2:$camerax_version"
-// CameraX Lifecycle Library
+    // CameraX Lifecycle Library
     implementation "androidx.camera:camera-lifecycle:$camerax_version"
-// CameraX View class
+    // CameraX View class
     implementation "androidx.camera:camera-view:1.0.0-alpha24"
+
+    //tflite
+    implementation "org.tensorflow:tensorflow-lite:2.4.0"
+    implementation 'org.tensorflow:tensorflow-lite-support:0.1.0'
+    implementation 'org.tensorflow:tensorflow-lite-metadata:0.1.0'
+    implementation 'org.tensorflow:tensorflow-lite-gpu:2.4.0'
 }

@@ -4,14 +4,17 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.MutableLiveData
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import id.itborneo.facecare.core.factory.ViewModelFactory
 import id.itborneo.facecare.core.model.FaceProblemModel
 import id.itborneo.facecare.core.model.HerbalModel
 import id.itborneo.facecare.core.model.ProductModel
+import id.itborneo.facecare.core.model.RecognitionModel
 import id.itborneo.facecare.databinding.ActivityResultBinding
 import id.itborneo.facecare.faceproblem.FaceProblemActivity
 import id.itborneo.facecare.herbal.HerbalActivity
@@ -28,8 +31,10 @@ class ResultActivity : AppCompatActivity() {
     companion object {
         private const val TAG = "ResultActivity"
 
-        fun getInstance(context: Context) {
+        private val EXTRA_LIST = "list_value"
+        fun getInstance(context: Context, value: ArrayList<RecognitionModel>?) {
             val intent = Intent(context, ResultActivity::class.java)
+            intent.putParcelableArrayListExtra(EXTRA_LIST, value)
 //            intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION)
             context.startActivity(intent)
         }
@@ -45,15 +50,33 @@ class ResultActivity : AppCompatActivity() {
     private lateinit var faceProblemAdapter: FaceProblemResultAdapter
     private lateinit var herbalAdapter: HerbalResultAdapter
     private lateinit var productAdapter: ProductResultAdapter
-
+    private var getListResult = MutableLiveData<ArrayList<RecognitionModel>?>()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         initBinding()
         initRecyclerFaceProblem()
         initRecyclerNaturalIngredient()
         initRecyclerProduct()
-        observerData()
 
+        retrieveData()
+        observerGetList()
+
+    }
+
+    private fun observerGetList() {
+        getListResult.observe(this) {
+            if (it != null) {
+                observerData(it)
+            } else {
+                Toast.makeText(this, "Something's Wrong", Toast.LENGTH_LONG).show()
+            }
+
+        }
+    }
+
+    private fun retrieveData() {
+        getListResult.value = intent.getParcelableArrayListExtra(EXTRA_LIST)
+        Log.d(TAG, "retrieveData ${getListResult.value}")
     }
 
     private fun initBinding() {
@@ -62,7 +85,7 @@ class ResultActivity : AppCompatActivity() {
         setContentView(view)
     }
 
-    private fun observerData() {
+    private fun observerData(userProblems: ArrayList<RecognitionModel>) {
         viewModel.getListFaceProblems().observe(this) {
 
             val solusiHerbal = mutableListOf<HerbalModel>()
@@ -71,17 +94,48 @@ class ResultActivity : AppCompatActivity() {
                 Status.SUCCESS -> {
                     val faceProblems = it.data ?: return@observe
 
-                    faceProblemAdapter.set(faceProblems)
+                    val usersFaceProblems = faceProblems.filterIndexed { index, item ->
+                        var result = false
+                        userProblems.forEach {
+                            Log.d(
+                                TAG,
+                                "faceProblems filterIndexed each $index = ${it.title} compare with ${item.nama}"
+                            )
 
-                    faceProblems.forEach { faceProblem ->
-                        faceProblem.solusi_herbal.let { solusiHerbal.addAll(it) }
-                        faceProblem.solusi_produk.let { products.addAll(it) }
+                            if (it.title.equals(item.nama, ignoreCase = true)) {
+                                result = true
+                                return@forEach
+                            }
+                        }
+                        Log.d(TAG, "faceProblems filterIndexed each $index =  $result")
+
+                        result
+
                     }
-                    updateHerbalView(solusiHerbal.distinct())
-                    updateProductView(products.distinct())
+
+                    Log.d(TAG, "faceProblems filtered $usersFaceProblems")
+                    updateUI(usersFaceProblems, solusiHerbal, products)
+
                 }
             }
         }
+    }
+
+    private fun updateUI(
+        faceProblems: List<FaceProblemModel>,
+        solusiHerbal: MutableList<HerbalModel>,
+        products: MutableList<ProductModel>
+    ) {
+
+        faceProblemAdapter.set(faceProblems)
+
+        faceProblems.forEach { faceProblem ->
+            faceProblem.solusi_herbal.let { solusiHerbal.addAll(it) }
+            faceProblem.solusi_produk.let { products.addAll(it) }
+        }
+
+        updateHerbalView(solusiHerbal.distinct())
+        updateProductView(products.distinct())
     }
 
     private fun updateHerbalView(herbalModel: List<HerbalModel>) {

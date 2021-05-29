@@ -1,5 +1,6 @@
 package id.itborneo.facecare.home
 
+import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.switchMap
@@ -16,6 +17,7 @@ class HomeViewModel(private var idUser: String) : ViewModel() {
 
 
     fun refreshUserId(userId: String) {
+        Log.d("HomeViewModel","refreshUserId")
         loadTrigger.value = Unit
         idUser = userId
     }
