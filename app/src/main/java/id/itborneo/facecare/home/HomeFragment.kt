@@ -19,6 +19,7 @@ import id.itborneo.facecare.community.CommunityActivity
 import id.itborneo.facecare.core.factory.ViewModelFactory
 import id.itborneo.facecare.core.model.ArticleModel
 import id.itborneo.facecare.databinding.FragmentHomeBinding
+import id.itborneo.facecare.daytoday.DayToDayActivity
 import id.itborneo.facecare.identify.IdentifyActivity
 import id.itborneo.facecare.utils.KsPrefUser
 import id.itborneo.facecare.utils.enums.HomeEnum
@@ -62,6 +63,10 @@ class HomeFragment : Fragment() {
         }
         binding.incHomeIdentified.btnCommunity.setOnClickListener {
             CommunityActivity.getInstance(requireContext(), viewModel.getUserInfo().value?.data)
+        }
+
+        binding.incHomeIdentified.btnDayProgress.setOnClickListener {
+            DayToDayActivity.getInstance(requireContext())
         }
     }
 

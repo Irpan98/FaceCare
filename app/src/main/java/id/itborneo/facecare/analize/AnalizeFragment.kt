@@ -12,10 +12,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.camera.core.CameraSelector
-import androidx.camera.core.ImageCapture
-import androidx.camera.core.ImageCaptureException
-import androidx.camera.core.Preview
+import androidx.camera.core.*
 import androidx.camera.lifecycle.ProcessCameraProvider
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
@@ -38,6 +35,7 @@ class AnalizeFragment : Fragment() {
     private lateinit var outputDirectory: File
     private lateinit var cameraExecutor: ExecutorService
     private lateinit var binding: FragmentAnalizeBinding
+    private var lensFacing =CameraSelector.DEFAULT_FRONT_CAMERA
 
     private val TAG = "AnalizeFragment"
     override fun onCreateView(
@@ -155,8 +153,25 @@ class AnalizeFragment : Fragment() {
     private fun startCamera() {
 
 
+//        val switchButton = binding.btnSwitchCamera
+//        switchButton.setOnClickListener {
+//            lensFacing = if (CameraSelector.LENS_FACING_FRONT == lensFacing) {
+//                androidx.camera.core.CameraX.L
+//            } else {
+//                CameraX.LensFacing.FRONT
+//            }
+//            try {
+//                // Only bind use cases if we can query a camera with this orientation
+//                CameraX.getCameraWithLensFacing(lensFacing)
+//                bindCameraUseCases()
+//            } catch (exc: Exception) {
+//                // Do nothing
+//            }
+//        }
+
+
         val cameraProviderFuture = ProcessCameraProvider.getInstance(requireContext())
-        cameraProviderFuture.addListener(Runnable {
+        cameraProviderFuture.addListener({
             // Used to bind the lifecycle of cameras to the lifecycle owner
             val cameraProvider: ProcessCameraProvider = cameraProviderFuture.get()
 

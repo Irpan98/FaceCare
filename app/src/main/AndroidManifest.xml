@@ -13,7 +13,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.FaceCare">
-        <activity android:name=".community.CommunityActivity"></activity>
+        <activity android:name=".daytoday.DayToDayActivity"></activity>
+        <activity android:name=".community.CommunityActivity" />
         <activity android:name=".analyzing.AnalyzingActivity" />
         <activity android:name=".article.views.DetailArticleActivity" />
         <activity android:name=".faceproblem.FaceProblemActivity" />

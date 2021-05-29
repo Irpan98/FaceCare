@@ -26,13 +26,18 @@
         android:id="@+id/btn_info"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:padding="@dimen/padding_layout"
         android:background="@android:color/transparent"
+        android:contentDescription="info button"
+        android:padding="@dimen/padding_layout"
         android:src="@drawable/icon_info"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:contentDescription="info button" />
+        app:layout_constraintTop_toTopOf="parent" />
 
+    <Button
+        android:id="@+id/btnSwitchCamera"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Switch Camera" />
 
     <Button
         android:id="@+id/btnSelectImage"
