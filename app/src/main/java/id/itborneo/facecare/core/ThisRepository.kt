@@ -150,26 +150,26 @@ class ThisRepository {
         return result
     }
 
-    fun getListChat(): LiveData<Resource<List<Message>>> {
+    fun getListChat(): LiveData<Resource<List<MessageModel>>> {
         Log.d(TAG, "getListFaceProblem ")
 
-        val result = MutableLiveData<Resource<List<Message>>>()
+        val result = MutableLiveData<Resource<List<MessageModel>>>()
         result.postValue(Resource.loading(null))
 
         val ref = firebase.getChat()
 
-        ref.addListenerForSingleValueEvent(object : ValueEventListener {
+        ref.addValueEventListener(object : ValueEventListener {
 
             override fun onDataChange(dataSnapshot: DataSnapshot) {
-                val data = mutableListOf<Message>()
+                val data = mutableListOf<MessageModel>()
 
                 dataSnapshot.children.forEachIndexed { index, snapshot ->
-                    val getData = snapshot.getValue(Message::class.java)
+                    val getData = snapshot.getValue(MessageModel::class.java)
                     if (getData != null) {
                         data.add(getData)
+
                     }
                 }
-                Log.d(TAG, "getListFaceProblem $data")
 
                 result.postValue(Resource.success(data))
             }

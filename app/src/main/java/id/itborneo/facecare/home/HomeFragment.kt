@@ -61,7 +61,7 @@ class HomeFragment : Fragment() {
             actionToIdentify()
         }
         binding.incHomeIdentified.btnCommunity.setOnClickListener {
-            CommunityActivity.getInstance(requireContext())
+            CommunityActivity.getInstance(requireContext(), viewModel.getUserInfo().value?.data)
         }
     }
 

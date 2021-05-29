@@ -1,21 +1,21 @@
-package id.itborneo.facecare.article
+package id.itborneo.facecare.community
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import id.itborneo.facecare.core.model.ArticleModel
 import id.itborneo.facecare.core.model.MessageModel
 import id.itborneo.facecare.databinding.ItemArticleBinding
 
 
-class ArticleAdapter(private val listener: (ArticleModel) -> Unit) :
-    RecyclerView.Adapter<ArticleAdapter.ViewHolder>() {
+class CommunityAdapter(private val listener: (MessageModel) -> Unit) :
+    RecyclerView.Adapter<CommunityAdapter.ViewHolder>() {
 
-    private var list = listOf<ArticleModel>()
+    private var list = listOf<MessageModel>()
 
-    fun set(list: List<ArticleModel>) {
+    fun set(list: List<MessageModel>) {
         this.list = list
         notifyDataSetChanged()
+
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -32,17 +32,17 @@ class ArticleAdapter(private val listener: (ArticleModel) -> Unit) :
 
     inner class ViewHolder(private val itemBinding: ItemArticleBinding) :
         RecyclerView.ViewHolder(itemBinding.root) {
-        fun bind(article: ArticleModel) {
+        fun bind(message: MessageModel) {
             itemBinding.apply {
-                tvName.text = article.judul
-//                tvName.text = movie.title
+                tvName.text = message.senderName
+                tvDescription.text = message.text
 //                Glide.with(root.context)
 //                    .load("${ImageConstant.BASE_IMAGE}${movie.posterPath}")
 //                    .placeholder(R.drawable.ic_placeholder_image)
 //                    .transform(CenterCrop(), RoundedCorners(ImageConstant.IMAGE_RADIUS))
 //                    .into(ivPoster)
                 root.setOnClickListener {
-                    listener(article)
+                    listener(message)
                 }
             }
         }
