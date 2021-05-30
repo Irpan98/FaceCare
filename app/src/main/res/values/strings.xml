@@ -6,7 +6,7 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="analize">Analize</string>
     <string name="article">Article</string>
-    <string name="community">Community</string>
+    <string name="community_conversation">Community</string>
     <string name="on_dev">On Development Features</string>
     <string name="input_your_name_here">Full Name</string>
     <string name="register">Register</string>
@@ -15,9 +15,15 @@
     <string name="no_empty_fullname">Fullname tidak boleh kosong</string>
     <string name="no_empty_email">Email tidak boleh kosong</string>
     <string name="no_empty_password">Password tidak boleh kosong</string>
-    <string name="privacy_content">We<b> not </b>collecting any of your photo. feel free to use FaceCase without concert about it \n \n <b>your photo\'s will keep in your phone.</b></string>
+    <string name="privacy_content">We<b> are not </b>collecting any of your photo. You are free to use FaceCare and can use it without having concern about your privacy \n \n <b>your photo will keep in your phone.</b></string>
     <string name="skin_report">Skin Report</string>
     <string name="your_skin_issues">Your Skin Issues</string>
     <string name="your_facial_skin_issues">Your Facial Skin Issues</string>
     <string name="our_suggestion_for_you">Our Suggestion For You</string>
+    <string name="read_articles_for_your_healthy_face_skin">Read Articles For Your Healthy Face Skin</string>
+    <string name="identify">Identify</string>
+    <string name="community">Community</string>
+    <string name="scan">Scan</string>
+    <string name="your_day_to_day_progress">Your Day-to-Day-Progress</string>
+    <string name="preparing_your_result">Preparing your result</string>
 </resources>

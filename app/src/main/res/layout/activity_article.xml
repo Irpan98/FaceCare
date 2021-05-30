@@ -11,7 +11,7 @@
         android:layout_height="?attr/actionBarSize"
         android:gravity="center_vertical"
         android:paddingHorizontal="@dimen/padding_layout"
-        android:text="Read Articles For Your Healthy Face Skin"
+        android:text="@string/read_articles_for_your_healthy_face_skin"
         android:textStyle="bold" />
 
     <androidx.recyclerview.widget.RecyclerView

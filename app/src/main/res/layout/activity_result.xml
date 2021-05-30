@@ -66,6 +66,32 @@
         app:layout_constraintTop_toBottomOf="@+id/background_top"
         app:layout_constraintVertical_bias="0.204">
 
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="16dp">
+
+            <ImageView
+                android:id="@+id/icon_hourglass"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="5dp"
+                android:src="@drawable/ic_hourglass_v2" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignTop="@+id/icon_hourglass"
+                android:layout_alignBottom="@+id/icon_hourglass"
+                android:layout_marginStart="100dp"
+                android:layout_marginTop="14dp"
+                android:layout_marginBottom="-10dp"
+                android:text="@string/preparing_your_result"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+        </RelativeLayout>
+
     </androidx.cardview.widget.CardView>
 
     <androidx.cardview.widget.CardView
@@ -90,7 +116,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="5dp"
-                android:src="@drawable/ic_spots_1" />
+                android:src="@drawable/ic_allergy_1" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -168,7 +194,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="5dp"
-                android:src="@drawable/ic_harvest_1" />
+                android:src="@drawable/ic_fruits_1" />
 
             <TextView
                 android:layout_width="wrap_content"

@@ -39,17 +39,21 @@
         app:layout_constraintBottom_toTopOf="@id/cardView"
         app:layout_constraintEnd_toStartOf="@+id/imageView"
         app:layout_constraintStart_toStartOf="parent"
-        tools:text="Welcome \n Nabila Herman !" />
+        android:textStyle="bold"
+        tools:text="Welcome, \nNabila Herman !" />
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cardView"
         android:layout_width="match_parent"
         android:layout_height="150dp"
         android:layout_marginHorizontal="@dimen/padding_layout"
+        app:cardCornerRadius="12dp"
         app:cardElevation="10dp"
         app:layout_constraintBottom_toBottomOf="@+id/background_top"
         app:layout_constraintTop_toBottomOf="@+id/background_top"
-        tools:layout_editor_absoluteX="10dp" />
+        tools:layout_editor_absoluteX="10dp" >
+
+    </androidx.cardview.widget.CardView>
 
     <TextView
         android:id="@+id/textView"
@@ -87,30 +91,33 @@
         <Button
             android:id="@+id/btn_home_identify"
             android:layout_width="100dp"
-            android:layout_height="120dp"
+            android:layout_height="100dp"
             android:layout_marginHorizontal="@dimen/padding_layout_half"
             android:layout_weight="1"
-            android:text="Identify"
+            android:drawableTop="@drawable/ic_personal_information_1"
+            android:text="@string/identify"
             android:textAllCaps="false"
             app:layout_constraintBottom_toBottomOf="parent" />
 
         <Button
             android:id="@+id/btnCommunity"
             android:layout_width="100dp"
-            android:layout_height="120dp"
+            android:layout_height="100dp"
             android:layout_marginHorizontal="@dimen/padding_layout_half"
             android:layout_weight="1"
-            android:text="Community"
+            android:drawableTop="@drawable/ic_chat"
+            android:text="@string/community_conversation"
             android:textAllCaps="false"
             app:layout_constraintBottom_toBottomOf="parent" />
 
         <Button
             android:layout_width="100dp"
-            android:layout_height="120dp"
+            android:layout_height="100dp"
             android:layout_marginHorizontal="@dimen/padding_layout_half"
             android:layout_weight="1"
             android:enabled="false"
-            android:text="Scan"
+            android:drawableTop="@drawable/ic_barcode_scan"
+            android:text="@string/scan"
             android:textAllCaps="false"
             app:layout_constraintBottom_toBottomOf="parent" />
     </LinearLayout>
@@ -119,10 +126,11 @@
         android:id="@+id/btn_day_progress"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:drawableLeft="@drawable/ic_rising_1"
         android:layout_marginHorizontal="@dimen/padding_layout"
         android:layout_marginTop="@dimen/padding_layout"
         android:layout_weight="1"
-        android:text="Your Day-to-Day-Progress"
+        android:text="@string/your_day_to_day_progress"
         android:textAllCaps="false"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
 
@@ -155,5 +163,28 @@
         android:textAllCaps="false"
         app:layout_constraintEnd_toEndOf="@+id/rv_article"
         app:layout_constraintTop_toBottomOf="@id/rv_article" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_logo_final"
+        app:layout_constraintBottom_toTopOf="@+id/tv_name"
+        app:layout_constraintEnd_toStartOf="@+id/imageView"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/cardView"
+        app:layout_constraintTop_toTopOf="@+id/background_top" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="392dp"
+        android:layout_marginEnd="5dp"
+        android:src="@drawable/ic_notification_1"
+        app:layout_constraintBottom_toBottomOf="@+id/imageView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="@+id/background_top"
+        app:layout_constraintTop_toTopOf="@+id/background_top"
+        app:layout_constraintVertical_bias="0.032" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
