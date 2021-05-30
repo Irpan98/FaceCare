@@ -6,6 +6,7 @@ import androidx.lifecycle.MutableLiveData
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.ValueEventListener
+import id.itborneo.facecare.core.local.AppDatabase
 import id.itborneo.facecare.core.model.*
 import id.itborneo.facecare.core.networks.FaceCaseFirebase
 import id.itborneo.facecare.utils.Resource
@@ -14,7 +15,6 @@ class ThisRepository {
 
     private val TAG = "ThisRepository"
     private val firebase = FaceCaseFirebase
-
 
     fun getSingleIdentifyUser(userId: String): LiveData<Resource<UserIdentifiedModel>> {
 

@@ -23,7 +23,13 @@ import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import id.itborneo.facecare.R
 import id.itborneo.facecare.analyzing.AnalyzingActivity
+import id.itborneo.facecare.core.local.AppDatabase
+import id.itborneo.facecare.core.model.ResultModel
 import id.itborneo.facecare.databinding.FragmentAnalizeBinding
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import java.io.File
 import java.text.SimpleDateFormat
 import java.util.*
@@ -151,7 +157,17 @@ class AnalizeFragment : Fragment() {
     }
 
     private fun actionToAnayzing(savedUri: Uri) {
-        AnalyzingActivity.getInstance(requireContext(), savedUri)
+
+        val result = ResultModel(
+            image_url = savedUri.toString(),
+            date = "Sekarang"
+        )
+        addToTableDb(result) {
+            //move to analyzing
+            AnalyzingActivity.getInstance(requireContext(), savedUri)
+
+        }
+
     }
 
     private fun startCamera() {
@@ -321,5 +337,22 @@ class AnalizeFragment : Fragment() {
 
     private fun back() {
         requireActivity().onBackPressed()
+    }
+
+
+    private fun addToTableDb(result: ResultModel, callback: () -> Unit) {
+
+        val dao = AppDatabase.getInstance(requireContext()).resultDao()
+
+        GlobalScope.launch(Dispatchers.IO) {
+            dao.add(result)
+
+            withContext(Dispatchers.Main) {
+                callback()
+            }
+
+        }
+
+
     }
 }

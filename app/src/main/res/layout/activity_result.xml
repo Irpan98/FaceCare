@@ -1,215 +1,257 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/grey"
-    android:orientation="vertical"
-    tools:context=".home.HomeFragment">
+    android:layout_height="match_parent">
 
-    <ImageView
-        android:id="@+id/background_top"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:scaleType="centerCrop"
-        android:src="@drawable/ic_home_background_top"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:layout_height="match_parent"
+        android:background="@color/grey"
+        android:paddingBottom="@dimen/padding_layout_4"
+        android:orientation="vertical"
+        tools:context=".home.HomeFragment">
 
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:src="@drawable/ic_logo_final"
-        app:layout_constraintBottom_toTopOf="@+id/cardView"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0" />
-
-
-    <TextView
-        android:id="@+id/skin_report"
-        style="bold"
-        android:layout_width="105dp"
-        android:layout_height="27dp"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginStart="18dp"
-        android:layout_marginTop="18dp"
-        android:layout_marginEnd="18dp"
-        android:layout_marginBottom="7dp"
-        android:gravity="center_horizontal|top"
-        android:text="@string/skin_report"
-        android:textSize="18sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/cardView"
-        app:layout_constraintEnd_toEndOf="@+id/cardView"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="@+id/cardView"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.772" />
-
-    <androidx.cardview.widget.CardView
-        android:id="@+id/cardView"
-        android:layout_width="match_parent"
-        android:layout_height="150dp"
-        android:layout_marginHorizontal="@dimen/padding_layout_3"
-        app:cardCornerRadius="12dp"
-        app:cardElevation="10dp"
-        app:layout_constraintBottom_toBottomOf="@+id/background_top"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/background_top"
-        app:layout_constraintVertical_bias="0.204">
-
-        <RelativeLayout
+        <ImageView
+            android:id="@+id/background_top"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:padding="16dp">
+            android:layout_height="wrap_content"
+            android:scaleType="centerCrop"
+            android:src="@drawable/ic_home_background_top"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-            <ImageView
-                android:id="@+id/icon_hourglass"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="5dp"
-                android:src="@drawable/ic_hourglass_v2" />
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:src="@drawable/ic_logo_final"
+            app:layout_constraintBottom_toTopOf="@+id/cardView"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.0" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignTop="@+id/icon_hourglass"
-                android:layout_alignBottom="@+id/icon_hourglass"
-                android:layout_marginStart="100dp"
-                android:layout_marginTop="14dp"
-                android:layout_marginBottom="-10dp"
-                android:text="@string/preparing_your_result"
-                android:textSize="18sp"
-                android:textStyle="bold" />
 
-        </RelativeLayout>
+        <TextView
+            android:id="@+id/skin_report"
+            style="bold"
+            android:layout_width="105dp"
+            android:layout_height="27dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="18dp"
+            android:layout_marginTop="18dp"
+            android:layout_marginEnd="18dp"
+            android:layout_marginBottom="7dp"
+            android:gravity="center_horizontal|top"
+            android:text="@string/skin_report"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@+id/cardView"
+            app:layout_constraintEnd_toEndOf="@+id/cardView"
+            app:layout_constraintHorizontal_bias="0.498"
+            app:layout_constraintStart_toStartOf="@+id/cardView"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.772" />
 
-    </androidx.cardview.widget.CardView>
-
-    <androidx.cardview.widget.CardView
-        android:id="@+id/cardView_issue"
-        android:layout_width="match_parent"
-        android:layout_height="150dp"
-        android:layout_marginHorizontal="@dimen/padding_layout_3"
-        android:layout_marginTop="@dimen/padding_layout_3"
-        app:cardCornerRadius="12dp"
-        app:cardElevation="10dp"
-        app:layout_constraintEnd_toEndOf="@+id/cardView"
-        app:layout_constraintStart_toStartOf="@+id/cardView"
-        app:layout_constraintTop_toBottomOf="@id/cardView">
-
-        <RelativeLayout
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cardView"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:padding="16dp">
+            android:layout_height="150dp"
+            android:layout_marginHorizontal="@dimen/padding_layout_3"
+            app:cardCornerRadius="12dp"
+            app:cardElevation="10dp"
+            app:layout_constraintBottom_toBottomOf="@+id/background_top"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/background_top"
+            app:layout_constraintVertical_bias="0.204">
 
-            <ImageView
-                android:id="@+id/icon_skin_issue"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="5dp"
-                android:src="@drawable/ic_allergy_1" />
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:padding="16dp">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignTop="@+id/icon_skin_issue"
-                android:layout_alignBottom="@+id/icon_skin_issue"
-                android:layout_marginStart="32dp"
-                android:layout_marginTop="0dp"
-                android:layout_marginBottom="4dp"
-                android:text="@string/your_facial_skin_issues"
-                android:textStyle="bold" />
+                <ImageView
+                    android:id="@+id/icon_hourglass"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="5dp"
+                    android:src="@drawable/ic_hourglass_v2" />
 
-        </RelativeLayout>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignTop="@+id/icon_hourglass"
+                    android:layout_alignBottom="@+id/icon_hourglass"
+                    android:layout_marginStart="100dp"
+                    android:layout_marginTop="14dp"
+                    android:layout_marginBottom="-10dp"
+                    android:text="@string/preparing_your_result"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
 
-    </androidx.cardview.widget.CardView>
+            </RelativeLayout>
 
-    <androidx.cardview.widget.CardView
-        android:id="@+id/carView_suggestion"
-        android:layout_width="match_parent"
-        android:layout_height="150dp"
-        android:layout_marginHorizontal="@dimen/padding_layout_3"
-        android:layout_marginTop="@dimen/padding_layout_3"
-        app:cardCornerRadius="12dp"
-        app:cardElevation="10dp"
-        app:layout_constraintEnd_toEndOf="@+id/cardView_issue"
-        app:layout_constraintStart_toStartOf="@+id/cardView_issue"
-        app:layout_constraintTop_toBottomOf="@+id/cardView_issue">
+        </androidx.cardview.widget.CardView>
 
-        <RelativeLayout
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cardView_issue"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:padding="16dp">
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/padding_layout_3"
+            android:layout_marginTop="@dimen/padding_layout_3"
+            app:cardCornerRadius="12dp"
+            app:cardElevation="10dp"
+            app:layout_constraintEnd_toEndOf="@+id/cardView"
+            app:layout_constraintStart_toStartOf="@+id/cardView"
+            app:layout_constraintTop_toBottomOf="@id/cardView">
 
-            <ImageView
-                android:id="@+id/icon_suggestion"
-                android:layout_width="wrap_content"
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="5dp"
-                android:src="@drawable/ic_personal_care_1" />
+                android:padding="16dp">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignTop="@+id/icon_suggestion"
-                android:layout_alignBottom="@+id/icon_suggestion"
-                android:layout_marginStart="32dp"
-                android:layout_marginTop="0dp"
-                android:layout_marginBottom="4dp"
-                android:text="@string/our_suggestion_for_you"
-                android:textStyle="bold" />
+                <ImageView
+                    android:id="@+id/icon_skin_issue"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="5dp"
+                    android:src="@drawable/ic_allergy_1"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
-        </RelativeLayout>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignTop="@+id/icon_skin_issue"
+                    android:layout_alignBottom="@+id/icon_skin_issue"
+                    android:layout_marginStart="32dp"
+                    android:layout_marginTop="0dp"
+                    android:layout_marginBottom="4dp"
+                    android:text="@string/your_facial_skin_issues"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toStartOf="@id/icon_skin_issue"
+                    app:layout_constraintTop_toTopOf="parent" />
 
-    </androidx.cardview.widget.CardView>
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rv_result_face_problem"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintTop_toBottomOf="@id/icon_skin_issue"
+                    tools:itemCount="3"
+                    tools:listitem="@layout/item_result_face_problem" />
 
-    <androidx.cardview.widget.CardView
-        android:id="@+id/carView_natIngredient"
-        android:layout_width="match_parent"
-        android:layout_height="150dp"
-        android:layout_marginHorizontal="@dimen/padding_layout_3"
-        android:layout_marginTop="@dimen/padding_layout_3"
-        app:cardCornerRadius="12dp"
-        app:cardElevation="10dp"
-        app:layout_constraintEnd_toEndOf="@+id/carView_suggestion"
-        app:layout_constraintStart_toStartOf="@+id/carView_suggestion"
-        app:layout_constraintTop_toBottomOf="@+id/carView_suggestion">
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
-        <RelativeLayout
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/carView_suggestion"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:padding="16dp">
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/padding_layout_3"
+            android:layout_marginTop="@dimen/padding_layout_3"
+            app:cardCornerRadius="12dp"
+            app:cardElevation="10dp"
+            app:layout_constraintEnd_toEndOf="@+id/cardView_issue"
+            app:layout_constraintStart_toStartOf="@+id/cardView_issue"
+            app:layout_constraintTop_toBottomOf="@+id/cardView_issue">
 
-            <ImageView
-                android:id="@+id/icon_ingredient"
-                android:layout_width="wrap_content"
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:padding="16dp">
+
+                <ImageView
+                    android:id="@+id/icon_suggestion"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="5dp"
+                    android:src="@drawable/ic_personal_care_1"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignTop="@+id/icon_suggestion"
+                    android:layout_alignBottom="@+id/icon_suggestion"
+                    android:layout_marginStart="32dp"
+                    android:layout_marginTop="0dp"
+                    android:layout_marginBottom="4dp"
+                    android:text="@string/our_suggestion_for_you"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toEndOf="@id/icon_suggestion"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rv_result_product"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintTop_toBottomOf="@id/icon_suggestion"
+                    tools:itemCount="2"
+                    tools:listitem="@layout/item_result_face_problem" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/carView_natIngredient"
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            android:layout_marginHorizontal="@dimen/padding_layout_3"
+            android:layout_marginTop="@dimen/padding_layout_3"
+            app:cardCornerRadius="12dp"
+            app:cardElevation="10dp"
+            app:layout_constraintEnd_toEndOf="@+id/carView_suggestion"
+            app:layout_constraintStart_toStartOf="@+id/carView_suggestion"
+            app:layout_constraintTop_toBottomOf="@+id/carView_suggestion">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="5dp"
-                android:src="@drawable/ic_fruits_1" />
+                android:padding="16dp">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignTop="@+id/icon_ingredient"
-                android:layout_alignBottom="@+id/icon_ingredient"
-                android:layout_marginStart="32dp"
-                android:layout_marginTop="0dp"
-                android:layout_marginBottom="4dp"
-                android:text="@string/our_suggestion_for_you"
-                android:textStyle="bold" />
+                <ImageView
+                    android:id="@+id/icon_ingredient"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="5dp"
+                    android:src="@drawable/ic_fruits_1"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
-        </RelativeLayout>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignTop="@+id/icon_ingredient"
+                    android:layout_alignBottom="@+id/icon_ingredient"
+                    android:layout_marginStart="32dp"
+                    android:layout_marginTop="0dp"
+                    android:layout_marginBottom="4dp"
+                    android:text="@string/our_suggestion_for_you"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toEndOf="@id/icon_ingredient"
+                    app:layout_constraintTop_toTopOf="parent" />
 
-    </androidx.cardview.widget.CardView>
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rv_result_natural_ingredient"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    app:layout_constraintTop_toBottomOf="@id/icon_ingredient"
+                    tools:listitem="@layout/item_result_face_problem" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.cardview.widget.CardView>
 
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.core.widget.NestedScrollView>

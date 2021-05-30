@@ -8,6 +8,8 @@ buildscript {
         lifecycleVersion = "2.3.1"
         viewBindingPropertyDelegateVersion = '1.4.4'
 
+        roomVersion = "2.2.6"
+
     }
     repositories {
         google()
