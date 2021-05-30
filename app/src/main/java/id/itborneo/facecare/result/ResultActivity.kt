@@ -9,7 +9,6 @@ import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.MutableLiveData
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import id.itborneo.facecare.core.factory.ViewModelFactory
 import id.itborneo.facecare.core.model.FaceProblemModel
 import id.itborneo.facecare.core.model.HerbalModel
@@ -153,31 +152,31 @@ class ResultActivity : AppCompatActivity() {
     }
 
     private fun initRecyclerFaceProblem() {
-//        binding.rvResultFaceProblem.layoutManager = LinearLayoutManager(this)
+        binding.rvResultFaceProblem.layoutManager = LinearLayoutManager(this)
         faceProblemAdapter = FaceProblemResultAdapter {
             actionToFaceProblemDetail(it)
         }
-//        binding.rvResultFaceProblem.adapter = faceProblemAdapter
+        binding.rvResultFaceProblem.adapter = faceProblemAdapter
     }
 
     private fun initRecyclerNaturalIngredient() {
-//        binding.rvResultNaturalIngredient.layoutManager =
-            LinearLayoutManager(this, RecyclerView.HORIZONTAL, false)
+        binding.rvResultNaturalIngredient.layoutManager =
+            LinearLayoutManager(this)
 
         herbalAdapter = HerbalResultAdapter {
             actionToHerbalDetail(it)
         }
-//        binding.rvResultNaturalIngredient.adapter = herbalAdapter
+        binding.rvResultNaturalIngredient.adapter = herbalAdapter
     }
 
     private fun initRecyclerProduct() {
-//        binding.rvResultProduct.layoutManager =
-            LinearLayoutManager(this, RecyclerView.HORIZONTAL, false)
+        binding.rvResultProduct.layoutManager =
+            LinearLayoutManager(this)
 
         productAdapter = ProductResultAdapter {
             actionToProductDetail(it)
         }
-//        binding.rvResultProduct.adapter = productAdapter
+        binding.rvResultProduct.adapter = productAdapter
     }
 
     private fun actionToProductDetail(product: ProductModel) {

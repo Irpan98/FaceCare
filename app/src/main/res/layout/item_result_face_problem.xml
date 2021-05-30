@@ -2,9 +2,9 @@
 <TextView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/tv_name"
-    android:layout_margin="@dimen/padding_layout"
-    android:layout_width="133dp"
-    android:layout_height="100dp"
+    android:layout_margin="@dimen/padding_layout_half"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
     android:background="@android:color/holo_blue_bright"
     tools:text="Jerawat" />
 
