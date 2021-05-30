@@ -39,7 +39,6 @@
         android:layout_marginStart="@dimen/padding_layout"
         android:elevation="2dp"
         android:maxLines="2"
-        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/imageView2"
         app:layout_constraintTop_toBottomOf="@+id/tv_name"

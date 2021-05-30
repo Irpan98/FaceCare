@@ -41,7 +41,7 @@ class ProfileFragment : Fragment() {
 
     private fun logoutVisibility() {
         if (FirebaseAuth.getInstance().currentUser?.uid == null) {
-            binding.tvLoginFirst.visibility = View.VISIBLE
+//            binding.tvLoginFirst.visibility = View.VISIBLE
         }
     }
 

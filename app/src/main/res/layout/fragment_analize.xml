@@ -39,7 +39,7 @@
         android:layout_height="wrap_content"
         android:text="Switch Camera"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent" />P
 
 
     <Button
