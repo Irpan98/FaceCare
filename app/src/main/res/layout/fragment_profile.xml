@@ -23,15 +23,15 @@
 
 
     <!--    <ImageView-->
-    <!--        android:id="@+id/background_top"-->
-    <!--        android:layout_width="match_parent"-->
-    <!--        android:layout_height="wrap_content"-->
-    <!--        android:scaleType="fitXY"-->
-    <!--        android:src="@drawable/ic_top_background"-->
-    <!--        app:layout_constraintEnd_toEndOf="parent"-->
-    <!--        app:layout_constraintHorizontal_bias="0.0"-->
-    <!--        app:layout_constraintStart_toStartOf="parent"-->
-    <!--        app:layout_constraintTop_toTopOf="parent" />-->
+<!--        android:id="@+id/background_top"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:scaleType="fitXY"-->
+<!--        android:src="@drawable/ic_top_background"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintHorizontal_bias="0.0"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toTopOf="parent" />-->
 
     <TextView
         android:id="@+id/user_name"
@@ -118,26 +118,26 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
-    <!--    <TextView-->
-    <!--        android:id="@+id/tvLoginFirst"-->
-    <!--        style="@style/ItborneoText.Title"-->
-    <!--        android:layout_width="58dp"-->
-    <!--        android:layout_height="40dp"-->
-    <!--        android:layout_gravity="center_horizontal"-->
-    <!--        android:layout_marginEnd="312dp"-->
-    <!--        android:background="@color/background_main"-->
-    <!--        android:elevation="10dp"-->
-    <!--        android:gravity="center"-->
-    <!--        android:maxLines="2"-->
-    <!--        android:padding="@dimen/padding_layout"-->
-    <!--        android:text="Please Login First"-->
-    <!--        android:textColor="@color/main_yellow"-->
-    <!--        android:visibility="gone"-->
-    <!--        app:layout_constraintBottom_toBottomOf="@+id/background_top"-->
-    <!--        app:layout_constraintEnd_toEndOf="@+id/background_top"-->
-    <!--        app:layout_constraintStart_toStartOf="parent"-->
-    <!--        app:layout_constraintTop_toTopOf="parent"-->
-    <!--        tools:ignore="Overdraw" />-->
+<!--    <TextView-->
+<!--        android:id="@+id/tvLoginFirst"-->
+<!--        style="@style/ItborneoText.Title"-->
+<!--        android:layout_width="58dp"-->
+<!--        android:layout_height="40dp"-->
+<!--        android:layout_gravity="center_horizontal"-->
+<!--        android:layout_marginEnd="312dp"-->
+<!--        android:background="@color/background_main"-->
+<!--        android:elevation="10dp"-->
+<!--        android:gravity="center"-->
+<!--        android:maxLines="2"-->
+<!--        android:padding="@dimen/padding_layout"-->
+<!--        android:text="Please Login First"-->
+<!--        android:textColor="@color/main_yellow"-->
+<!--        android:visibility="gone"-->
+<!--        app:layout_constraintBottom_toBottomOf="@+id/background_top"-->
+<!--        app:layout_constraintEnd_toEndOf="@+id/background_top"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toTopOf="parent"-->
+<!--        tools:ignore="Overdraw" />-->
 
     <Button
         android:id="@+id/btn_my_skin_care"
