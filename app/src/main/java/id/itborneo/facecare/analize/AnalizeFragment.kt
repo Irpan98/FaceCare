@@ -12,7 +12,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.camera.core.*
+import androidx.camera.core.CameraSelector
+import androidx.camera.core.ImageCapture
+import androidx.camera.core.ImageCaptureException
+import androidx.camera.core.Preview
 import androidx.camera.lifecycle.ProcessCameraProvider
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
@@ -174,32 +177,13 @@ class AnalizeFragment : Fragment() {
 
     }
 
-    /** Enabled or disabled a button to switch cameras depending on the available cameras */
-    private fun updateCameraSwitchButton() {
-        val switchCamerasButton = binding.btnSwitchCamera
-        try {
-            switchCamerasButton.isEnabled = hasBackCamera() && hasFrontCamera()
-        } catch (exception: CameraInfoUnavailableException) {
-            switchCamerasButton.isEnabled = false
-        }
-    }
-
-    private var cameraProvider: ProcessCameraProvider? = null
-
-    private fun hasBackCamera() =
-        cameraProvider?.hasCamera(CameraSelector.DEFAULT_BACK_CAMERA) ?: false
-
-
-    private fun hasFrontCamera() =
-        cameraProvider?.hasCamera(CameraSelector.DEFAULT_FRONT_CAMERA) ?: false
-
 
     private fun bindCameraUseCases() {
 
         val cameraProviderFuture = ProcessCameraProvider.getInstance(requireContext())
         cameraProviderFuture.addListener({
             // Used to bind the lifecycle of cameras to the lifecycle owner
-            cameraProvider = cameraProviderFuture.get()
+            val cameraProvider = cameraProviderFuture.get()
 
             // Preview
             val preview = Preview.Builder()
