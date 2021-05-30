@@ -11,10 +11,13 @@ import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.MutableLiveData
 import id.itborneo.facecare.R
+import id.itborneo.facecare.core.local.AppDatabase
 import id.itborneo.facecare.core.ml.Classifier
 import id.itborneo.facecare.core.model.RecognitionModel
+import id.itborneo.facecare.core.model.ResultModel
 import id.itborneo.facecare.databinding.ActivityAnalyzingBinding
 import id.itborneo.facecare.result.ResultActivity
+import kotlinx.coroutines.*
 
 
 class AnalyzingActivity : AppCompatActivity() {
@@ -131,5 +134,6 @@ class AnalyzingActivity : AppCompatActivity() {
         val textView1: TextView = findViewById(R.id.textView1)
         textView1.text = text
     }
+
 
 }
