@@ -35,7 +35,7 @@ class AnalizeFragment : Fragment() {
     private lateinit var outputDirectory: File
     private lateinit var cameraExecutor: ExecutorService
     private lateinit var binding: FragmentAnalizeBinding
-    private var lensFacing =CameraSelector.DEFAULT_FRONT_CAMERA
+    private var lensFacing: Int = CameraSelector.LENS_FACING_BACK
 
     private val TAG = "AnalizeFragment"
     override fun onCreateView(
@@ -101,6 +101,7 @@ class AnalizeFragment : Fragment() {
             requestPermissions(REQUIRED_PERMISSIONS, REQUEST_CODE_PERMISSIONS)
         }
 
+
         // Set up the listener for take photo button
         binding.btnAnalize.setOnClickListener { takePhoto() }
         outputDirectory = getOutputDirectory()
@@ -152,28 +153,53 @@ class AnalizeFragment : Fragment() {
 
     private fun startCamera() {
 
+        bindCameraUseCases()
 
-//        val switchButton = binding.btnSwitchCamera
-//        switchButton.setOnClickListener {
-//            lensFacing = if (CameraSelector.LENS_FACING_FRONT == lensFacing) {
-//                androidx.camera.core.CameraX.L
-//            } else {
-//                CameraX.LensFacing.FRONT
-//            }
-//            try {
-//                // Only bind use cases if we can query a camera with this orientation
-//                CameraX.getCameraWithLensFacing(lensFacing)
-//                bindCameraUseCases()
-//            } catch (exc: Exception) {
-//                // Do nothing
-//            }
-//        }
+        val switchButton = binding.btnSwitchCamera
+        switchButton.setOnClickListener {
+            // Disable the button until the camera is set up
+//            it.isEnabled = false
 
+            // Listener for button used to switch cameras. Only called if the button is enabled
+            lensFacing = if (CameraSelector.LENS_FACING_FRONT == lensFacing) {
+                CameraSelector.LENS_FACING_BACK
+            } else {
+                CameraSelector.LENS_FACING_FRONT
+            }
+            // Re-bind use cases to update selected camera
+            bindCameraUseCases()
+
+        }
+
+
+    }
+
+    /** Enabled or disabled a button to switch cameras depending on the available cameras */
+    private fun updateCameraSwitchButton() {
+        val switchCamerasButton = binding.btnSwitchCamera
+        try {
+            switchCamerasButton.isEnabled = hasBackCamera() && hasFrontCamera()
+        } catch (exception: CameraInfoUnavailableException) {
+            switchCamerasButton.isEnabled = false
+        }
+    }
+
+    private var cameraProvider: ProcessCameraProvider? = null
+
+    private fun hasBackCamera() =
+        cameraProvider?.hasCamera(CameraSelector.DEFAULT_BACK_CAMERA) ?: false
+
+
+    private fun hasFrontCamera() =
+        cameraProvider?.hasCamera(CameraSelector.DEFAULT_FRONT_CAMERA) ?: false
+
+
+    private fun bindCameraUseCases() {
 
         val cameraProviderFuture = ProcessCameraProvider.getInstance(requireContext())
         cameraProviderFuture.addListener({
             // Used to bind the lifecycle of cameras to the lifecycle owner
-            val cameraProvider: ProcessCameraProvider = cameraProviderFuture.get()
+            cameraProvider = cameraProviderFuture.get()
 
             // Preview
             val preview = Preview.Builder()
@@ -186,14 +212,17 @@ class AnalizeFragment : Fragment() {
                 .build()
 
             // Select back camera as a default
-            val cameraSelector = CameraSelector.DEFAULT_FRONT_CAMERA
+//            val cameraSelector = CameraSelector.DEFAULT_FRONT_CAMERA
+            // CameraSelector
+            val cameraSelector = CameraSelector.Builder().requireLensFacing(lensFacing).build()
 
             try {
+
                 // Unbind use cases before rebinding
-                cameraProvider.unbindAll()
+                cameraProvider?.unbindAll()
 
                 // Bind use cases to camera
-                cameraProvider.bindToLifecycle(
+                cameraProvider?.bindToLifecycle(
                     this, cameraSelector, preview, imageCapture
                 )
 
