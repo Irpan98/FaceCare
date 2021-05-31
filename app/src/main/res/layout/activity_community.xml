@@ -13,7 +13,8 @@
         app:layout_constraintBottom_toTopOf="@id/relativeLayout_message"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:listitem="@layout/item_chat" />
 
     <RelativeLayout
         android:id="@+id/relativeLayout_message"
