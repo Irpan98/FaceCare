@@ -63,6 +63,7 @@
         android:layout_margin="@dimen/padding_layout"
         android:elevation="10dp"
         android:text="skin type"
+        app:layout_constraintEnd_toStartOf="@id/tv_home_skin_goal"
         app:layout_constraintStart_toEndOf="@+id/imageView3"
         app:layout_constraintTop_toTopOf="@+id/imageView3" />
 
@@ -85,7 +86,7 @@
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/padding_layout"
         android:elevation="10dp"
-        android:text="skin type"
+        android:text="Skin Goals"
         app:layout_constraintEnd_toEndOf="@+id/cardView"
         app:layout_constraintStart_toEndOf="@+id/textView"
         app:layout_constraintTop_toTopOf="@+id/imageView3" />
@@ -195,13 +196,12 @@
         app:layout_constraintTop_toBottomOf="@id/tv_label_read_latest"
         tools:listitem="@layout/item_article" />
 
-    <Button
+    <TextView
         android:id="@+id/btn_view_all_news"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/padding_layout"
-        android:layout_marginEnd="@dimen/padding_layout"
-        android:text="View All Article"
+        android:padding="@dimen/padding_layout"
+        android:text="View All "
         android:textAllCaps="false"
         app:layout_constraintEnd_toEndOf="@+id/rv_article"
         app:layout_constraintTop_toBottomOf="@id/rv_article" />
