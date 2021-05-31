@@ -44,7 +44,7 @@ class AnalizeFragment : Fragment() {
     private lateinit var outputDirectory: File
     private lateinit var cameraExecutor: ExecutorService
     private lateinit var binding: FragmentAnalizeBinding
-    private var lensFacing: Int = CameraSelector.LENS_FACING_BACK
+    private var lensFacing: Int = CameraSelector.LENS_FACING_FRONT
 
     private val TAG = "AnalizeFragment"
     override fun onCreateView(
