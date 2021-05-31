@@ -54,7 +54,6 @@ class ResultActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         initBinding()
         initRecyclerFaceProblem()
-        initRecyclerNaturalIngredient()
 
         retrieveData()
         observerGetList()
@@ -136,16 +135,8 @@ class ResultActivity : AppCompatActivity() {
         }
 
         initRecyclerProduct(products.distinct())
+        initRecyclerNaturalIngredient(solusiHerbal.distinct())
 
-
-        updateHerbalView(solusiHerbal.distinct())
-
-    }
-
-    private fun updateHerbalView(herbalModel: List<HerbalModel>) {
-        Log.d(TAG, "observerNaturalIngredient $herbalModel")
-
-        herbalAdapter.set(herbalModel)
 
     }
 
@@ -168,14 +159,19 @@ class ResultActivity : AppCompatActivity() {
         binding.rvResultFaceProblem.adapter = faceProblemAdapter
     }
 
-    private fun initRecyclerNaturalIngredient() {
+    private fun initRecyclerNaturalIngredient(list: List<HerbalModel>) {
+
+        binding.carViewNatIngredient.setOnClickListener {
+            actionToHerbalDetail(list)
+        }
         binding.rvResultNaturalIngredient.layoutManager =
             LinearLayoutManager(this)
 
         herbalAdapter = HerbalResultAdapter {
-            actionToHerbalDetail(it)
+            binding.carViewNatIngredient.performClick()
         }
         binding.rvResultNaturalIngredient.adapter = herbalAdapter
+        herbalAdapter.set(list)
     }
 
     private fun initRecyclerProduct(products: List<ProductModel>) {
@@ -201,7 +197,7 @@ class ResultActivity : AppCompatActivity() {
         ProductActivity.getInstance(this, product)
     }
 
-    private fun actionToHerbalDetail(herbal: HerbalModel) {
+    private fun actionToHerbalDetail(herbal: List<HerbalModel>) {
         HerbalActivity.getInstance(this, herbal)
     }
 

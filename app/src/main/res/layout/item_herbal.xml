@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="@dimen/padding_layout_half"
+    android:background="@android:color/holo_blue_bright"
+    android:focusableInTouchMode="false"
+    android:orientation="vertical"
+    tools:text="Jerawat">
+
+    <TextView
+        android:id="@+id/tv_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/padding_layout_half"
+        android:background="@android:color/holo_blue_bright"
+        android:clickable="false"
+        android:focusable="false"
+        android:focusableInTouchMode="false"
+        tools:text="Jerawat" />
+
+    <TextView
+        android:id="@+id/tvDescription"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/padding_layout_half"
+        android:background="@android:color/holo_blue_bright"
+        android:clickable="false"
+        android:focusable="false"
+        android:focusableInTouchMode="false"
+        tools:text="Jerawat" />
+
+    <ImageView
+        android:id="@+id/ivImage"
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        tools:src="@tools:sample/avatars" />
+</LinearLayout>
+
