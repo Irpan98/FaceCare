@@ -1,26 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".faceproblem.FaceProblemActivity">
 
-    <TextView
-        android:id="@+id/tvName"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_result_face_problem"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        tools:text="@tools:sample/first_names" />
+        app:layout_constraintTop_toBottomOf="@id/icon_skin_issue"
+        tools:itemCount="3"
+        tools:listitem="@layout/item_result_face_problem" />
 
-    <TextView
-        android:id="@+id/tvPenjelasan"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        tools:text="@tools:sample/first_names" />
 
-    <ImageView
-        android:id="@+id/ivImage"
-        android:layout_width="400dp"
-        android:layout_height="400dp"
-        tools:src="@tools:sample/avatars" />
 </LinearLayout>

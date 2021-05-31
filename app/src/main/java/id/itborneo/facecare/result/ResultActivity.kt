@@ -93,7 +93,7 @@ class ResultActivity : AppCompatActivity() {
                 Status.SUCCESS -> {
                     val faceProblems = it.data ?: return@observe
 
-                    val usersFaceProblems = faceProblems.filterIndexed { index, item ->
+                    usersFaceProblems = faceProblems.filterIndexed { index, item ->
                         var result = false
                         userProblems.forEach {
                             Log.d(
@@ -113,12 +113,15 @@ class ResultActivity : AppCompatActivity() {
                     }
 
                     Log.d(TAG, "faceProblems filtered $usersFaceProblems")
+
                     updateUI(usersFaceProblems, solusiHerbal, products)
 
                 }
             }
         }
     }
+
+    private lateinit var usersFaceProblems: List<FaceProblemModel>
 
     private fun updateUI(
         faceProblems: List<FaceProblemModel>,
@@ -152,9 +155,19 @@ class ResultActivity : AppCompatActivity() {
     }
 
     private fun initRecyclerFaceProblem() {
+        binding.cardViewIssue.setOnClickListener {
+            Log.d(TAG, "cardViewIssue ")
+
+            actionToFaceProblemDetail(usersFaceProblems)
+
+
+        }
+
         binding.rvResultFaceProblem.layoutManager = LinearLayoutManager(this)
+        binding.rvResultFaceProblem.isClickable =false
+
         faceProblemAdapter = FaceProblemResultAdapter {
-            actionToFaceProblemDetail(it)
+            binding.cardViewIssue.performClick()
         }
         binding.rvResultFaceProblem.adapter = faceProblemAdapter
     }
@@ -187,7 +200,7 @@ class ResultActivity : AppCompatActivity() {
         HerbalActivity.getInstance(this, herbal)
     }
 
-    private fun actionToFaceProblemDetail(faceProblem: FaceProblemModel) {
+    private fun actionToFaceProblemDetail(faceProblem: List<FaceProblemModel>) {
         FaceProblemActivity.getInstance(this, faceProblem)
     }
 

@@ -6,9 +6,10 @@ import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.MutableLiveData
+import com.bumptech.glide.Glide
+import id.itborneo.facecare.R
 import id.itborneo.facecare.core.model.ArticleModel
 import id.itborneo.facecare.databinding.ActivityDetailArticleBinding
-import id.itborneo.facecare.databinding.ActivityFaceProblemBinding
 
 class DetailArticleActivity : AppCompatActivity() {
     companion object {
@@ -46,9 +47,10 @@ class DetailArticleActivity : AppCompatActivity() {
     }
 
     private fun updateView(article: ArticleModel?) {
-//        Glide.with(this)
-//            .load(product?.)
-//            .into(binding.ivImage)
+        Glide.with(this)
+            .load(article?.gambar)
+            .placeholder(R.drawable.ic_image_placeholder)
+            .into(binding.ivImage)
         binding.tvName.text = article?.judul
         binding.tvPenjelasan.text = article?.penjelasan
     }

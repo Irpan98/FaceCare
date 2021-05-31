@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_marginTop="@dimen/padding_layout"
     android:layout_height="wrap_content"
-    android:paddingHorizontal="@dimen/padding_layout_half">P
+    android:paddingHorizontal="@dimen/padding_layout_half">
 
     <ImageView
         android:padding="@dimen/padding_layout_2"

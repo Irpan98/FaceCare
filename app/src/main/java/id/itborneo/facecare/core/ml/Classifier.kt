@@ -20,7 +20,8 @@ class Classifier(assetManager: AssetManager, modelPath: String, labelPath: Strin
     private val PIXEL_SIZE: Int = 3
     private val IMAGE_MEAN = 0
     private val IMAGE_STD = 255.0f
-    private val MAX_RESULTS = 3
+    private val MAX_RESULTS = 2
+//    private val MAX_RESULTS = 3
     private val THRESHOLD = 0f
 
     data class Recognition(
