@@ -89,6 +89,7 @@ class HomeFragment : Fragment() {
         binding.incHomeIdentified.apply {
             btnHomeIdentify.text = "Re-Identify"
             tvHomeSkinType.text = viewModel.userIdentifiedModel.value?.skinType
+            tvHomeSkinGoal.text = viewModel.userIdentifiedModel.value?.goals
 
         }
     }
