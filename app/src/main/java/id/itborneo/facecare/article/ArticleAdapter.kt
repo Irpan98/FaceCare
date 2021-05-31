@@ -3,8 +3,11 @@ package id.itborneo.facecare.article
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
+import com.bumptech.glide.load.resource.bitmap.CenterCrop
+import com.bumptech.glide.load.resource.bitmap.RoundedCorners
+import id.itborneo.facecare.R
 import id.itborneo.facecare.core.model.ArticleModel
-import id.itborneo.facecare.core.model.MessageModel
 import id.itborneo.facecare.databinding.ItemArticleBinding
 
 
@@ -36,11 +39,11 @@ class ArticleAdapter(private val listener: (ArticleModel) -> Unit) :
             itemBinding.apply {
                 tvName.text = article.judul
 //                tvName.text = movie.title
-//                Glide.with(root.context)
-//                    .load("${ImageConstant.BASE_IMAGE}${movie.posterPath}")
-//                    .placeholder(R.drawable.ic_placeholder_image)
-//                    .transform(CenterCrop(), RoundedCorners(ImageConstant.IMAGE_RADIUS))
-//                    .into(ivPoster)
+                Glide.with(root.context)
+                    .load(article.gambar)
+                    .placeholder(R.drawable.ic_image_placeholder)
+                    .transform(CenterCrop(), RoundedCorners(20))
+                    .into(imageView2)
                 root.setOnClickListener {
                     listener(article)
                 }

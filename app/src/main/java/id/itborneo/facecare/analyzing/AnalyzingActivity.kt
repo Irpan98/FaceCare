@@ -101,7 +101,8 @@ class AnalyzingActivity : AppCompatActivity() {
     private fun anayzeWithTensorFlow(bitmap: Bitmap) {
 
 
-        val mModelPath = "model_acnes_vgg16_2.tflite"
+//        val mModelPath = "model_acnes_vgg16_2.tflite"
+        val mModelPath = "acnes_own_model_2.tflite"
         val mLabelPath = "label.txt"
         val mInputSize = 224
         val classifier = Classifier(assets, mModelPath, mLabelPath, mInputSize)
