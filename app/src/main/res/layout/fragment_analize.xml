@@ -49,7 +49,6 @@
         <ImageButton
             android:id="@+id/btnSelectImage"
             android:layout_width="0dp"
-
             android:layout_height="match_parent"
             android:layout_marginHorizontal="@dimen/padding_layout_3"
             android:layout_marginTop="@dimen/padding_layout_2"

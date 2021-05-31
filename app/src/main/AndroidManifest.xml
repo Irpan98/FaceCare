@@ -24,7 +24,9 @@
         <activity android:name=".auth.register.RegisterActivity" />
         <activity android:name=".auth.login.LoginActivity" />
         <activity android:name=".result.ResultActivity" />
-        <activity android:name=".main.MainActivity" />
+        <activity
+            android:name=".main.MainActivity"
+            android:screenOrientation="portrait" />
         <activity android:name=".article.views.ArticleActivity" />
         <activity android:name=".onboarding.AppIntroActivity" />
         <activity android:name=".splash.SplashActivity">
