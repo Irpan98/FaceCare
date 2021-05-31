@@ -9,18 +9,25 @@
     <androidx.camera.view.PreviewView
         android:id="@+id/viewFinder"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"
+        tools:layout_editor_absoluteX="16dp"
+        tools:layout_editor_absoluteY="0dp" />
 
     <Button
         android:id="@+id/btn_analize"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="117dp"
+        android:layout_height="85dp"
+        android:layout_marginTop="577dp"
+        android:layout_marginBottom="76dp"
         android:background="@color/white"
+        android:drawableTop="@drawable/ic_find_my_friend_1"
         android:elevation="10dp"
         android:text="Analyze"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="0.851"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent" />
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/viewFinder" />
 
     <ImageButton
         android:id="@+id/btn_info"
@@ -33,23 +40,43 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <Button
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="You can take your picture or upload your image"
+        app:layout_constraintBottom_toBottomOf="@+id/viewFinder"
+        app:layout_constraintEnd_toEndOf="@+id/viewFinder"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/viewFinder" />
+
+
+
+
+    <ImageButton
         android:id="@+id/btnSwitchCamera"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Switch Camera"
+        android:background="@android:color/transparent"
+        android:src="@drawable/ic_switch_camera_1"
+        app:layout_constraintBottom_toBottomOf="@+id/btn_info"
+        app:layout_constraintEnd_toEndOf="@+id/btn_info"
+        app:layout_constraintHorizontal_bias="0.034"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />P
-
+        app:layout_constraintTop_toTopOf="@+id/btn_info"
+        app:layout_constraintVertical_bias="1.0" />
 
     <Button
         android:id="@+id/btnSelectImage"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:text="Select"
-        app:layout_constraintBottom_toTopOf="@+id/btn_analize"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        android:layout_width="125dp"
+        android:layout_height="92dp"
+        android:drawableTop="@drawable/ic_upload_1"
+        android:text="Upload"
+        app:layout_constraintBottom_toBottomOf="@+id/btn_analize"
+        app:layout_constraintEnd_toStartOf="@+id/btn_analize"
+        app:layout_constraintHorizontal_bias="0.252"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/btn_analize"
+        app:layout_constraintVertical_bias="0.0" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
