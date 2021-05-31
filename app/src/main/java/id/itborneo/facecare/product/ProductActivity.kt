@@ -6,7 +6,7 @@ import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.MutableLiveData
-import com.bumptech.glide.Glide
+import androidx.recyclerview.widget.LinearLayoutManager
 import id.itborneo.facecare.core.model.ProductModel
 import id.itborneo.facecare.databinding.ActivityProductBinding
 
@@ -16,20 +16,32 @@ class ProductActivity : AppCompatActivity() {
         private const val TAG = "ProductActivity"
         private const val EXTRA_PRODUCT = "extra_product"
 
-        fun getInstance(context: Context, product: ProductModel) {
+        fun getInstance(context: Context, product: List<ProductModel>) {
             val intent = Intent(context, ProductActivity::class.java)
 //            intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION)
-            intent.putExtra(EXTRA_PRODUCT, product)
+            intent.putParcelableArrayListExtra(EXTRA_PRODUCT, toArraylist(product))
             context.startActivity(intent)
+        }
+
+        private fun toArraylist(list: List<ProductModel>): ArrayList<ProductModel> {
+            val arrayListResult = ArrayList<ProductModel>()
+            list.forEach {
+                arrayListResult.add(it)
+            }
+
+            return arrayListResult
         }
     }
 
-    private var getProduct = MutableLiveData<ProductModel>()
+    private var getFaceProblems = MutableLiveData<ArrayList<ProductModel>>()
     private lateinit var binding: ActivityProductBinding
+    private lateinit var ProductAdapter: ProductAdapter
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         initBinding()
+        initRecycler()
         retrieveData()
         observerData()
     }
@@ -40,22 +52,24 @@ class ProductActivity : AppCompatActivity() {
         setContentView(view)
     }
 
-    private fun observerData() {
-        getProduct.observe(this) {
-            updateView(it)
-        }
-    }
-
-    private fun updateView(product: ProductModel?) {
-        Glide.with(this)
-            .load(product?.url_image)
-            .into(binding.ivImage)
-        binding.tvName.text = product?.nama
-        binding.tvPenjelasan.text = product?.penjelasan
-    }
 
     private fun retrieveData() {
-        getProduct.value = intent.extras?.getParcelable(EXTRA_PRODUCT)
-        Log.d(TAG, "retrieveData $getProduct")
+        getFaceProblems.value = intent.extras?.getParcelableArrayList(EXTRA_PRODUCT)
+        Log.d(TAG, "retrieveData ${getFaceProblems.value}")
+    }
+
+    private fun initRecycler() {
+
+        binding.rvProduct.layoutManager = LinearLayoutManager(this)
+        ProductAdapter = ProductAdapter {
+        }
+        binding.rvProduct.adapter = ProductAdapter
+
+    }
+
+    private fun observerData() {
+        getFaceProblems.observe(this) {
+            ProductAdapter.set(it)
+        }
     }
 }

@@ -55,7 +55,6 @@ class ResultActivity : AppCompatActivity() {
         initBinding()
         initRecyclerFaceProblem()
         initRecyclerNaturalIngredient()
-        initRecyclerProduct()
 
         retrieveData()
         observerGetList()
@@ -136,8 +135,11 @@ class ResultActivity : AppCompatActivity() {
             faceProblem.solusi_produk.let { products.addAll(it) }
         }
 
+        initRecyclerProduct(products.distinct())
+
+
         updateHerbalView(solusiHerbal.distinct())
-        updateProductView(products.distinct())
+
     }
 
     private fun updateHerbalView(herbalModel: List<HerbalModel>) {
@@ -147,12 +149,6 @@ class ResultActivity : AppCompatActivity() {
 
     }
 
-    private fun updateProductView(products: List<ProductModel>) {
-        Log.d(TAG, "observerProduct $products")
-
-        productAdapter.set(products)
-
-    }
 
     private fun initRecyclerFaceProblem() {
         binding.cardViewIssue.setOnClickListener {
@@ -164,7 +160,7 @@ class ResultActivity : AppCompatActivity() {
         }
 
         binding.rvResultFaceProblem.layoutManager = LinearLayoutManager(this)
-        binding.rvResultFaceProblem.isClickable =false
+        binding.rvResultFaceProblem.isClickable = false
 
         faceProblemAdapter = FaceProblemResultAdapter {
             binding.cardViewIssue.performClick()
@@ -182,17 +178,26 @@ class ResultActivity : AppCompatActivity() {
         binding.rvResultNaturalIngredient.adapter = herbalAdapter
     }
 
-    private fun initRecyclerProduct() {
+    private fun initRecyclerProduct(products: List<ProductModel>) {
+        binding.carViewSuggestion.setOnClickListener {
+            actionToProductDetail(products)
+
+        }
+
         binding.rvResultProduct.layoutManager =
             LinearLayoutManager(this)
 
         productAdapter = ProductResultAdapter {
-            actionToProductDetail(it)
+            binding.carViewSuggestion.performClick()
+
         }
         binding.rvResultProduct.adapter = productAdapter
+
+        productAdapter.set(products)
+
     }
 
-    private fun actionToProductDetail(product: ProductModel) {
+    private fun actionToProductDetail(product: List<ProductModel>) {
         ProductActivity.getInstance(this, product)
     }
 
