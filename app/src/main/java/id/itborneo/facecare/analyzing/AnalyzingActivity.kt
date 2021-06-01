@@ -3,6 +3,7 @@ package id.itborneo.facecare.analyzing
 import android.content.Context
 import android.content.Intent
 import android.graphics.Bitmap
+import android.graphics.Matrix
 import android.net.Uri
 import android.os.Bundle
 import android.provider.MediaStore
@@ -97,11 +98,11 @@ class AnalyzingActivity : AppCompatActivity() {
         }
     }
 
-    private fun updateUI(uri: Uri) {
+    private fun updateUI(bitmap: Bitmap) {
 
 //        binding.ivImage.setImageBitmap(bitmap)
         Glide.with(this)
-            .load(uri)
+            .load(bitmap)
             .placeholder(R.drawable.ic_image_placeholder)
             .into(binding.ivImage)
     }
@@ -118,7 +119,7 @@ class AnalyzingActivity : AppCompatActivity() {
         dataImage.observe(this) {
             binding.cropImageView.setImageBitmap(it)
             anayzeWithTensorFlow(it)
-            getUri?.let { it1 -> updateUI(it1) }
+            updateUI(it)
         }
 
 
@@ -197,6 +198,19 @@ class AnalyzingActivity : AppCompatActivity() {
         return result
 
     }
+
+
+
+    fun rotateImage(source: Bitmap, angle: Float): Bitmap? {
+        val matrix = Matrix()
+        matrix.postRotate(angle)
+        return Bitmap.createBitmap(
+            source, 0, 0, source.width, source.height,
+            matrix, true
+        )
+    }
+
+
 
 
 }
