@@ -13,7 +13,6 @@ import android.widget.TextView
 import androidx.activity.result.ActivityResultLauncher
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.MutableLiveData
-import com.bumptech.glide.Glide
 import id.itborneo.facecare.R
 import id.itborneo.facecare.core.ml.Classifier
 import id.itborneo.facecare.core.model.RecognitionModel
@@ -98,13 +97,19 @@ class AnalyzingActivity : AppCompatActivity() {
         }
     }
 
+    fun Bitmap.rotate(degrees: Float): Bitmap {
+        val matrix = Matrix().apply { postRotate(degrees) }
+        return Bitmap.createBitmap(this, 0, 0, width, height, matrix, true)
+    }
+
     private fun updateUI(bitmap: Bitmap) {
 
-//        binding.ivImage.setImageBitmap(bitmap)
-        Glide.with(this)
-            .load(bitmap)
-            .placeholder(R.drawable.ic_image_placeholder)
-            .into(binding.ivImage)
+
+        binding.ivImage.setImageBitmap(bitmap)
+//        Glide.with(this)
+//            .load(bitmap)
+//            .placeholder(R.drawable.ic_image_placeholder)
+//            .into(binding.ivImage)
     }
 
     private fun initBinding() {
@@ -131,7 +136,7 @@ class AnalyzingActivity : AppCompatActivity() {
         getUri = intent.extras?.getParcelable(EXTRA_ANALYZING)
         Log.d(TAG, "retrieveData $getUri")
         val bitmap = MediaStore.Images.Media.getBitmap(this.contentResolver, getUri)
-        dataImage.value = bitmap
+        dataImage.value = bitmap.rotate(-90F)
 
     }
 
@@ -200,7 +205,6 @@ class AnalyzingActivity : AppCompatActivity() {
     }
 
 
-
     fun rotateImage(source: Bitmap, angle: Float): Bitmap? {
         val matrix = Matrix()
         matrix.postRotate(angle)
@@ -209,8 +213,6 @@ class AnalyzingActivity : AppCompatActivity() {
             matrix, true
         )
     }
-
-
 
 
 }
