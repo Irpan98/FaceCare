@@ -51,10 +51,12 @@ class ProfileFragment : Fragment() {
     }
 
 
-    private fun sendFeedback(){
-        val browserIntent = Intent(Intent.ACTION_VIEW, Uri.parse("https://forms.gle/adJ6wM1u9oMPQqwk7"))
+    private fun sendFeedback() {
+        val browserIntent =
+            Intent(Intent.ACTION_VIEW, Uri.parse("https://forms.gle/adJ6wM1u9oMPQqwk7"))
         startActivity(browserIntent)
     }
+
     private fun updateUI() {
 
 
