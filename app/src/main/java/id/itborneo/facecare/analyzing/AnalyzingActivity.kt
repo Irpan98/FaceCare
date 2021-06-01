@@ -12,6 +12,7 @@ import android.widget.TextView
 import androidx.activity.result.ActivityResultLauncher
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.MutableLiveData
+import com.bumptech.glide.Glide
 import id.itborneo.facecare.R
 import id.itborneo.facecare.core.ml.Classifier
 import id.itborneo.facecare.core.model.RecognitionModel
@@ -96,9 +97,13 @@ class AnalyzingActivity : AppCompatActivity() {
         }
     }
 
-    private fun updateUI(bitmap: Bitmap) {
+    private fun updateUI(uri: Uri) {
 
-        binding.ivImage.setImageBitmap(bitmap)
+//        binding.ivImage.setImageBitmap(bitmap)
+        Glide.with(this)
+            .load(uri)
+            .placeholder(R.drawable.ic_image_placeholder)
+            .into(binding.ivImage)
     }
 
     private fun initBinding() {
@@ -113,7 +118,7 @@ class AnalyzingActivity : AppCompatActivity() {
         dataImage.observe(this) {
             binding.cropImageView.setImageBitmap(it)
             anayzeWithTensorFlow(it)
-            updateUI(it)
+            getUri?.let { it1 -> updateUI(it1) }
         }
 
 
