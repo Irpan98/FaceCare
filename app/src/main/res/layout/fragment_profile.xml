@@ -36,7 +36,6 @@
         android:id="@+id/user_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Nabila Herman"
         android:textSize="18sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/btn_my_skin_care"
@@ -44,7 +43,8 @@
         app:layout_constraintHorizontal_bias="0.07"
         app:layout_constraintStart_toEndOf="@+id/user_avatar"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.211" />
+        app:layout_constraintVertical_bias="0.211"
+        tools:text="Nabila Herman" />
 
     <ImageView
         android:id="@+id/imageView4"
@@ -73,6 +73,7 @@
 
 
     <TextView
+        android:id="@+id/tvSkinType"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Normal"
@@ -101,6 +102,7 @@
         app:layout_constraintTop_toTopOf="@+id/imageView5" />
 
     <TextView
+        android:id="@+id/tvSkinGoal"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
@@ -120,33 +122,35 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
-    <!--    <TextView-->
-    <!--        android:id="@+id/tvLoginFirst"-->
-    <!--        style="@style/ItborneoText.Title"-->
-    <!--        android:layout_width="58dp"-->
-    <!--        android:layout_height="40dp"-->
-    <!--        android:layout_gravity="center_horizontal"-->
-    <!--        android:layout_marginEnd="312dp"-->
-    <!--        android:background="@color/background_main"-->
-    <!--        android:elevation="10dp"-->
-    <!--        android:gravity="center"-->
-    <!--        android:maxLines="2"-->
-    <!--        android:padding="@dimen/padding_layout"-->
-    <!--        android:text="Please Login First"-->
-    <!--        android:textColor="@color/main_yellow"-->
-    <!--        android:visibility="gone"-->
-    <!--        app:layout_constraintBottom_toBottomOf="@+id/background_top"-->
-    <!--        app:layout_constraintEnd_toEndOf="@+id/background_top"-->
-    <!--        app:layout_constraintStart_toStartOf="parent"-->
-    <!--        app:layout_constraintTop_toTopOf="parent"-->
-    <!--        tools:ignore="Overdraw" />-->
+    <TextView
+        android:id="@+id/tvLoginFirst"
+        style="@style/ItborneoText.Title"
+        android:layout_width="58dp"
+        android:layout_height="40dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginEnd="312dp"
+        android:background="@color/background_main"
+        android:elevation="10dp"
+        android:gravity="center"
+        android:maxLines="2"
+        android:padding="@dimen/padding_layout"
+        android:text="Please Login First"
+        android:textColor="@color/main_yellow"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="@+id/background_top"
+        app:layout_constraintEnd_toEndOf="@+id/background_top"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="Overdraw" />
 
     <Button
         android:id="@+id/btn_my_skin_care"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_margin="@dimen/padding_layout_2"
         android:layout_marginBottom="364dp"
         android:drawableLeft="@drawable/ic_skin_care_1"
+        android:enabled="false"
         android:text="My Skin Care Products"
         android:textAllCaps="false"
         app:layout_constraintEnd_toEndOf="parent"
@@ -169,6 +173,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:drawableLeft="@drawable/ic_fav_article"
+        android:enabled="false"
         android:text="My Favorite Articles"
         android:textAllCaps="false"
         app:layout_constraintEnd_toEndOf="@+id/btn_my_skin_care"

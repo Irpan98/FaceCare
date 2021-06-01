@@ -4,6 +4,7 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
@@ -62,13 +63,21 @@ class ResultActivity : AppCompatActivity() {
 
     private fun observerGetList() {
         getListResult.observe(this) {
-            if (it != null) {
+            if (!it.isNullOrEmpty()) {
                 observerData(it)
             } else {
                 Toast.makeText(this, "Something's Wrong", Toast.LENGTH_LONG).show()
+                noProblemUser()
             }
 
         }
+    }
+
+    private fun noProblemUser() {
+
+        binding.llNoProblem.visibility = View.VISIBLE
+
+
     }
 
     private fun retrieveData() {

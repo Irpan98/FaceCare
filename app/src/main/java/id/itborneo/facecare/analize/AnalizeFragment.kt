@@ -7,10 +7,7 @@ import android.content.pm.PackageManager
 import android.net.Uri
 import android.os.Bundle
 import android.util.Log
-import android.view.KeyEvent
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import android.widget.Toast
 import androidx.camera.core.CameraSelector
 import androidx.camera.core.ImageCapture
@@ -121,6 +118,7 @@ class AnalizeFragment : Fragment() {
     private fun takePhoto() {
         // Get a stable reference of the modifiable image capture use case
         val imageCapture = imageCapture ?: return
+        imageCapture.targetRotation = Surface.ROTATION_0
 
         // Create time-stamped output file to hold the image
         val photoFile = File(
@@ -130,11 +128,8 @@ class AnalizeFragment : Fragment() {
             ).format(System.currentTimeMillis()) + ".jpg"
         )
 
-        // Create output options object which contains file + metadata
-        val outputOptions = ImageCapture.OutputFileOptions.Builder(photoFile).build()
 
-        // Set up image capture listener, which is triggered after photo has
-        // been taken
+        val outputOptions = ImageCapture.OutputFileOptions.Builder(photoFile).build()
         imageCapture.takePicture(
             outputOptions,
             ContextCompat.getMainExecutor(requireContext()),
@@ -148,7 +143,7 @@ class AnalizeFragment : Fragment() {
                     val savedUri = Uri.fromFile(photoFile)
                     actionToAnayzing(savedUri)
 
-                    val msg = "Opening Analyzing: $savedUri"
+                    val msg = "Opening Analyzing"
                     Toast.makeText(requireContext(), msg, Toast.LENGTH_SHORT).show()
                     Log.d(TAG, msg)
 

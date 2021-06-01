@@ -11,13 +11,10 @@ import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.MutableLiveData
 import id.itborneo.facecare.R
-import id.itborneo.facecare.core.local.AppDatabase
 import id.itborneo.facecare.core.ml.Classifier
 import id.itborneo.facecare.core.model.RecognitionModel
-import id.itborneo.facecare.core.model.ResultModel
 import id.itborneo.facecare.databinding.ActivityAnalyzingBinding
 import id.itborneo.facecare.result.ResultActivity
-import kotlinx.coroutines.*
 
 
 class AnalyzingActivity : AppCompatActivity() {
@@ -94,7 +91,12 @@ class AnalyzingActivity : AppCompatActivity() {
     }
 
     private fun actionToResult() {
-        ResultActivity.getInstance(this, results.value)
+        val result = results.value
+        if (result != null) {
+            val validResult = GET_VALID_RESULT(result)
+            ResultActivity.getInstance(this, validResult)
+
+        }
     }
 
 
@@ -136,5 +138,20 @@ class AnalyzingActivity : AppCompatActivity() {
         textView1.text = text
     }
 
+    private fun GET_VALID_RESULT(list: ArrayList<RecognitionModel>): ArrayList<RecognitionModel> {
+        val valid = 0.9
+
+
+        val result = ArrayList<RecognitionModel>()
+
+        list.forEach {
+            if (it.confidence >= valid) {
+                result.add(it)
+            }
+        }
+
+        return result
+
+    }
 
 }
