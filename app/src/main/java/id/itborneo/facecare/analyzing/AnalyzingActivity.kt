@@ -7,12 +7,11 @@ import android.net.Uri
 import android.os.Bundle
 import android.provider.MediaStore
 import android.util.Log
+import android.view.View
 import android.widget.TextView
 import androidx.activity.result.ActivityResultLauncher
-import androidx.activity.result.contract.ActivityResultContract
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.MutableLiveData
-import com.theartofdev.edmodo.cropper.CropImage
 import id.itborneo.facecare.R
 import id.itborneo.facecare.core.ml.Classifier
 import id.itborneo.facecare.core.model.RecognitionModel
@@ -52,29 +51,30 @@ class AnalyzingActivity : AppCompatActivity() {
         observeImage()
         observeResult()
 
-        cropImage()
+        cropImageInitialize()
 
     }
 
-    private fun cropImage() {
-        cropActivityResultLauncher = registerForActivityResult(cropActivityResultContract) {
-            it?.let { getUri }
-        }
-    }
-
-    private val cropActivityResultContract = object : ActivityResultContract<Any?, Uri?>() {
-        override fun createIntent(context: Context, input: Any?): Intent {
-            return CropImage.activity()
-                .setAspectRatio(4, 3)
-                .getIntent(this@AnalyzingActivity)
-        }
-
-        override fun parseResult(resultCode: Int, intent: Intent?): Uri? {
-            return CropImage.getActivityResult(intent)?.uri
-
-        }
+    private fun cropImageInitialize() {
+//        cropActivityResultLauncher = registerForActivityResult(cropActivityResultContract) {
+//            it?.let { getUri }
+//        }
 
     }
+
+//    private val cropActivityResultContract = object : ActivityResultContract<Any?, Uri?>() {
+//        override fun createIntent(context: Context, input: Any?): Intent {
+//            return CropImage.activity()
+//                .setAspectRatio(4, 3)
+//                .getIntent(this@AnalyzingActivity)
+//        }
+//
+//        override fun parseResult(resultCode: Int, intent: Intent?): Uri? {
+//            return CropImage.getActivityResult(intent)?.uri
+//
+//        }
+//
+//    }
 
     private fun observeResult() {
 
@@ -85,7 +85,14 @@ class AnalyzingActivity : AppCompatActivity() {
             actionToResult()
         }
         binding.btnToCrop.setOnClickListener {
-            cropImage()
+//            cropActivityResultLauncher.launch(null)
+            binding.clParentCropImage.visibility = View.VISIBLE
+
+        }
+        binding.btnCropThisImage.setOnClickListener {
+            dataImage.value = binding.cropImageView.croppedImage
+            binding.clParentCropImage.visibility = View.GONE
+
         }
     }
 
@@ -104,6 +111,7 @@ class AnalyzingActivity : AppCompatActivity() {
     private fun observeImage() {
 
         dataImage.observe(this) {
+            binding.cropImageView.setImageBitmap(it)
             anayzeWithTensorFlow(it)
             updateUI(it)
         }

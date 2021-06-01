@@ -27,6 +27,7 @@
         <activity
             android:name=".main.MainActivity"
             android:screenOrientation="portrait" />
+        <activity android:name="com.theartofdev.edmodo.cropper.CropImageActivity" />
         <activity android:name=".article.views.ArticleActivity" />
         <activity android:name=".onboarding.AppIntroActivity" />
         <activity android:name=".splash.SplashActivity">
