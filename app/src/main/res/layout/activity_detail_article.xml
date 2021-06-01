@@ -6,21 +6,29 @@
     android:orientation="vertical"
     tools:context=".article.views.DetailArticleActivity">
 
+    <ImageView
+        android:id="@+id/ivImage"
+        android:layout_width="match_parent"
+        android:layout_height="400dp"
+        tools:src="@tools:sample/avatars" />
+
     <TextView
         android:id="@+id/tvName"
+        android:layout_marginTop="5dp"
+        android:layout_marginStart="5dp"
+        android:textStyle="bold"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         tools:text="@tools:sample/first_names" />
 
     <TextView
         android:id="@+id/tvPenjelasan"
+        android:layout_marginTop="6dp"
+        android:layout_marginStart="5dp"
+        android:textStyle="bold"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         tools:text="@tools:sample/first_names" />
 
-    <ImageView
-        android:id="@+id/ivImage"
-        android:layout_width="400dp"
-        android:layout_height="400dp"
-        tools:src="@tools:sample/avatars" />
+
 </LinearLayout>
