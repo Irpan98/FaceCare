@@ -76,6 +76,10 @@ class ResultActivity : AppCompatActivity() {
     private fun noProblemUser() {
 
         binding.llNoProblem.visibility = View.VISIBLE
+        binding.btnNoProblemToFullResult.setOnClickListener {
+            showAllPosibleResult()
+            binding.skinReport.text = "All Possible Results"
+        }
 
 
     }
@@ -91,6 +95,7 @@ class ResultActivity : AppCompatActivity() {
         setContentView(view)
     }
 
+    private lateinit var allPosibleResult: List<FaceProblemModel>
     private fun observerData(userProblems: ArrayList<RecognitionModel>) {
         viewModel.getListFaceProblems().observe(this) {
 
@@ -98,9 +103,9 @@ class ResultActivity : AppCompatActivity() {
             val products = mutableListOf<ProductModel>()
             when (it.status) {
                 Status.SUCCESS -> {
-                    val faceProblems = it.data ?: return@observe
+                    allPosibleResult = it.data ?: return@observe
 
-                    usersFaceProblems = faceProblems.filterIndexed { index, item ->
+                    usersFaceProblems = allPosibleResult.filterIndexed { index, item ->
                         var result = false
                         userProblems.forEach {
                             Log.d(
@@ -121,7 +126,7 @@ class ResultActivity : AppCompatActivity() {
 
                     Log.d(TAG, "faceProblems filtered $usersFaceProblems")
 
-                    updateUI(usersFaceProblems, solusiHerbal, products)
+                    updateUI(usersFaceProblems)
 
                 }
             }
@@ -131,11 +136,11 @@ class ResultActivity : AppCompatActivity() {
     private lateinit var usersFaceProblems: List<FaceProblemModel>
 
     private fun updateUI(
-        faceProblems: List<FaceProblemModel>,
-        solusiHerbal: MutableList<HerbalModel>,
-        products: MutableList<ProductModel>
-    ) {
+        faceProblems: List<FaceProblemModel>
 
+    ) {
+        val products = mutableListOf<ProductModel>()
+        val solusiHerbal = mutableListOf<HerbalModel>()
         faceProblemAdapter.set(faceProblems)
 
         faceProblems.forEach { faceProblem ->
@@ -212,6 +217,12 @@ class ResultActivity : AppCompatActivity() {
 
     private fun actionToFaceProblemDetail(faceProblem: List<FaceProblemModel>) {
         FaceProblemActivity.getInstance(this, faceProblem)
+    }
+
+    private fun showAllPosibleResult() {
+        updateUI(allPosibleResult)
+
+
     }
 
 }
