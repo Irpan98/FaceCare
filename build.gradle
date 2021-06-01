@@ -25,6 +25,8 @@ buildscript {
         // in the individual module build.gradle files
     }
 
+
+
 }
 
 allprojects {
@@ -33,7 +35,7 @@ allprojects {
         mavenCentral()
         maven { url "https://jitpack.io" }
 
-//        jcenter() // Warning: this repository is going to shut down soon
+        jcenter() // Warning: this repository is going to shut down soon
     }
 }
 

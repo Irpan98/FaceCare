@@ -63,11 +63,12 @@ class ResultActivity : AppCompatActivity() {
 
     private fun observerGetList() {
         getListResult.observe(this) {
-            if (!it.isNullOrEmpty()) {
+            if (it != null) {
                 observerData(it)
-            } else {
-                Toast.makeText(this, "Something's Wrong", Toast.LENGTH_LONG).show()
-                noProblemUser()
+                if (it.isEmpty()) {
+                    Toast.makeText(this, "Something's Wrong", Toast.LENGTH_LONG).show()
+                    noProblemUser()
+                }
             }
 
         }
@@ -79,6 +80,7 @@ class ResultActivity : AppCompatActivity() {
         binding.btnNoProblemToFullResult.setOnClickListener {
             showAllPosibleResult()
             binding.skinReport.text = "All Possible Results"
+            binding.llNoProblem.visibility = View.GONE
         }
 
 

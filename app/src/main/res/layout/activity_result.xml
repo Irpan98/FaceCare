@@ -11,9 +11,10 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/grey"
+        android:paddingBottom="@dimen/padding_layout_3"
+
         android:orientation="vertical"
-        android:paddingBottom="@dimen/padding_layout_4"
-        tools:context=".home.HomeFragment">
+        tools:context=".home.HomeFragment">a
 
         <LinearLayout
             android:id="@+id/llNoProblem"
@@ -21,6 +22,7 @@
             android:layout_height="0dp"
             android:background="@color/white"
             android:elevation="14dp"
+
             android:orientation="vertical"
             android:padding="@dimen/padding_layout"
             android:visibility="gone"

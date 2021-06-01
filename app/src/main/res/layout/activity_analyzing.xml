@@ -19,6 +19,13 @@
         android:layout_gravity="center"
         android:text="To Result" />
 
+    <Button
+        android:id="@+id/btnToCrop"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="Crop" />
+
     <TextView
         android:id="@+id/textView1"
         android:layout_width="wrap_content"

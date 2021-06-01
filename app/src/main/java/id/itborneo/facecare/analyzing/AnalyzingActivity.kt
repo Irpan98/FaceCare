@@ -8,8 +8,11 @@ import android.os.Bundle
 import android.provider.MediaStore
 import android.util.Log
 import android.widget.TextView
+import androidx.activity.result.ActivityResultLauncher
+import androidx.activity.result.contract.ActivityResultContract
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.MutableLiveData
+import com.theartofdev.edmodo.cropper.CropImage
 import id.itborneo.facecare.R
 import id.itborneo.facecare.core.ml.Classifier
 import id.itborneo.facecare.core.model.RecognitionModel
@@ -34,6 +37,8 @@ class AnalyzingActivity : AppCompatActivity() {
         }
     }
 
+    private lateinit var cropActivityResultLauncher: ActivityResultLauncher<Any?>
+
     var getUri: Uri? = null
     private lateinit var binding: ActivityAnalyzingBinding
     private val dataImage = MutableLiveData<Bitmap>()
@@ -46,6 +51,29 @@ class AnalyzingActivity : AppCompatActivity() {
 
         observeImage()
         observeResult()
+
+        cropImage()
+
+    }
+
+    private fun cropImage() {
+        cropActivityResultLauncher = registerForActivityResult(cropActivityResultContract) {
+            it?.let { getUri }
+        }
+    }
+
+    private val cropActivityResultContract = object : ActivityResultContract<Any?, Uri?>() {
+        override fun createIntent(context: Context, input: Any?): Intent {
+            return CropImage.activity()
+                .setAspectRatio(4, 3)
+                .getIntent(this@AnalyzingActivity)
+        }
+
+        override fun parseResult(resultCode: Int, intent: Intent?): Uri? {
+            return CropImage.getActivityResult(intent)?.uri
+
+        }
+
     }
 
     private fun observeResult() {
@@ -55,6 +83,9 @@ class AnalyzingActivity : AppCompatActivity() {
     private fun buttonListener() {
         binding.btnToResult.setOnClickListener {
             actionToResult()
+        }
+        binding.btnToCrop.setOnClickListener {
+            cropImage()
         }
     }
 
@@ -153,5 +184,6 @@ class AnalyzingActivity : AppCompatActivity() {
         return result
 
     }
+
 
 }
