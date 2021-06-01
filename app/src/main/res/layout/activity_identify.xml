@@ -6,9 +6,32 @@
     android:orientation="vertical"
     tools:context=".identify.IdentifyActivity">
 
-    <TextView
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_image_identify"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="How We Identify You"
+            android:textSize="25sp"
+            android:textColor="@color/main_yellow"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="20dp"
+            android:textStyle="bold"/>
+    </LinearLayout>
+
+    <TextView
+        android:layout_marginTop="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="8dp"
         android:layout_marginHorizontal="@dimen/padding_layout"
         android:text="Gender" />
 
@@ -38,6 +61,7 @@
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="@dimen/padding_layout"
         android:layout_marginTop="@dimen/padding_layout_3"
+        android:padding="8dp"
         android:text="Face Problem" />
 
     <RadioGroup
@@ -51,6 +75,7 @@
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="@dimen/padding_layout"
         android:layout_marginTop="@dimen/padding_layout_3"
+        android:padding="8dp"
         android:text="What type of your skin" />
 
 
@@ -67,6 +92,7 @@
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="@dimen/padding_layout"
         android:layout_marginTop="@dimen/padding_layout_3"
+        android:padding="16dp"
         android:text="What is Your Goals" />
 
 
@@ -99,7 +125,9 @@
 
     <Button
         android:id="@+id/btn_submit"
+        android:layout_gravity="center"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
         android:text="Submit" />
 </LinearLayout>
