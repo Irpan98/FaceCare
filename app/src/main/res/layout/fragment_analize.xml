@@ -6,28 +6,14 @@
     android:layout_height="match_parent"
     tools:context=".analize.AnalizeFragment">
 
+
     <androidx.camera.view.PreviewView
         android:id="@+id/viewFinder"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:layout_editor_absoluteX="16dp"
+        tools:layout_editor_absoluteX="0dp"
         tools:layout_editor_absoluteY="0dp" />
 
-    <Button
-        android:id="@+id/btn_analize"
-        android:layout_width="117dp"
-        android:layout_height="85dp"
-        android:layout_marginTop="577dp"
-        android:layout_marginBottom="76dp"
-        android:background="@color/white"
-        android:drawableTop="@drawable/ic_find_my_friend_1"
-        android:elevation="10dp"
-        android:text="Analyze"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="0.851"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/viewFinder" />
 
     <ImageButton
         android:id="@+id/btn_info"
@@ -35,7 +21,7 @@
         android:layout_height="wrap_content"
         android:background="@android:color/transparent"
         android:contentDescription="info button"
-        android:padding="@dimen/padding_layout"
+        android:padding="@dimen/padding_layout_2"
         android:src="@drawable/icon_info"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -44,39 +30,63 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:gravity="center"
+        android:textColor="@color/grey"
         android:text="You can take your picture or upload your image"
         app:layout_constraintBottom_toBottomOf="@+id/viewFinder"
         app:layout_constraintEnd_toEndOf="@+id/viewFinder"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/viewFinder" />
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="@+id/viewFinder"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
 
 
+        <ImageButton
+            android:id="@+id/btnSelectImage"
+            android:layout_width="0dp"
 
-    <ImageButton
-        android:id="@+id/btnSwitchCamera"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@android:color/transparent"
-        android:src="@drawable/ic_switch_camera_1"
-        app:layout_constraintBottom_toBottomOf="@+id/btn_info"
-        app:layout_constraintEnd_toEndOf="@+id/btn_info"
-        app:layout_constraintHorizontal_bias="0.034"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/btn_info"
-        app:layout_constraintVertical_bias="1.0" />
+            android:layout_height="match_parent"
+            android:layout_marginHorizontal="@dimen/padding_layout_3"
+            android:layout_marginTop="@dimen/padding_layout_2"
+            android:layout_weight="1"
+            android:backgroundTint="@color/main_yellow"
+            android:src="@drawable/ic_upload_1"
+            android:textAllCaps="false"
+            app:layout_constraintBottom_toBottomOf="@+id/btn_analize"
+            app:layout_constraintEnd_toStartOf="@+id/guideline3" />
 
-    <Button
-        android:id="@+id/btnSelectImage"
-        android:layout_width="125dp"
-        android:layout_height="92dp"
-        android:drawableTop="@drawable/ic_upload_1"
-        android:text="Upload"
-        app:layout_constraintBottom_toBottomOf="@+id/btn_analize"
-        app:layout_constraintEnd_toStartOf="@+id/btn_analize"
-        app:layout_constraintHorizontal_bias="0.252"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/btn_analize"
-        app:layout_constraintVertical_bias="0.0" />
+        <Button
+            android:id="@+id/btn_analize"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="2"
+            android:drawableLeft="@drawable/ic_find_my_friend_1"
+            android:text="Analyze"
+            android:textAllCaps="false"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/guideline3" />
+
+        <ImageButton
+            android:id="@+id/btnSwitchCamera"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginHorizontal="@dimen/padding_layout_3"
+            android:layout_marginTop="@dimen/padding_layout_2"
+            android:layout_weight="1"
+            android:backgroundTint="@color/main_yellow"
+            android:src="@drawable/ic_switch_camera_1"
+            android:textAllCaps="false"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/btn_info" />
+
+
+    </LinearLayout>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

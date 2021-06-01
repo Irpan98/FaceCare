@@ -30,10 +30,10 @@
         android:focusable="false"
         android:focusableInTouchMode="false"
         tools:text="Jerawat" />
-    <!--    <ImageView-->
-    <!--        android:id="@+id/ivImage"-->
-    <!--        android:layout_width="match_parent"-->
-    <!--        android:layout_height="300dp"-->
-    <!--        tools:src="@tools:sample/avatars" />-->
+        <ImageView
+            android:id="@+id/ivImage"
+            android:layout_width="match_parent"
+            android:layout_height="300dp"
+            tools:src="@tools:sample/avatars" />
 </LinearLayout>
 

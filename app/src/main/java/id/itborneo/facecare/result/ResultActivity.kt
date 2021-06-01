@@ -54,8 +54,6 @@ class ResultActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         initBinding()
         initRecyclerFaceProblem()
-        initRecyclerNaturalIngredient()
-        initRecyclerProduct()
 
         retrieveData()
         observerGetList()
@@ -136,23 +134,12 @@ class ResultActivity : AppCompatActivity() {
             faceProblem.solusi_produk.let { products.addAll(it) }
         }
 
-        updateHerbalView(solusiHerbal.distinct())
-        updateProductView(products.distinct())
-    }
+        initRecyclerProduct(products.distinct())
+        initRecyclerNaturalIngredient(solusiHerbal.distinct())
 
-    private fun updateHerbalView(herbalModel: List<HerbalModel>) {
-        Log.d(TAG, "observerNaturalIngredient $herbalModel")
-
-        herbalAdapter.set(herbalModel)
 
     }
 
-    private fun updateProductView(products: List<ProductModel>) {
-        Log.d(TAG, "observerProduct $products")
-
-        productAdapter.set(products)
-
-    }
 
     private fun initRecyclerFaceProblem() {
         binding.cardViewIssue.setOnClickListener {
@@ -164,7 +151,7 @@ class ResultActivity : AppCompatActivity() {
         }
 
         binding.rvResultFaceProblem.layoutManager = LinearLayoutManager(this)
-        binding.rvResultFaceProblem.isClickable =false
+        binding.rvResultFaceProblem.isClickable = false
 
         faceProblemAdapter = FaceProblemResultAdapter {
             binding.cardViewIssue.performClick()
@@ -172,31 +159,45 @@ class ResultActivity : AppCompatActivity() {
         binding.rvResultFaceProblem.adapter = faceProblemAdapter
     }
 
-    private fun initRecyclerNaturalIngredient() {
+    private fun initRecyclerNaturalIngredient(list: List<HerbalModel>) {
+
+        binding.carViewNatIngredient.setOnClickListener {
+            actionToHerbalDetail(list)
+        }
         binding.rvResultNaturalIngredient.layoutManager =
             LinearLayoutManager(this)
 
         herbalAdapter = HerbalResultAdapter {
-            actionToHerbalDetail(it)
+            binding.carViewNatIngredient.performClick()
         }
         binding.rvResultNaturalIngredient.adapter = herbalAdapter
+        herbalAdapter.set(list)
     }
 
-    private fun initRecyclerProduct() {
+    private fun initRecyclerProduct(products: List<ProductModel>) {
+        binding.carViewSuggestion.setOnClickListener {
+            actionToProductDetail(products)
+
+        }
+
         binding.rvResultProduct.layoutManager =
             LinearLayoutManager(this)
 
         productAdapter = ProductResultAdapter {
-            actionToProductDetail(it)
+            binding.carViewSuggestion.performClick()
+
         }
         binding.rvResultProduct.adapter = productAdapter
+
+        productAdapter.set(products)
+
     }
 
-    private fun actionToProductDetail(product: ProductModel) {
+    private fun actionToProductDetail(product: List<ProductModel>) {
         ProductActivity.getInstance(this, product)
     }
 
-    private fun actionToHerbalDetail(herbal: HerbalModel) {
+    private fun actionToHerbalDetail(herbal: List<HerbalModel>) {
         HerbalActivity.getInstance(this, herbal)
     }
 

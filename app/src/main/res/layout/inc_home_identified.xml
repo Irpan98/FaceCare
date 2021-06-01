@@ -51,6 +51,7 @@
         app:cardElevation="10dp"
         app:layout_constraintBottom_toBottomOf="@+id/background_top"
         app:layout_constraintTop_toBottomOf="@+id/background_top"
+        app:layout_constraintVertical_bias="0.4"
         tools:layout_editor_absoluteX="10dp">
 
     </androidx.cardview.widget.CardView>
@@ -62,8 +63,8 @@
         android:layout_margin="@dimen/padding_layout"
         android:elevation="10dp"
         android:text="skin type"
-        app:layout_constraintStart_toStartOf="@+id/cardView"
-        app:layout_constraintTop_toTopOf="@+id/cardView" />
+        app:layout_constraintStart_toEndOf="@+id/imageView3"
+        app:layout_constraintTop_toTopOf="@+id/imageView3" />
 
     <TextView
         android:id="@+id/tv_home_skin_type"
@@ -73,8 +74,45 @@
         android:elevation="10dp"
         android:text="skin type"
         android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="@+id/cardView"
+        app:layout_constraintEnd_toEndOf="@+id/textView"
+        app:layout_constraintStart_toStartOf="@+id/textView"
         app:layout_constraintTop_toBottomOf="@+id/textView" />
+
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/padding_layout"
+        android:elevation="10dp"
+        android:text="skin type"
+        app:layout_constraintEnd_toEndOf="@+id/cardView"
+        app:layout_constraintStart_toEndOf="@+id/textView"
+        app:layout_constraintTop_toTopOf="@+id/imageView3" />
+
+    <TextView
+        android:id="@+id/tv_home_skin_goal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/padding_layout"
+        android:elevation="10dp"
+        android:text="skin type"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="@+id/textView2"
+        app:layout_constraintStart_toStartOf="@+id/textView2"
+        app:layout_constraintTop_toBottomOf="@+id/textView2" />
+
+    <ImageView
+        android:id="@+id/imageView3"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginStart="@dimen/padding_layout_half"
+        android:elevation="10dp"
+        android:src="@drawable/ic_girl_user"
+        app:layout_constraintBottom_toBottomOf="@id/cardView"
+        app:layout_constraintStart_toStartOf="@id/cardView"
+        app:layout_constraintTop_toTopOf="@id/cardView" />
+
 
     <!-- TODO: Update blank fragment layout -->
 
@@ -130,10 +168,10 @@
         android:id="@+id/btn_day_progress"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingVertical="@dimen/padding_layout"
         android:layout_marginHorizontal="@dimen/padding_layout"
         android:layout_weight="1"
         android:drawableLeft="@drawable/ic_rising_1"
+        android:paddingVertical="@dimen/padding_layout"
         android:text="@string/your_day_to_day_progress"
         android:textAllCaps="false"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
