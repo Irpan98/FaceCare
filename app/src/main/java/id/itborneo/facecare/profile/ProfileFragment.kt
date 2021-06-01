@@ -105,7 +105,7 @@ class ProfileFragment : Fragment() {
     fun composeEmail() {
         ShareCompat.IntentBuilder.from(requireActivity())
             .setType("message/rfc822")
-            .addEmailTo("rokutech@gmail.com")
+            .addEmailTo("rokutech.facecare@gmail.com")
 //            .setSubject("FaceCare Feedback")
 //            .setText(body)
             //.setHtmlText(body) //If you are using HTML in your body text

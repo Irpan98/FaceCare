@@ -139,7 +139,7 @@ class AnalyzingActivity : AppCompatActivity() {
     }
 
     private fun GET_VALID_RESULT(list: ArrayList<RecognitionModel>): ArrayList<RecognitionModel> {
-        val valid = 0.6
+        val valid = 0.9
 
 
         val result = ArrayList<RecognitionModel>()
