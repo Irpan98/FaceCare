@@ -10,24 +10,23 @@
         android:id="@+id/ivImage"
         android:layout_width="match_parent"
         android:layout_height="400dp"
+        android:scaleType="centerCrop"
         tools:src="@tools:sample/avatars" />
 
     <TextView
         android:id="@+id/tvName"
-        android:layout_marginTop="5dp"
-        android:layout_marginStart="5dp"
-        android:textStyle="bold"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_margin="@dimen/padding_layout"
+        android:textSize="18sp"
+        android:textStyle="bold"
         tools:text="@tools:sample/first_names" />
 
     <TextView
         android:id="@+id/tvPenjelasan"
-        android:layout_marginTop="6dp"
-        android:layout_marginStart="5dp"
-        android:textStyle="bold"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_margin="@dimen/padding_layout"
         tools:text="@tools:sample/first_names" />
 
 
