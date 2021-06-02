@@ -5,6 +5,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
+import androidx.activity.result.ActivityResultLauncher
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
@@ -25,6 +26,13 @@ class RegisterActivity : AppCompatActivity() {
             val intent = Intent(context, RegisterActivity::class.java)
 //            intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION)
             context.startActivity(intent)
+        }
+
+        fun getInstance(context: Context, launcher: ActivityResultLauncher<Intent>) {
+            val intent = Intent(context, RegisterActivity::class.java)
+//            intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION)
+
+            launcher.launch(intent)
         }
     }
 
@@ -85,7 +93,7 @@ class RegisterActivity : AppCompatActivity() {
                 submitLogin(email, password)
                 setResult(RESULT_OK)
 
-                finish()
+//                finish()
 
                 Log.d(TAG, "success add data : $it")
 

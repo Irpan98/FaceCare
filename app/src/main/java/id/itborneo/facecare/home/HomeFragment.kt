@@ -141,7 +141,7 @@ class HomeFragment : Fragment() {
                 LoginActivity.getInstance(requireContext(), getContent)
             }
             btnHomeRegister.setOnClickListener {
-                RegisterActivity.getInstance(requireContext())
+                RegisterActivity.getInstance(requireContext(),getContent)
             }
         }
     }
@@ -210,6 +210,7 @@ class HomeFragment : Fragment() {
 
     val getContent =
         registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
+
             if (result.resultCode == Activity.RESULT_OK) {
                 loginChecker()
             }
