@@ -75,7 +75,7 @@ class HomeFragment : Fragment() {
             when (it.status) {
                 Status.SUCCESS -> {
                     val data = it.data
-                    val welcomeUser = "Welcome \n ${data?.name}"
+                    val welcomeUser = "${data?.name}"
                     binding.incHomeIdentified.tvName.text = welcomeUser
                 }
             }

@@ -5,16 +5,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/grey">
+    android:background="@color/white">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/grey"
-        android:paddingBottom="@dimen/padding_layout_3"
-
         android:orientation="vertical"
-        tools:context=".home.HomeFragment">a
+        tools:context=".home.HomeFragment">
 
         <LinearLayout
             android:id="@+id/llNoProblem"
@@ -29,7 +26,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@+id/cardView"
-            tools:visibility="visible">
+            tools:visibility="gone">
 
             <TextView
                 android:layout_width="match_parent"
@@ -41,31 +38,31 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:gravity="center_horizontal"
                 android:layout_marginTop="@dimen/padding_layout_2"
+                android:gravity="center_horizontal"
                 android:text="No Face Problem Detected" />
 
             <LinearLayout
-                android:layout_marginTop="@dimen/padding_layout_4"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/padding_layout_4"
                 android:orientation="horizontal">
 
                 <Button
-                    android:layout_weight="1"
                     android:id="@+id/btnToHome"
-                    android:layout_marginEnd="@dimen/padding_layout"
                     style="?attr/materialButtonOutlinedStyle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/padding_layout"
+                    android:layout_weight="1"
                     android:text="Home"
                     android:textAllCaps="false" />
 
                 <Button
-                    android:layout_weight="1"
                     android:id="@+id/btnNoProblemToFullResult"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_weight="1"
                     android:text="Show All Posible Result"
                     android:textAllCaps="false" />
             </LinearLayout>
@@ -90,46 +87,37 @@
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
             android:src="@drawable/ic_logo_final"
-            app:layout_constraintBottom_toTopOf="@+id/cardView"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.0" />
+            app:layout_constraintTop_toTopOf="parent" />
 
 
         <TextView
             android:id="@+id/skin_report"
             style="bold"
-            android:layout_width="105dp"
-            android:layout_height="27dp"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
             android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
-            android:layout_marginStart="18dp"
-            android:layout_marginTop="18dp"
-            android:layout_marginEnd="18dp"
-            android:layout_marginBottom="7dp"
             android:gravity="center_horizontal|top"
             android:text="@string/skin_report"
             android:textSize="18sp"
             android:textStyle="bold"
-            app:layout_constraintBottom_toTopOf="@+id/cardView"
-            app:layout_constraintEnd_toEndOf="@+id/cardView"
-            app:layout_constraintHorizontal_bias="0.498"
-            app:layout_constraintStart_toStartOf="@+id/cardView"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.772" />
+            app:layout_constraintBottom_toBottomOf="@+id/imageView6"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/imageView6" />
 
         <androidx.cardview.widget.CardView
             android:id="@+id/cardView"
             android:layout_width="match_parent"
             android:layout_height="150dp"
             android:layout_marginHorizontal="@dimen/padding_layout_3"
+            android:layout_marginVertical="@dimen/padding_layout_3"
             app:cardCornerRadius="12dp"
             app:cardElevation="10dp"
-            app:layout_constraintBottom_toBottomOf="@+id/background_top"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/background_top"
-            app:layout_constraintVertical_bias="0.204">
+            app:layout_constraintTop_toBottomOf="@+id/imageView6">
 
             <RelativeLayout
                 android:layout_width="match_parent"
@@ -144,14 +132,15 @@
                     android:src="@drawable/ic_hourglass_v2" />
 
                 <TextView
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_alignTop="@+id/icon_hourglass"
                     android:layout_alignBottom="@+id/icon_hourglass"
-                    android:layout_marginStart="100dp"
-                    android:layout_marginTop="14dp"
-                    android:layout_marginBottom="-10dp"
-                    android:text="@string/preparing_your_result"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginVertical="@dimen/padding_layout"
+                    android:layout_toEndOf="@+id/icon_hourglass"
+                    android:gravity="center"
+                    android:text="Here is your results"
                     android:textSize="18sp"
                     android:textStyle="bold" />
 
@@ -268,8 +257,10 @@
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="@dimen/padding_layout_3"
             android:layout_marginTop="@dimen/padding_layout_3"
+            android:layout_marginBottom="@dimen/padding_layout_4"
             app:cardCornerRadius="12dp"
             app:cardElevation="10dp"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="@+id/carView_suggestion"
             app:layout_constraintStart_toStartOf="@+id/carView_suggestion"
             app:layout_constraintTop_toBottomOf="@+id/carView_suggestion">
@@ -313,6 +304,14 @@
 
         </androidx.cardview.widget.CardView>
 
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/padding_layout"
+            android:enabled="false"
+            android:text="Contact Doctor"
+            android:textAllCaps="false"
+            app:layout_constraintTop_toBottomOf="@id/carView_natIngredient" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.core.widget.NestedScrollView>

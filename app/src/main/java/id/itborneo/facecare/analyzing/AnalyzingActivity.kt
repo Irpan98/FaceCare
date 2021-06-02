@@ -183,6 +183,7 @@ class AnalyzingActivity : AppCompatActivity() {
     }
 
     private fun updateViewResult(text: String) {
+        Log.d(TAG, "result is $text")
         val textView1: TextView = findViewById(R.id.textView1)
         textView1.text = text
     }

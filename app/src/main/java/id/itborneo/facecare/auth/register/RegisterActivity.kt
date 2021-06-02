@@ -12,8 +12,8 @@ import id.itborneo.facecare.R
 import id.itborneo.facecare.auth.login.LoginActivity
 import id.itborneo.facecare.core.model.UserInfoModel
 import id.itborneo.facecare.databinding.ActivityRegisterBinding
+import id.itborneo.facecare.utils.KsPrefUser
 import id.itborneo.facecare.utils.extension.hideKeyboard
-import id.itborneo.facecare.utils.ui.ItBorneoToast
 import id.itborneo.facecare.utils.validation.NullChecker
 
 class RegisterActivity : AppCompatActivity() {
@@ -58,13 +58,13 @@ class RegisterActivity : AppCompatActivity() {
         }
 
         binding.btnRegisterLogin.setOnClickListener {
-            finish()
+//            finish()
             LoginActivity.getInstance(this)
 
         }
     }
 
-    private fun submitUserdata() {
+    private fun submitUserdata(email: String, password: String) {
 
         val userId = getUid() ?: return
 
@@ -81,8 +81,10 @@ class RegisterActivity : AppCompatActivity() {
         myRef.child(userId).setValue(identify)
             .addOnSuccessListener {
                 this.hideKeyboard()
-                ItBorneoToast.toastMain(this, "Register Success, please Login")
+//                ItBorneoToast.toastMain(this, "Register Success, please Login")
+                submitLogin(email, password)
                 setResult(RESULT_OK)
+
                 finish()
 
                 Log.d(TAG, "success add data : $it")
@@ -104,7 +106,7 @@ class RegisterActivity : AppCompatActivity() {
             .addOnCompleteListener {
                 Log.d(TAG, "register berhasil $it")
                 getUid()
-                submitUserdata()
+                submitUserdata(email, password)
             }
             .addOnFailureListener {
                 Log.e(TAG, "${it.message}")
@@ -166,7 +168,35 @@ class RegisterActivity : AppCompatActivity() {
             )
         if (!ispasswordValid) return false
 
-
         return !(!isEmailValid || !ispasswordValid || !isFullnameValid)
+    }
+
+    private fun submitLogin(email: String, password: String) {
+
+        auth.signInWithEmailAndPassword(email, password)
+            .addOnCompleteListener {
+                this.hideKeyboard()
+                Log.d(TAG, "login berhasil $it")
+                loginSuccess()
+            }
+            .addOnFailureListener {
+                this.hideKeyboard()
+                Toast.makeText(this, "Email / Password is Wrong's ", Toast.LENGTH_SHORT).show()
+                Log.e(TAG, "error create user ${it.message} $")
+
+            }
+    }
+
+    private fun loginSuccess() {
+        val userUid = auth.currentUser?.uid
+        Log.d(TAG, "loginSuccess $userUid")
+
+        if (userUid != null) {
+            KsPrefUser.setUserId(userUid)
+            Toast.makeText(this, "Welcome", Toast.LENGTH_LONG).show()
+
+            setResult(RESULT_OK)
+            finish()
+        }
     }
 }
