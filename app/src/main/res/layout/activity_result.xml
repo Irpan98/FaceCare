@@ -22,7 +22,6 @@
             android:layout_height="0dp"
             android:background="@color/white"
             android:elevation="14dp"
-
             android:orientation="vertical"
             android:padding="@dimen/padding_layout"
             android:visibility="gone"
@@ -42,16 +41,20 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/padding_layout"
+                android:gravity="center_horizontal"
+                android:layout_marginTop="@dimen/padding_layout_2"
                 android:text="No Face Problem Detected" />
 
             <LinearLayout
+                android:layout_marginTop="@dimen/padding_layout_4"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
 
                 <Button
+                    android:layout_weight="1"
                     android:id="@+id/btnToHome"
+                    android:layout_marginEnd="@dimen/padding_layout"
                     style="?attr/materialButtonOutlinedStyle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -59,6 +62,7 @@
                     android:textAllCaps="false" />
 
                 <Button
+                    android:layout_weight="1"
                     android:id="@+id/btnNoProblemToFullResult"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"

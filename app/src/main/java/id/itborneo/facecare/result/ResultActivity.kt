@@ -66,7 +66,7 @@ class ResultActivity : AppCompatActivity() {
             if (it != null) {
                 observerData(it)
                 if (it.isEmpty()) {
-                    Toast.makeText(this, "Something's Wrong", Toast.LENGTH_LONG).show()
+//                    Toast.makeText(this, "Something's Wrong", Toast.LENGTH_LONG).show()
                     noProblemUser()
                 }
             }

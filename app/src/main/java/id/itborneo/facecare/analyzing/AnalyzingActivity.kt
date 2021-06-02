@@ -127,7 +127,6 @@ class AnalyzingActivity : AppCompatActivity() {
             updateUI(it)
         }
 
-
     }
 
 
