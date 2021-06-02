@@ -11,6 +11,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
+        android:paddingBottom="@dimen/padding_layout"
         tools:context=".home.HomeFragment">
 
         <LinearLayout
@@ -260,7 +261,6 @@
             android:layout_marginBottom="@dimen/padding_layout_4"
             app:cardCornerRadius="12dp"
             app:cardElevation="10dp"
-            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="@+id/carView_suggestion"
             app:layout_constraintStart_toStartOf="@+id/carView_suggestion"
             app:layout_constraintTop_toBottomOf="@+id/carView_suggestion">
@@ -307,10 +307,12 @@
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginHorizontal="@dimen/padding_layout"
+            android:layout_marginHorizontal="@dimen/padding_layout_3"
+            android:layout_marginVertical="@dimen/padding_layout_3"
             android:enabled="false"
             android:text="Contact Doctor"
             android:textAllCaps="false"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toBottomOf="@id/carView_natIngredient" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>

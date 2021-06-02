@@ -27,11 +27,13 @@ class AnalyzingActivity : AppCompatActivity() {
     companion object {
         private const val TAG = "AnalyzingActivity"
         private const val EXTRA_ANALYZING = "extra_analyzing"
+        private const val EXTRA_CAMERA_FACE = "extr_camera_face"
 
-        fun getInstance(context: Context, savedUri: Uri) {
+        fun getInstance(context: Context, savedUri: Uri, isFront: Boolean) {
             val intent = Intent(context, AnalyzingActivity::class.java)
 //            intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION)
             intent.putExtra(EXTRA_ANALYZING, savedUri)
+            intent.putExtra(EXTRA_CAMERA_FACE, isFront)
 
             context.startActivity(intent)
         }
@@ -40,6 +42,7 @@ class AnalyzingActivity : AppCompatActivity() {
     private lateinit var cropActivityResultLauncher: ActivityResultLauncher<Any?>
 
     var getUri: Uri? = null
+    var getIsFrontCamera = true
     private lateinit var binding: ActivityAnalyzingBinding
     private val dataImage = MutableLiveData<Bitmap>()
 
@@ -133,9 +136,15 @@ class AnalyzingActivity : AppCompatActivity() {
     private fun retrieveData() {
 
         getUri = intent.extras?.getParcelable(EXTRA_ANALYZING)
+        getIsFrontCamera = intent.getBooleanExtra(EXTRA_CAMERA_FACE, true)
         Log.d(TAG, "retrieveData $getUri")
         val bitmap = MediaStore.Images.Media.getBitmap(this.contentResolver, getUri)
-        dataImage.value = bitmap.rotate(-90F)
+        if (getIsFrontCamera) {
+            dataImage.value = bitmap.rotate(-90F)
+
+        } else {
+            dataImage.value = bitmap.rotate(90F)
+        }
 
     }
 
@@ -153,7 +162,8 @@ class AnalyzingActivity : AppCompatActivity() {
 
 
 //        val mModelPath = "model_acneDs_vgg16_2.tflite"
-        val mModelPath = "acnes_own_model_2.tflite"
+//        val mModelPath = "acnes_own_model_2.tflite"
+        val mModelPath = "model_facecare_3.tflite"
         val mLabelPath = "label.txt"
         val mInputSize = 224
         val classifier = Classifier(assets, mModelPath, mLabelPath, mInputSize)

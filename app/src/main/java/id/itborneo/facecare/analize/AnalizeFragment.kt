@@ -8,12 +8,14 @@ import android.net.Uri
 import android.os.Bundle
 import android.util.Log
 import android.view.*
+import android.widget.Button
 import android.widget.Toast
 import androidx.camera.core.CameraSelector
 import androidx.camera.core.ImageCapture
 import androidx.camera.core.ImageCaptureException
 import androidx.camera.core.Preview
 import androidx.camera.lifecycle.ProcessCameraProvider
+import androidx.coordinatorlayout.widget.CoordinatorLayout
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import com.google.android.material.bottomsheet.BottomSheetBehavior
@@ -158,8 +160,9 @@ class AnalizeFragment : Fragment() {
             date = "Sekarang"
         )
         addToTableDb(result) {
+            val isFront = lensFacing == CameraSelector.LENS_FACING_FRONT
             //move to analyzing
-            AnalyzingActivity.getInstance(requireContext(), savedUri)
+            AnalyzingActivity.getInstance(requireContext(), savedUri, isFront)
 
         }
 
@@ -225,110 +228,112 @@ class AnalizeFragment : Fragment() {
             // Select back camera as a default
 //            val cameraSelector = CameraSelector.DEFAULT_FRONT_CAMERA
             // CameraSelector
-            val cameraSelector = CameraSelector . Builder ().requireLensFacing(lensFacing).build()
+            val cameraSelector = CameraSelector.Builder().requireLensFacing(lensFacing).build()
 
-        try {
+            try {
 
-            // Unbind use cases before rebinding
-            cameraProvider?.unbindAll()
+                // Unbind use cases before rebinding
+                cameraProvider?.unbindAll()
 
-            // Bind use cases to camera
-            cameraProvider?.bindToLifecycle(
-                this, cameraSelector, preview, imageCapture
-            )
+                // Bind use cases to camera
+                cameraProvider?.bindToLifecycle(
+                    this, cameraSelector, preview, imageCapture
+                )
 
-        } catch (exc: Exception) {
-            Log.e(TAG, "Use case binding failed", exc)
+            } catch (exc: Exception) {
+                Log.e(TAG, "Use case binding failed", exc)
+            }
+
+        }, ContextCompat.getMainExecutor(requireContext()))
+
+    }
+
+    private fun allPermissionsGranted() = REQUIRED_PERMISSIONS.all {
+        ContextCompat.checkSelfPermission(
+            requireContext(), it
+        ) == PackageManager.PERMISSION_GRANTED
+    }
+
+    private fun getOutputDirectory(): File {
+        val mediaDir = requireContext().externalMediaDirs.firstOrNull()?.let {
+            File(it, resources.getString(R.string.app_name)).apply { mkdirs() }
+        }
+        return if (mediaDir != null && mediaDir.exists())
+            mediaDir else requireContext().filesDir
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        cameraExecutor.shutdown()
+    }
+
+    companion object {
+        private const val FILENAME_FORMAT = "yyyy-MM-dd-HH-mm-ss-SSS"
+        private const val REQUEST_CODE_PERMISSIONS = 10
+        private val REQUIRED_PERMISSIONS = arrayOf(Manifest.permission.CAMERA)
+    }
+
+    override fun onRequestPermissionsResult(
+        requestCode: Int, permissions: Array<String>, grantResults:
+        IntArray
+    ) {
+        if (requestCode == REQUEST_CODE_PERMISSIONS) {
+            if (allPermissionsGranted()) {
+                startCamera()
+            } else {
+                Toast.makeText(
+                    requireContext(),
+                    "Permissions not granted by the user.",
+                    Toast.LENGTH_SHORT
+                ).show()
+
+                requireActivity().onBackPressed()
+            }
+        }
+    }
+
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+
+        val uri = data?.data
+
+        if (uri != null) {
+            actionToAnayzing(uri)
         }
 
-    }, ContextCompat.getMainExecutor(requireContext()))
-
-}
-
-private fun allPermissionsGranted() = REQUIRED_PERMISSIONS.all {
-    ContextCompat.checkSelfPermission(
-        requireContext(), it
-    ) == PackageManager.PERMISSION_GRANTED
-}
-
-private fun getOutputDirectory(): File {
-    val mediaDir = requireContext().externalMediaDirs.firstOrNull()?.let {
-        File(it, resources.getString(R.string.app_name)).apply { mkdirs() }
-    }
-    return if (mediaDir != null && mediaDir.exists())
-        mediaDir else requireContext().filesDir
-}
-
-override fun onDestroy() {
-    super.onDestroy()
-    cameraExecutor.shutdown()
-}
-
-companion object {
-    private const val FILENAME_FORMAT = "yyyy-MM-dd-HH-mm-ss-SSS"
-    private const val REQUEST_CODE_PERMISSIONS = 10
-    private val REQUIRED_PERMISSIONS = arrayOf(Manifest.permission.CAMERA)
-}
-
-override fun onRequestPermissionsResult(
-    requestCode: Int, permissions: Array<String>, grantResults:
-    IntArray
-) {
-    if (requestCode == REQUEST_CODE_PERMISSIONS) {
-        if (allPermissionsGranted()) {
-            startCamera()
-        } else {
-            Toast.makeText(
-                requireContext(),
-                "Permissions not granted by the user.",
-                Toast.LENGTH_SHORT
-            ).show()
-
-            requireActivity().onBackPressed()
-        }
-    }
-}
-
-
-override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-    super.onActivityResult(requestCode, resultCode, data)
-
-    val uri = data?.data
-
-    if (uri != null) {
-        actionToAnayzing(uri)
     }
 
-}
-
-private fun privacyInfo(context: Context, rootView: ViewGroup) {
-    val dialog = BottomSheetDialog(context, R.style.SheetDialog)
+    private fun privacyInfo(context: Context, rootView: ViewGroup) {
+        val dialog = BottomSheetDialog(context, R.style.SheetDialog)
 //        dialog.behavior.isHideable = false
-    dialog.behavior.state = BottomSheetBehavior.STATE_COLLAPSED
+        dialog.behavior.state = BottomSheetBehavior.STATE_COLLAPSED
 
-    val view =
-        LayoutInflater.from(context).inflate(R.layout.bottom_sheet_detail, rootView, false)
-    dialog.setContentView(view)
+        val view =
+            LayoutInflater.from(context).inflate(R.layout.bottom_sheet_detail, rootView, false)
+        dialog.setContentView(view)
 
-    view?.isFocusableInTouchMode = true
-    view?.requestFocus()
-    view?.setOnKeyListener { _, keyCode, _ ->
-        if (keyCode == KeyEvent.KEYCODE_BACK) {
-            // Do what you want to do on back press
-            dialog.dismiss()
-            back()
-            true
-        } else
-            false
-    }
+        view?.isFocusableInTouchMode = true
+        view?.requestFocus()
+        view?.setOnKeyListener { _, keyCode, _ ->
+            if (keyCode == KeyEvent.KEYCODE_BACK) {
+                // Do what you want to do on back press
+                dialog.dismiss()
+//                back()
+                true
+            } else
+                false
+        }
 
 
-//        val ivFavorite = view?.findViewById<ImageView>(R.id.ivFavorite)
+        val root = view?.findViewById<Button>(R.id.btnClose)
 //
 //        updateFavorite(city.isfavorite, ivFavorite, true)
 //
-//        ivFavorite?.setOnClickListener {
-//
+        root?.setOnClickListener {
+            dialog.dismiss()
+        }
+//}
 //            city.isfavorite = !city.isfavorite
 //            Log.d(TAG, "ivFavorite ${city.isfavorite}")
 //
@@ -339,31 +344,31 @@ private fun privacyInfo(context: Context, rootView: ViewGroup) {
 //        }
 
 
-    binding.btnInfo.setOnClickListener {
+        binding.btnInfo.setOnClickListener {
+            dialog.show()
+
+        }
         dialog.show()
-
     }
-    dialog.show()
-}
 
-private fun back() {
-    requireActivity().onBackPressed()
-}
+    private fun back() {
+        requireActivity().onBackPressed()
+    }
 
 
-private fun addToTableDb(result: ResultModel, callback: () -> Unit) {
+    private fun addToTableDb(result: ResultModel, callback: () -> Unit) {
 
-    val dao = AppDatabase.getInstance(requireContext()).resultDao()
+        val dao = AppDatabase.getInstance(requireContext()).resultDao()
 
-    GlobalScope.launch(Dispatchers.IO) {
-        dao.add(result)
+        GlobalScope.launch(Dispatchers.IO) {
+            dao.add(result)
 
-        withContext(Dispatchers.Main) {
-            callback()
+            withContext(Dispatchers.Main) {
+                callback()
+            }
+
         }
 
+
     }
-
-
-}
 }
