@@ -109,7 +109,7 @@
         android:layout_height="100dp"
         android:layout_marginStart="@dimen/padding_layout_half"
         android:elevation="10dp"
-        android:src="@drawable/ic_girl_user"
+        android:src="@drawable/ic_girl_user_v2"
         app:layout_constraintBottom_toBottomOf="@id/cardView"
         app:layout_constraintStart_toStartOf="@id/cardView"
         app:layout_constraintTop_toTopOf="@id/cardView" />
