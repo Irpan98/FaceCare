@@ -17,6 +17,9 @@ https://github.com/Irpan98/FaceCare.git
 ## Server Installation
 Follow guide in https://github.com/arisukarno25/database-capstone
 
+## Machine Learning 
+Follow guide in https://github.com/caesarars/tranining-acnes
+
 ## Generating signed APK
 From Android Studio:
 1. ***Build*** menu
