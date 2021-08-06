@@ -31,7 +31,6 @@ class AnalyzingActivity : AppCompatActivity() {
 
         fun getInstance(context: Context, savedUri: Uri, isFront: Boolean) {
             val intent = Intent(context, AnalyzingActivity::class.java)
-//            intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION)
             intent.putExtra(EXTRA_ANALYZING, savedUri)
             intent.putExtra(EXTRA_CAMERA_FACE, isFront)
 
