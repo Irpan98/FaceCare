@@ -38,8 +38,7 @@ class AnalyzingActivity : AppCompatActivity() {
         }
     }
 
-    private lateinit var cropActivityResultLauncher: ActivityResultLauncher<Any?>
-
+//    private lateinit var cropActivityResultLauncher: ActivityResultLauncher<Any?>
     var getUri: Uri? = null
     var getIsFrontCamera = true
     private lateinit var binding: ActivityAnalyzingBinding
